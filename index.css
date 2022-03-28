@@ -1,0 +1,6 @@
+body {
+    background-color: lightskyblue;
+    background-image: url(loading.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+}
