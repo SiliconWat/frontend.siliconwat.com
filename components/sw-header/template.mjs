@@ -14,35 +14,171 @@ template.innerHTML = `
         <nav>
             <ul>
                 <li>
-                    <h3>Frontend Course</h3>
+                    <h3>Unit 1</h3>
                     <div>
-                        <a href="#Frontend.SiliconWat.org"><button class="cohort">Join: Remote Cohort Frontend Program</button></a>
-                        <h4>Learn</h4>
+                        <h2>HTML/CSS/JS Orchestra</h2>
+                        <figure>
+                            <h4><span id="total-completed">0</span>% Completed</h4>
+                            <progress id="progress" max="400" value="0"></progress>
+                            <label for="progress">
+                                <figcaption>Chapters: <span id="chapters-completed">0</span>/100</figcaption>
+                                <figcaption>Extra Credits: <span id="extra-credits-completed">0</span>/300</figcaption>
+                            </label>
+                        </figure>
+                        <h4>Chapter 1: Hello World</h4>
                         <menu>
-                            <li><a>Watch Videos on Udemy</a></li>
-                            <li><a>Read Textbook on Medium</a></li>
-                            <li><a>Take Quizzes to Check Understanding</a></li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Watch Videos on Udemy</a>
+                            </li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Read Textbook on Medium</a>
+                            </li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Take Quizzes to Check Understanding</a>
+                            </li>
+                            <li class="practice">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Podcast: Motivation & Coding Music</a>
+                            </li>
+                            <li class="practice">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Interactive Coding Exercises</a>
+                            </li>
+                            <li class="review">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Live Demo: Music Apps</a>
+                            </li>
+                            <li class="review">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Syntax Flashcards</a>
+                            </li>
                         </menu>
-                        <h4>Practice</h4>
+                        <h4>Chapter 2: JavaScript Console</h4>
                         <menu>
-                            <li><a>Podcast: Motivation & Coding Music</a></li>
-                            <li><a>Interactive Coding Exercises</a></li>
-                            <li class="cohort"><a>Remote Pair Programming on Discord</a></li>
-                            <li class="cohort"><a>Students' Solo Projects on Codepen</a></li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Watch Videos on Udemy</a>
+                            </li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Read Textbook on Medium</a>
+                            </li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Take Quizzes to Check Understanding</a>
+                            </li>
+                            <li class="practice">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Podcast: Motivation & Coding Music</a>
+                            </li>
+                            <li class="practice">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Interactive Coding Exercises</a>
+                            </li>
+                            <li class="review">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Live Demo: Music Apps</a>
+                            </li>
+                            <li class="review">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Syntax Flashcards</a>
+                            </li>
                         </menu>
-                        <h4>Review</h4>
+                        <h4>Chapter 3: Tree Structures in HTML, CSS and JavaScript</h4>
                         <menu>
-                            <li><a>Live Demo: Music Apps</a></li>
-                            <li><a>Syntax Flashcards</a></li>
-                            <li class="cohort"><a>Group Chat & Discussion Boards</a></li>
-                            <li class="cohort"><a>Students' Writings on Medium</a></li>
-                            <li class="cohort"><a>Mock Interviews on YouTube</a></li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Watch Videos on Udemy</a>
+                            </li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Read Textbook on Medium</a>
+                            </li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Take Quizzes to Check Understanding</a>
+                            </li>
+                            <li class="practice">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Podcast: Motivation & Coding Music</a>
+                            </li>
+                            <li class="practice">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Interactive Coding Exercises</a>
+                            </li>
+                            <li class="review">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Live Demo: Music Apps</a>
+                            </li>
+                            <li class="review">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Syntax Flashcards</a>
+                            </li>
                         </menu>
-                        <h4>Bonus: Advanced Lessons</h4>
+                        <h4>Chapter 4: Importing CSS Code</h4>
                         <menu>
-                            <li><a>React and Redux</a></li>
-                            <li><a>TypeScript</a></li>
-                            <li><a>Web Audio Production</a></li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Watch Videos on Udemy</a>
+                            </li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Read Textbook on Medium</a>
+                            </li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Take Quizzes to Check Understanding</a>
+                            </li>
+                            <li class="practice">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Podcast: Motivation & Coding Music</a>
+                            </li>
+                            <li class="practice">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Interactive Coding Exercises</a>
+                            </li>
+                            <li class="review">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Live Demo: Music Apps</a>
+                            </li>
+                            <li class="review">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Syntax Flashcards</a>
+                            </li>
+                        </menu>
+                        <h4>Chapter 5: Importing JavaScript Code</h4>
+                        <menu>
+                        <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Watch Videos on Udemy</a>
+                            </li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Read Textbook on Medium</a>
+                            </li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Take Quizzes to Check Understanding</a>
+                            </li>
+                            <li class="practice">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Podcast: Motivation & Coding Music</a>
+                            </li>
+                            <li class="practice">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Interactive Coding Exercises</a>
+                            </li>
+                            <li class="review">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Live Demo: Music Apps</a>
+                            </li>
+                            <li class="review">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Syntax Flashcards</a>
+                            </li>
                         </menu>
                         <br>
                         <a href="#Frontend.SiliconWat.com"><button>eLearn: Frontend Music Course</button></a>
@@ -51,7 +187,7 @@ template.innerHTML = `
             </ul>
             <ul>
                 <li>
-                    <h3>Backend Course</h3>
+                    <h3>Unit 2</h3>
                     <div>
                         <a href="#Backend.SiliconWat.org"><button class="cohort">Join: Remote Cohort Backend Program</button></a>
                         <h4>Learn</h4>
@@ -87,7 +223,7 @@ template.innerHTML = `
             </ul>
             <ul>
                 <li>
-                    <h3>iOS Course</h3>
+                    <h3>Unit 3</h3>
                     <div>
                         <a href="#iOS.SiliconWat.org"><button class="cohort">Join: Remote Cohort iOS Program</button></a>
                         <h4>Learn</h4>
@@ -124,7 +260,7 @@ template.innerHTML = `
             </ul>
             <ul>
                 <li>
-                    <h3>Graduation</h3>
+                    <h3>Unit 4</h3>
                     <div>
                         <a><button>Earn SW Coins</button></a>
                         <h4>Awards</h4>
@@ -148,7 +284,47 @@ template.innerHTML = `
             </ul>
             <ul>
                 <li>
-                    <h3>Coupons</h3>
+                    <h3>Unit 5</h3>
+                    <div>
+                        <a><button>Apply for Discounts</button></a>
+                        <h4>Inclusion & Diversity</h4>
+                        <menu>
+                            <li><a>Women & Minorities</a></li>
+                            <li><a>Ukrainian Refugees</a></li>
+                            <li><a>Cambodian Genocide</a></li>
+                        </menu>
+                        <h4>Campuses</h4>
+                        <menu>
+                            <li><a>Cambodia</a></li>
+                            <li><a>Ukraine</a></li>
+                            <li><a>United States</a></li>
+                        </menu>
+                    </div>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <h3>Bonus Unit 6</h3>
+                    <div>
+                        <a><button>Apply for Discounts</button></a>
+                        <h4>Inclusion & Diversity</h4>
+                        <menu>
+                            <li><a>Women & Minorities</a></li>
+                            <li><a>Ukrainian Refugees</a></li>
+                            <li><a>Cambodian Genocide</a></li>
+                        </menu>
+                        <h4>Campuses</h4>
+                        <menu>
+                            <li><a>Cambodia</a></li>
+                            <li><a>Ukraine</a></li>
+                            <li><a>United States</a></li>
+                        </menu>
+                    </div>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <h3>Bonus Unit 7</h3>
                     <div>
                         <a><button>Apply for Discounts</button></a>
                         <h4>Inclusion & Diversity</h4>
