@@ -7,6 +7,7 @@ import "./components/sw-main/sw-quiz/element.mjs";
 import "./components/sw-main/sw-code/element.mjs";
 import "./components/sw-main/sw-cohort/element.mjs";
 import "./components/sw-main/sw-coupon/element.mjs";
+import "./components/sw-main/sw-music/element.mjs";
 import "./components/sw-main/element.mjs";
 
 import "./components/sw-footer/element.mjs";

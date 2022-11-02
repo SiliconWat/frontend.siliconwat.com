@@ -137,18 +137,6 @@ button:hover {
 	border-color: var(--theme-color-2);
 }
 
-.learn {
-	color: green;
-}
-
-.practice {
-	color: red;
-}
-
-.review {
-	color: blue;
-}
-
 /*----------*/
 
 .menu-button-container {

@@ -29,6 +29,19 @@ template.innerHTML = `
                         <menu>
                             <li class="learn">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Learn</a>
+                            </li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Practice</a>
+                            </li>
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a>Review</a>
+                            </li>
+                            <!--
+                            <li class="learn">
+                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
                                 <a>Watch Videos on Udemy</a>
                             </li>
                             <li class="learn">
@@ -41,147 +54,73 @@ template.innerHTML = `
                             </li>
                             <li class="practice">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Podcast: Motivation & Coding Music</a>
-                            </li>
-                            <li class="practice">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
                                 <a>Interactive Coding Exercises</a>
                             </li>
                             <li class="review">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Live Demo: Music Apps</a>
-                            </li>
-                            <li class="review">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
                                 <a>Syntax Flashcards</a>
-                            </li>
+                            </li>-->
                         </menu>
                         <h4>Chapter 2: JavaScript Console</h4>
                         <menu>
                             <li class="learn">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Watch Videos on Udemy</a>
+                                <a>Learn</a>
                             </li>
                             <li class="learn">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Read Textbook on Medium</a>
+                                <a>Practice</a>
                             </li>
                             <li class="learn">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Take Quizzes to Check Understanding</a>
-                            </li>
-                            <li class="practice">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Podcast: Motivation & Coding Music</a>
-                            </li>
-                            <li class="practice">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Interactive Coding Exercises</a>
-                            </li>
-                            <li class="review">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Live Demo: Music Apps</a>
-                            </li>
-                            <li class="review">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Syntax Flashcards</a>
+                                <a>Review</a>
                             </li>
                         </menu>
                         <h4>Chapter 3: Tree Structures in HTML, CSS and JavaScript</h4>
                         <menu>
                             <li class="learn">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Watch Videos on Udemy</a>
+                                <a>Learn</a>
                             </li>
                             <li class="learn">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Read Textbook on Medium</a>
+                                <a>Practice</a>
                             </li>
                             <li class="learn">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Take Quizzes to Check Understanding</a>
-                            </li>
-                            <li class="practice">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Podcast: Motivation & Coding Music</a>
-                            </li>
-                            <li class="practice">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Interactive Coding Exercises</a>
-                            </li>
-                            <li class="review">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Live Demo: Music Apps</a>
-                            </li>
-                            <li class="review">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Syntax Flashcards</a>
+                                <a>Review</a>
                             </li>
                         </menu>
                         <h4>Chapter 4: Importing CSS Code</h4>
                         <menu>
                             <li class="learn">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Watch Videos on Udemy</a>
+                                <a>Learn</a>
                             </li>
                             <li class="learn">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Read Textbook on Medium</a>
+                                <a>Practice</a>
                             </li>
                             <li class="learn">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Take Quizzes to Check Understanding</a>
-                            </li>
-                            <li class="practice">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Podcast: Motivation & Coding Music</a>
-                            </li>
-                            <li class="practice">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Interactive Coding Exercises</a>
-                            </li>
-                            <li class="review">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Live Demo: Music Apps</a>
-                            </li>
-                            <li class="review">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Syntax Flashcards</a>
+                                <a>Review</a>
                             </li>
                         </menu>
                         <h4>Chapter 5: Importing JavaScript Code</h4>
                         <menu>
-                        <li class="learn">
+                            <li class="learn">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Watch Videos on Udemy</a>
+                                <a>Learn</a>
                             </li>
                             <li class="learn">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Read Textbook on Medium</a>
+                                <a>Practice</a>
                             </li>
                             <li class="learn">
                                 <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Take Quizzes to Check Understanding</a>
-                            </li>
-                            <li class="practice">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Podcast: Motivation & Coding Music</a>
-                            </li>
-                            <li class="practice">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Interactive Coding Exercises</a>
-                            </li>
-                            <li class="review">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Live Demo: Music Apps</a>
-                            </li>
-                            <li class="review">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Syntax Flashcards</a>
+                                <a>Review</a>
                             </li>
                         </menu>
-                        <br>
-                        <a href="#Frontend.SiliconWat.com"><button>eLearn: Frontend Music Course</button></a>
                     </div>
                 </li>
             </ul>
