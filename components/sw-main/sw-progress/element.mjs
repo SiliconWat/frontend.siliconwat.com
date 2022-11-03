@@ -1,6 +1,6 @@
 import template from './template.mjs';
 
-class SwMusic extends HTMLElement {
+class SwProgress extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
@@ -12,4 +12,4 @@ class SwMusic extends HTMLElement {
     }
 }
 
-customElements.define("sw-music", SwMusic);
+customElements.define("sw-progress", SwProgress);

@@ -25,11 +25,18 @@ template.innerHTML = `
                 <h5>Live Demos</h5>
                 <ul>
                     <li><a href="https://music.siliconwat.com">Music Editor</a></li>
-                    <li><a href="https://music.siliconwat.org">Music Games</a></li>
+                    <li><a href="https://music.siliconwat.org">Music School</a></li>
                 </ul>
             </section>
         </main>
         <footer>
+            <select onchange="this.getRootNode().host.changeLanguage(event)">
+                <option value="en">English</option>
+                <option value="km" disabled>Khmer</option>
+                <option value="es" disabled>Spanish</option>
+                <option value="ru" disabled>Russian</option>
+                <option value="zh" disabled>Chinese</option>
+            </select>
             <small><a href="https://siliconwat.com">Silicon Wat University</a> &copy; 2023</small>
         </footer>
     </nav>
