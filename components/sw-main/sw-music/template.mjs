@@ -5,8 +5,8 @@ template.innerHTML = `
     <svg viewBox="0 0 10 10">
         <defs>
             <radialGradient id="gradient">
-            <stop offset="80%" stop-color="yellow" />
-            <stop offset="100%" stop-color="white" />
+                <stop offset="80%" stop-color="yellow" />
+                <stop offset="100%" stop-color="white" />
             </radialGradient>
         </defs>
         <circle cx="5" cy="5" r="5" fill="url('#gradient')" />

@@ -1,0 +1,13 @@
+:host {
+    display: none;
+    font-size: medium;;
+}
+
+svg {
+    width: 100%;
+}
+
+svg:hover rect:nth-of-type(2) {
+    transition: transform 1s ease;
+    transform: translateX(0);
+}

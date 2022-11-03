@@ -1,3 +1,5 @@
+import "./sw-bar/element.mjs";
+
 const template = document.createElement("template");
 
 template.innerHTML = `
@@ -17,14 +19,7 @@ template.innerHTML = `
                     <h3>Unit 1</h3>
                     <div>
                         <h2>HTML/CSS/JS Orchestra</h2>
-                        <figure>
-                            <h4><span id="total-completed">0</span>% Completed</h4>
-                            <progress id="progress" max="400" value="0"></progress>
-                            <label for="progress">
-                                <figcaption>Chapters: <span id="chapters-completed">0</span>/100</figcaption>
-                                <figcaption>Extra Credits: <span id="extra-credits-completed">0</span>/300</figcaption>
-                            </label>
-                        </figure>
+                        <sw-bar></sw-bar>
                         <h4>Chapter 1: Hello World</h4>
                         <menu>
                             <li class="learn">
