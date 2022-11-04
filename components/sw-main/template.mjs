@@ -5,7 +5,6 @@ template.innerHTML = `
     <div class="page-wrapper">
         <div class="sky">
             <div class="component-wrapper">
-                <slot></slot>
                 <div class="sun"></div>
                 <div class="background-grid">
                     <div class="background one"><img class="" src="components/sw-main/background-1.svg" /></div>
@@ -79,6 +78,7 @@ template.innerHTML = `
         </div>
         <div class="ground"></div>
     </div>
+    <slot></slot>
 `;
 
 export default template;

@@ -2,7 +2,6 @@
     background-color: var(--theme-color);
     color: #fffa;
     font-size: small;
-    height: fit-content;
 }
 
 nav {
@@ -12,6 +11,12 @@ nav {
     justify-content: space-between;
     align-items: center;
 }
+
+/*main {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}*/
 
 main {
     width: 100%;

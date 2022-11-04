@@ -18,7 +18,7 @@ class SwMain extends HTMLElement {
     connectedCallback() {
         this.#buildElements();
         this.#startIntervalCounter();
-        if (this.#hash) this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(this.#hash[1]);
+        this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === (this.#hash ? this.#hash[0] : "SW-STEALTH")).render(this.#hash ? this.#hash[1] : null);
     }
 
     #getRandomInt(min, max, string = true) {

@@ -1,10 +1,16 @@
 :host {
     display: none;
-    position: absolute;
-    z-index: 100;
     padding: 40px;
+    min-height: 90vh;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 @media (max-width: 480px) {
-    
+    main {
+        grid-template-columns: 1fr;
+    }
 }
