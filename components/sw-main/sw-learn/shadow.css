@@ -1,0 +1,10 @@
+:host {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    padding: 40px;
+}
+
+@media (max-width: 480px) {
+    
+}

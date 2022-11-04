@@ -23,97 +23,76 @@ template.innerHTML = `
                         <h4>Chapter 1: Hello World</h4>
                         <menu>
                             <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Learn</a>
-                            </li>
-                            <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Practice</a>
-                            </li>
-                            <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Review</a>
-                            </li>
-                            <!--
-                            <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Watch Videos on Udemy</a>
-                            </li>
-                            <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Read Textbook on Medium</a>
-                            </li>
-                            <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Take Quizzes to Check Understanding</a>
+                                <input id="learn-chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a href="#learn-chapter1">Learn</a>
                             </li>
                             <li class="practice">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Interactive Coding Exercises</a>
+                                <input id="practice-chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a href="#practice-chapter1">Practice</a>
                             </li>
                             <li class="review">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Syntax Flashcards</a>
-                            </li>-->
+                                <input id="review-chapter1" type="checkbox" oninput="checkMark(this)">
+                                <a href="#review-chapter1">Review</a>
+                            </li>
                         </menu>
                         <h4>Chapter 2: JavaScript Console</h4>
                         <menu>
                             <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Learn</a>
+                                <input id="learn-chapter2" type="checkbox" oninput="checkMark(this)">
+                                <a href="#learn-chapter2">Learn</a>
                             </li>
-                            <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Practice</a>
+                            <li class="practice">
+                                <input id="practice-chapter2" type="checkbox" oninput="checkMark(this)">
+                                <a href="#practice-chapter2">Practice</a>
                             </li>
-                            <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Review</a>
+                            <li class="review">
+                                <input id="review-chapter2" type="checkbox" oninput="checkMark(this)">
+                                <a href="#review-chapter2">Review</a>
                             </li>
                         </menu>
                         <h4>Chapter 3: Tree Structures in HTML, CSS and JavaScript</h4>
                         <menu>
                             <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Learn</a>
+                                <input id="learn-chapter3" type="checkbox" oninput="checkMark(this)">
+                                <a href="#learn-chapter3">Learn</a>
                             </li>
-                            <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Practice</a>
+                            <li class="practice">
+                                <input id="practice-chapter3" type="checkbox" oninput="checkMark(this)">
+                                <a href="#practice-chapter3">Practice</a>
                             </li>
-                            <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Review</a>
+                            <li class="review">
+                                <input id="review-chapter3" type="checkbox" oninput="checkMark(this)">
+                                <a href="#review-chapter3">Review</a>
                             </li>
                         </menu>
                         <h4>Chapter 4: Importing CSS Code</h4>
                         <menu>
                             <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Learn</a>
+                                <input id="learn-chapter4" type="checkbox" oninput="checkMark(this)">
+                                <a href="#learn-chapter4">Learn</a>
                             </li>
-                            <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Practice</a>
+                            <li class="practice">
+                                <input id="practice-chapter4" type="checkbox" oninput="checkMark(this)">
+                                <a href="#practice-chapter4">Practice</a>
                             </li>
-                            <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Review</a>
+                            <li class="review">
+                                <input id="review-chapter4" type="checkbox" oninput="checkMark(this)">
+                                <a href="#review-chapter4">Review</a>
                             </li>
                         </menu>
                         <h4>Chapter 5: Importing JavaScript Code</h4>
                         <menu>
                             <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Learn</a>
+                                <input id="learn-chapter5" type="checkbox" oninput="checkMark(this)">
+                                <a href="#learn-chapter5">Learn</a>
                             </li>
-                            <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Practice</a>
+                            <li class="practice">
+                                <input id="practice-chapter5" type="checkbox" oninput="checkMark(this)">
+                                <a href="#practice-chapter5">Practice</a>
                             </li>
-                            <li class="learn">
-                                <input id="chapter1" type="checkbox" oninput="checkMark(this)">
-                                <a>Review</a>
+                            <li class="review">
+                                <input id="review-chapter5" type="checkbox" oninput="checkMark(this)">
+                                <a href="#review-chapter5">Review</a>
                             </li>
                         </menu>
                     </div>
