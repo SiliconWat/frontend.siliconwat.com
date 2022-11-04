@@ -3,7 +3,7 @@
     font-size: medium;;
     position: fixed;
     bottom: 50px;
-    left: 50px;
+    right: 50px;
     z-index: 200;
 }
 
