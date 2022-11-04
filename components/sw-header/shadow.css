@@ -44,6 +44,10 @@ h1 {
 	margin-left: 15px;
 }
 
+h2 {
+	cursor: default;
+}
+
 h1:hover {
 	color: var(--theme-color-2);
 }

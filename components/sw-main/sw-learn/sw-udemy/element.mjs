@@ -11,7 +11,7 @@ class SwUdemy extends HTMLElement {
     render(chapter) {
         const a = this.shadowRoot.querySelector('a');
         a.textContent = CHAPTERS[chapter - 1].title;
-        a.href = CHAPTERS[chapter - 1].medium;
+        if (CHAPTERS[chapter - 1].udemy) a.href = CHAPTERS[chapter - 1].udemy;
     }
 }
 

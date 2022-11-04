@@ -14,7 +14,7 @@ template.innerHTML = `
             <span class='menu-button'></span>
         </label>
         <ul>
-            <li>
+            <!--<li>
                 <h3>Unit 1</h3>
                 <nav>
                     <h2>HTML/CSS/JS Orchestra</h2>
@@ -95,7 +95,7 @@ template.innerHTML = `
                         </li>
                     </menu>
                 </nav>
-            </li>
+            </li>-->
         </ul>
         <aside>
             <select onchange="this.getRootNode().host.changeLanguage(event)">

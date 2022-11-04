@@ -29,32 +29,35 @@ class SwHeader extends HTMLElement {
             li.append(h3, nav);
             nav.append(h2, bar);
 
-            CHAPTERS.forEach((chapter, c) => {
-                const h4 = document.createElement('h4');
-                const menu = document.createElement('menu');
+            if (unit.from && unit.to) {
+                for (let c = unit.from - 1; c < unit.to; c++) {
+                    const chapter = CHAPTERS[c];
+                    const h4 = document.createElement('h4');
+                    const menu = document.createElement('menu');
 
-                h4.textContent = `Chapter ${c + 1}: ${chapter.title}`;
+                    h4.textContent = `Chapter ${c + 1}: ${chapter.title}`;
 
-                li.append(nav);
-                nav.append(h4, menu);
+                    li.append(nav);
+                    nav.append(h4, menu);
 
-                ['Learn', 'Practice', 'Review'].forEach(task => {
-                    const taskLowerCase = task.toLowerCase();
-                    const li = document.createElement('li');
-                    const input = document.createElement('input');
-                    const a = document.createElement('a');
+                    ['Learn', 'Practice', 'Review'].forEach(task => {
+                        const taskLowerCase = task.toLowerCase();
+                        const li = document.createElement('li');
+                        const input = document.createElement('input');
+                        const a = document.createElement('a');
 
-                    li.classList.add(taskLowerCase);
-                    input.id = `${taskLowerCase}-chapter${c + 1}`;
-                    input.type = 'checkbox';
-                    input.oninput = this.#checkMark.bind(this);
-                    a.href = `#${taskLowerCase}-chapter${c + 1}`;
-                    a.textContent = task;
+                        li.classList.add(taskLowerCase);
+                        input.id = `${taskLowerCase}-chapter${c + 1}`;
+                        input.type = 'checkbox';
+                        input.oninput = this.#checkMark.bind(this);
+                        a.href = `#${taskLowerCase}-chapter${c + 1}`;
+                        a.textContent = task;
 
-                    menu.append(li);
-                    li.append(input, " ", a);
-                });
-            });
+                        menu.append(li);
+                        li.append(input, " ", a);
+                    });
+                }
+            }
         });
 
         this.shadowRoot.querySelector('ul').replaceChildren(fragment);
