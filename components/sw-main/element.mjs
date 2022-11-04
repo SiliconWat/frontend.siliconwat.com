@@ -18,6 +18,7 @@ class SwMain extends HTMLElement {
     connectedCallback() {
         this.#buildElements();
         this.#startIntervalCounter();
+        this.style.display = 'block';
         this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === (this.#hash ? this.#hash[0] : "SW-STEALTH")).render(this.#hash ? this.#hash[1] : null);
     }
 

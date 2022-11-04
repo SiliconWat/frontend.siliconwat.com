@@ -8,9 +8,8 @@
 }
 
 svg {
-    transform: rotate(-90deg);
     width: 70px;
-    height: 70px;
+    transform: rotate(-90deg); 
 }
 
 .percent {
