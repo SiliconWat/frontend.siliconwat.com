@@ -10,7 +10,8 @@ class SwPractice extends HTMLElement {
 
     render(chapter) {
         this.style.display = 'block';
-        this.shadowRoot.querySelector('h1').textContent = `Practice Chapter ${chapter}: ${CHAPTERS[chapter - 1].title}`;
+        this.shadowRoot.querySelector('h1').textContent = `Practice Chapter ${chapter}`;
+        this.shadowRoot.querySelector('h2').textContent = `${CHAPTERS[chapter - 1].title}`;
         this.shadowRoot.querySelector('sw-code').render(chapter);
     }
 }

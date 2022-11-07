@@ -3,10 +3,13 @@ const template = document.createElement("template");
 
 template.innerHTML = `
     <link rel="stylesheet" href="components/sw-main/sw-review/shadow.css">
-    <h1></h1>
+    <header>
+        <h1></h1>
+        <h2></h2>
+    </header>
     <main>
         <article>
-            <h2>Todo #5. Syntax Flashcards</h2>
+            <h3>Todo #5. Syntax Flashcards</h3>
             <sw-flashcard></sw-flashcard>
         </article>
     </main>

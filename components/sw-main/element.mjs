@@ -1,25 +1,30 @@
 import template from './template.mjs';
 
 class SwMain extends HTMLElement {
-    #hash = (() => {
-        if (window.location.hash) {
-            const hash = window.location.hash.substring(1).split("-");
-            return ["SW-" + hash[0].toUpperCase(), Number(hash[1].replace("chapter", ""))];
-        } return null;
-    })();
-
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
-        window.addEventListener("hashchange", event => window.location.reload());
+        window.addEventListener("hashchange", event => this.#render(this.#hash));
     }
 
     connectedCallback() {
         this.#buildElements();
         this.#startIntervalCounter();
         this.style.display = 'block';
-        this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === (this.#hash ? this.#hash[0] : "SW-STEALTH")).render(this.#hash ? this.#hash[1] : null);
+        this.#render(this.#hash);
+    }
+
+    #render(hash) {
+        this.shadowRoot.querySelector("slot").assignedElements().forEach(element => element.style.display = 'none');
+        this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === (hash ? hash[0] : "SW-STEALTH")).render(hash ? hash[1] : null);
+    }
+
+    get #hash() {
+        if (window.location.hash) {
+            const hash = window.location.hash.substring(1).split("-");
+            return ["SW-" + hash[0].toUpperCase(), Number(hash[1].replace("chapter", ""))];
+        } return null;
     }
 
     #getRandomInt(min, max, string = true) {

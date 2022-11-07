@@ -11,7 +11,7 @@ template.innerHTML = `
                 </radialGradient>
             </defs>
             <circle cx="5" cy="5" r="5" fill="url('#gradient')" />
-            <text x="5" y="6.5" text-anchor="middle">🎵</text>
+            <text x="5" y="7" text-anchor="middle">♫</text>
         </svg>
         <iframe src="https://music.thonly.org/?embed=1" width="0" height="0" frameborder="0"></iframe>
     </aside>

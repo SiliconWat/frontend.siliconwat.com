@@ -10,7 +10,8 @@ class SwReview extends HTMLElement {
 
     render(chapter) {
         this.style.display = 'block';
-        this.shadowRoot.querySelector('h1').textContent = `Review Chapter ${chapter}: ${CHAPTERS[chapter - 1].title}`;
+        this.shadowRoot.querySelector('h1').textContent = `Review Chapter ${chapter}`;
+        this.shadowRoot.querySelector('h2').textContent = `${CHAPTERS[chapter - 1].title}`;
         this.shadowRoot.querySelector('sw-flashcard').render(chapter);
     }
 }
