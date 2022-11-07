@@ -17,13 +17,14 @@ class SwMain extends HTMLElement {
 
     #render(hash) {
         this.shadowRoot.querySelector("slot").assignedElements().forEach(element => element.style.display = 'none');
-        this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === (hash ? hash[0] : "SW-STEALTH")).render(hash ? hash[1] : null);
+        if (hash) this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === hash[0]).render(hash[1], hash[2])
+        else this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === "SW-STEALTH").render(null, null);
     }
 
     get #hash() {
         if (window.location.hash) {
             const hash = window.location.hash.substring(1).split("-");
-            return ["SW-" + hash[0].toUpperCase(), Number(hash[1].replace("chapter", ""))];
+            return ["SW-" + hash[0].toUpperCase(), Number(hash[1].replace("unit", "")), Number(hash[2].replace("chapter", ""))];
         } return null;
     }
 

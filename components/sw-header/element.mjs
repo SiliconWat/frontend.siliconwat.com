@@ -49,11 +49,11 @@ class SwHeader extends HTMLElement {
                         const a = document.createElement('a');
 
                         li.classList.add(taskLowerCase);
-                        input.id = `unit${u + 1}-chapter${c + 1}-${taskLowerCase}`;
+                        input.id = `${taskLowerCase}-unit${u + 1}-chapter${c + 1}`;
                         input.type = 'checkbox';
                         input.checked = Boolean(Number(localStorage.getItem(input.id)));
                         input.oninput = this.#checkMark.bind(this);
-                        a.href = `#${taskLowerCase}-chapter${c + 1}`;
+                        a.href = `#${input.id}`;
                         a.textContent = task;
 
                         menu.append(li);
@@ -68,8 +68,9 @@ class SwHeader extends HTMLElement {
 
     #checkMark(event) {
         localStorage.setItem(event.target.id, Number(event.target.checked));
-        const unit = event.target.id.split('-')[0].replace('unit', "");
+        const unit = event.target.id.split('-')[1].replace('unit', "");
         this.shadowRoot.getElementById(unit).render();
+        document.querySelector('sw-progress').render();
     }
 
     changeLanguage(event) {

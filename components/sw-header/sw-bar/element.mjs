@@ -22,7 +22,7 @@ class SwBar extends HTMLElement {
 
         for (let c = unit.from ; c <= unit.to; c++) {
             ['learn', 'practice', 'review'].forEach(task => {
-                if (Number(localStorage.getItem(`unit${this.getAttribute('id')}-chapter${c}-${task}`))) sum += 1;
+                if (Number(localStorage.getItem(`${task}-unit${this.getAttribute('id')}-chapter${c}`))) sum += 1;
             });
         }
 

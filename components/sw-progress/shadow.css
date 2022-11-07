@@ -12,8 +12,19 @@ svg {
     transform: rotate(-90deg); 
 }
 
-.percent {
+#fraction {
+    display: none;
+}
+
+svg:hover > #fraction {
+    display: block;
+}
+
+svg:hover > #percent {
+    display: none;
+}
+
+#ring {
     stroke-dasharray: 100;
-    stroke-dashoffset: 90;
     transition: stroke-dashoffset 1s linear;
 }
