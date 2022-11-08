@@ -1,5 +1,7 @@
 const template = document.createElement("template");
 
+// Reference: https://codepen.io/smartbadger/pen/Nzygqm?editors=0110
+
 template.innerHTML = `
     <link rel="stylesheet" href="components/sw-main/shadow.css">
     <div class="page-wrapper">

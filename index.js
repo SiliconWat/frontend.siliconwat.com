@@ -3,6 +3,7 @@ import "./components/sw-header/element.mjs";
 import "./components/sw-main/sw-learn/element.mjs";
 import "./components/sw-main/sw-practice/element.mjs";
 import "./components/sw-main/sw-review/element.mjs";
+import "./components/sw-main/sw-home/element.mjs";
 import "./components/sw-main/sw-stealth/element.mjs";
 import "./components/sw-main/element.mjs";
 

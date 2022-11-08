@@ -6,8 +6,8 @@ template.innerHTML = `
     <link rel="stylesheet" href="components/sw-header/shadow.css">
     <header>
         <section>
-            <a href="/"><img src="siliconwat.png"></a>
-            <a href="/"><h1>Frontend Music Course</h1></a>
+            <a href="#"><img src="siliconwat.png"></a>
+            <a href="#"><h1>Frontend Music Course</h1></a>
         </section>
         <input id="menu-toggle" type="checkbox">
         <label class='menu-button-container' for="menu-toggle">

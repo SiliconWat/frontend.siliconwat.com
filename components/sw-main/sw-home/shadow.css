@@ -1,0 +1,18 @@
+:host {
+    display: none;
+    padding: 40px;
+    min-height: 90vh;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    gap: 40px;
+}
+
+@media (max-width: 480px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+}
