@@ -185,9 +185,8 @@ select {
 }
 
 @media (max-width: 480px) {
-	h1 {
-		font-size: 1.5em;
-		margin-left: 15px;
+	section {
+		flex: 1;
 	}
 
 	aside {
@@ -196,7 +195,7 @@ select {
 
 	.menu-button-container {
 		display: flex;
-		flex: 0.5;
+		flex: 1;
 	}
 
 	h3 {

@@ -12,12 +12,6 @@ nav {
     align-items: center;
 }
 
-/*main {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}*/
-
 main {
     width: 100%;
     display: flex;

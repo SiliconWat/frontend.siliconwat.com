@@ -17,15 +17,14 @@ class SwMain extends HTMLElement {
 
     #render(hash) {
         this.shadowRoot.querySelector("slot").assignedElements().forEach(element => element.style.display = 'none');
-        if (hash) this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === hash[0]).render(hash[1], hash[2])
-        else this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === "SW-HOME").render(null, null);
+        this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === hash[0]).render(hash[1], hash[2]);
     }
 
     get #hash() {
         if (window.location.hash) {
             const hash = window.location.hash.substring(1).split("-");
             return ["SW-" + hash[0].toUpperCase(), Number(hash[1].replace("unit", "")), Number(hash[2].replace("chapter", ""))];
-        } return null;
+        } return ["SW-HOME", null, null];
     }
 
     #getRandomInt(min, max, string = true) {
