@@ -1,7 +1,8 @@
 :host {
     display: none;
-    font-size: medium;
+    font-size: large;
     position: relative;
+    margin: 0 50px;
 }
 
 main {
@@ -9,9 +10,22 @@ main {
     z-index: 100;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: minmax(20vh, 20vh) minmax(50vh, 50vh) minmax(20vh, 20vh);
     justify-items: center;
-    gap: 40px;
+    gap: 60px;
+    margin: 50px 0;
+}
+
+section {
+    background-color: rgba(255, 255, 255, 70%);
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+}
+
+section:first-child, section:last-child {
+    grid-column: 1 / span 3;
 }
 
 @media (max-width: 480px) {
