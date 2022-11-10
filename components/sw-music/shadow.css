@@ -21,6 +21,10 @@ svg {
     width: 50px;
     font-size: 5px;
     cursor: default;
+
+    background-image: radial-gradient(transparent, rgba(0, 0, 0, 20%));
+    border-radius: 50%;
+    padding: 2px;
 }
 
 aside:hover > svg {
