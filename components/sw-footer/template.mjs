@@ -5,28 +5,40 @@ template.innerHTML = `
     <nav>
         <main>
             <section>
-                <h5>Donors</h5>
-                <ul class="donors">
-                    <li><a href="https://github.com/thonly"><img src="https://github.com/thonly.png?size=100"></a></li>
-                    <li><a href="https://github.com/panhiathao"><img src="https://github.com/panhiathao.png?size=100"></a></li>
-                    <li><a href="https://github.com/chengsieuly"><img src="https://github.com/chengsieuly.png?size=100"></a></li>
-                    <li><a href="https://github.com/lykimche"><img src="https://github.com/lykimche.png?size=100"></a></li>
-                </ul>
+                <div>
+                    <h5>Donors</h5>
+                    <ul class="donors">
+                        <li><a href="https://github.com/thonly"><img src="https://github.com/thonly.png?size=100"></a></li>
+                        <li><a href="https://github.com/panhiathao"><img src="https://github.com/panhiathao.png?size=100"></a></li>
+                        <li><a href="https://github.com/chengsieuly"><img src="https://github.com/chengsieuly.png?size=100"></a></li>
+                        <li><a href="https://github.com/lykimche"><img src="https://github.com/lykimche.png?size=100"></a></li>
+                    </ul>
+                </div>
             </section>
             <section>
-                <h5>Donate</h5>
-                <ul>
-                    <li><a href="https://heartbank.fund">HeartBank</a></li>
-                    <li><a href="https://github.com/sponsors/SiliconWat">GitHub</a></li>
-                    <li><a href="https://medium.com/@thonly/membership">Medium</a></li>
-                </ul>
+                <div>
+                    <h5>Thank</h5>
+                    <ul>
+                        <li><a href="https://kiitos.earth">Kiitos</a></li>
+                    </ul> 
+                </div>
+                <div>
+                    <h5>Donate</h5>
+                    <ul>
+                        <li><a href="https://heartbank.fund">HeartBank</a></li>
+                        <li><a href="https://github.com/sponsors/SiliconWat">GitHub</a></li>
+                        <li><a href="https://medium.com/@thonly/membership">Medium</a></li>
+                    </ul>
+                </div>
             </section>
             <section>
-                <h5>Live Demos</h5>
-                <ul>
-                    <li><a href="https://music.siliconwat.com">Music Editor</a></li>
-                    <li><a href="https://music.siliconwat.org">Music School</a></li>
-                </ul>
+                <div>
+                    <h5>Live Demos</h5>
+                    <ul>
+                        <li><a href="https://music.siliconwat.com">Music Editor</a></li>
+                        <li><a href="https://music.siliconwat.org">Music School</a></li>
+                    </ul> 
+                </div>
             </section>
         </main>
         <footer>
