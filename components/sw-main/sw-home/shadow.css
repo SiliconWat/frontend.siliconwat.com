@@ -1,76 +1,9 @@
 :host {
     display: none;
-    font-size: large;
-    position: relative;
     margin: 0 50px;
+    min-height: 200vh;
 }
 
-main {
-    position: absolute;
-    z-index: 100;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto auto;
-    justify-items: center;
-    gap: 60px;
-    margin: 50px 0;
-}
-
-section {
-    background-color: rgba(255, 255, 255, 70%);
-    width: 100%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    border-radius: 5px;
-    text-align: center;
-}
-
-section h2 {
-    background-image: linear-gradient(#88E493, #00AC00);
-    padding: 15px 20px;
-    margin: 20px 0;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    transition: all 200ms ease-in-out;
-    margin: 20px;
-    text-align: left;
-    opacity: 90%;
-}
-
-section span {
-    font-size: 8em;
-}
-
-section ul {
-    text-align: left;
-    list-style-type: "✅";
-    padding-bottom: 20px;
-}
-
-li {
-    margin: 20px 10px;
-    padding-left: 10px;
-}
-
-header, footer {
-    grid-column: 1 / span 3;
-    text-align: center;
-    color: white;
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-}
-
-header a {
+a {
     color: currentColor;
-    text-decoration: none;
-}
-
-section a, footer a {
-    color: currentColor;
-}
-
-@media (max-width: 480px) {
-    main {
-        grid-template: 1fr / auto;
-    }
 }

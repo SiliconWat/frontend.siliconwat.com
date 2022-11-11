@@ -12,7 +12,7 @@ html {
 }
 
 body {
-    background: var(--palette-color-5);
+    background: linear-gradient(90deg, rgba(5,117,230,1) 0%, rgba(2,27,121,1) 100%);
     margin: 0;
     display: flex;
     flex-direction: column;

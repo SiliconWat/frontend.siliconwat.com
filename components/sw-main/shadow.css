@@ -1,6 +1,7 @@
 :host {
     display: none;
     font-size: medium;
+    position: relative;
 }
 
 slot {
@@ -10,8 +11,9 @@ slot {
 /*======*/
 
 svg {
+  position: absolute;
+  z-index: -100;
   width: 100%;
-  background: rgb(5,117,230);
   background: linear-gradient(90deg, rgba(5,117,230,1) 0%, rgba(2,27,121,1) 100%);
 }
 
