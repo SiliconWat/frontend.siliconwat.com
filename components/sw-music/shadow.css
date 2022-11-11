@@ -15,6 +15,7 @@ iframe {
     height: 50px;
     background-color: white;
     animation: music 0s ease-in;
+    border-radius: 5px;
 }
 
 svg {

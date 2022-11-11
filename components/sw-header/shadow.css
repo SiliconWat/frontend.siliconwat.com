@@ -117,12 +117,7 @@ menu li:hover {
 	cursor: pointer;
 }
 
-/*menu li a:not([href]) {
-	opacity: 0.5;
-	cursor: default !important;
-}
-
-menu li input:not([oninput]) {
+/*menu li input:not([oninput]) {
 	opacity: 0.5;
 	pointer-events: none;
 }*/
