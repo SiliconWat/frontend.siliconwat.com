@@ -5,17 +5,17 @@ class SwMain extends HTMLElement {
         super();
         this.attachShadow({ mode: "open" });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
-        window.addEventListener("hashchange", event => this.#render(this.#hash));
+        window.addEventListener("hashchange", event => this.render());
     }
 
     connectedCallback() {
         this.style.display = 'block';
-        this.#render(this.#hash);
+        this.render();
     }
 
-    #render(hash) {
+    render() {
         this.shadowRoot.querySelector("slot").assignedElements().forEach(element => element.style.display = 'none');
-        this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === hash[0]).render(hash[1], hash[2]);
+        this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(this.#hash[1], this.#hash[2]);
     }
 
     get #hash() {

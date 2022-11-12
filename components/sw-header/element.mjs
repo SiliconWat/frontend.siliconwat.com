@@ -70,6 +70,7 @@ class SwHeader extends HTMLElement {
         localStorage.setItem(event.target.id, Number(event.target.checked));
         const unit = event.target.id.split('-')[1].replace('unit', "");
         this.shadowRoot.getElementById(unit).render();
+        document.querySelector('sw-main').render();
         document.querySelector('sw-progress').render();
     }
 

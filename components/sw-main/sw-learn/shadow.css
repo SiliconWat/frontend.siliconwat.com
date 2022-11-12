@@ -1,16 +1,22 @@
-:host {
-    display: none;
-    padding: 40px;
-    min-height: 90vh;
+main {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, auto);
 }
 
-main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+header, footer {
+    grid-column: 1 / span 2;
+}
+
+aside {
+    text-align: left;
 }
 
 @media (max-width: 480px) {
     main {
-        grid-template-columns: 1fr;
+        grid-template: repeat(6, auto) / 1fr;
+    }
+
+    header, footer {
+        grid-column: 1 / span 1;
     }
 }
