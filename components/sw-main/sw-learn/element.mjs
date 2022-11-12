@@ -13,8 +13,8 @@ class SwLearn extends HTMLElement {
         const done = Number(localStorage.getItem(`learn-unit${unit}-chapter${chapter}`));
 
         this.shadowRoot.querySelector('header h1').textContent = `Unit ${unit}: ${UNITS[unit - 1].title}`;
-        this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : ""} Learn: Chapter ${chapter}`;
-        this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : ""} ${CHAPTERS[chapter - 1].title}`;
+        this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "📖"} Learn: Chapter ${chapter}`;
+        this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${CHAPTERS[chapter - 1].title}`;
         
         this.#renderVideo(chapter, done);
         this.#renderTextbook(chapter, done);

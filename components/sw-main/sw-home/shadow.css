@@ -80,7 +80,12 @@ section figure {
     margin: 0;
 }
 
-section span {
+section h2 span {
+    color: green;
+    font-weight: normal;
+}
+
+section button span {
     font-weight: bold;
 }
 

@@ -1,16 +1,7 @@
-:host {
-    display: none;
-    padding: 40px;
-    min-height: 90vh;
-}
-
-main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+aside {
+    text-align: left;
 }
 
 @media (max-width: 480px) {
-    main {
-        grid-template-columns: 1fr;
-    }
+    
 }
