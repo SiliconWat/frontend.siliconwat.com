@@ -101,6 +101,18 @@ section li {
     padding-left: 10px;
 }
 
+section p {
+    margin: 10px 20px;
+}
+
+.pay {
+    color: red;
+}
+
+.free {
+    color: blue;
+}
+
 /*section iframe {
     width: 100%;
     height: 500px;

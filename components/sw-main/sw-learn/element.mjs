@@ -25,7 +25,7 @@ class SwLearn extends HTMLElement {
     #renderVideo(chapter, done) {
         const button = this.shadowRoot.querySelector('.video button');
         button.style.textDecorationLine = done ? "line-through" : "none";
-        button.firstElementChild.textContent = `Video ${chapter}`;
+        button.firstElementChild.textContent = `Lecture ${chapter}`;
         if (CHAPTERS[chapter - 1].udemy) button.onclick = () => window.open(CHAPTERS[chapter - 1].udemy, '_blank');
     }
 
