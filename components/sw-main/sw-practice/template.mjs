@@ -38,7 +38,7 @@ template.innerHTML = `
             <p>The <em>best</em> and <em>funnest</em> way to <strong>master coding</strong> is to apply your newfound <em>knowledge</em> to a <strong>real project <em>of your choosing</em></strong>. You can create <em>one</em> <strong>Codepen Project</strong> for FREE for this purpose.</p>
             <p>To <em>graduate</em> from the <strong>Cohort Program</strong>, your classmates need to give your <strong>Codepen Project</strong> a <strong><em>passing grade</em></strong>.</p>
             <p>For additional motivation, <strong>Codepen Projects</strong> will be <strong><em>publicly ranked</em></strong> based on the <strong>Best Idea</strong>, the <strong>Best Code</strong>, and the <strong>Best Overall</strong> by you and your classmates.</p>
-            <p><em class="free">It is FREE to create a <strong>Codepen Project</strong>,</em> <em class="pay">but to have yours graded and ranked, you need to sign up for the <strong>Cohort Program</strong>.</em></p>
+            <p><em class="free">It is FREE to create a <strong>Codepen Project</strong>,</em> <em class="pay">but to have yours <strong>graded</strong> and <strong>ranked</strong>, you need to sign up for the <strong>Cohort Program</strong>.</em></p>
             <br>
             <button><span></span></button>
         </section>

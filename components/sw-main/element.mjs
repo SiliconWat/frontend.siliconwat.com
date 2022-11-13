@@ -16,6 +16,7 @@ class SwMain extends HTMLElement {
     render() {
         this.shadowRoot.querySelector("slot").assignedElements().forEach(element => element.style.display = 'none');
         this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(this.#hash[1], this.#hash[2]);
+        this.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
     }
 
     get #hash() {

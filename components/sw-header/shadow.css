@@ -75,7 +75,7 @@ nav {
 	border-top: 10px solid white;
 	transition: border-top-color 0.3s ease;
 	padding: 15px 25px 25px 25px;
-	z-index: 200;
+	z-index: 300;
 
 	max-width: 20vw;
 	max-height: 70vh;
@@ -220,7 +220,7 @@ select {
 		position: absolute;
 		top: 75px;
 		left: 0;
-		z-index: 200;
+		z-index: 300;
 
 		box-sizing: border-box;
 		width: 100%;

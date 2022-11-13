@@ -28,9 +28,11 @@ template.innerHTML = `
             <h2><span>#2</span> Read Textbook</h2>
             <figure>📚</figure>
             <p>My Course Textbook is a <em>transcript</em> of my lecture videos <em>plus</em> <strong>helpful diagrams</strong> and <strong>side notes</strong>.</p>
-            <p><strong>Highly recommended</strong> that you <strong><em>read</em> the textbook version</strong> to <em>carefully review</em> what you have watched.</p>
+            <p><strong>Highly recommended</strong> that you <strong><em>read</em> this textbook version</strong> to <em>carefully review</em> what you have watched.</p>
             <p>This guarantees that you did not miss anything <strong>important</strong>.</p>
             <p class="free"><em>The Course Textbook is written as <strong>Medium articles</strong> and are FREE to read from here.</em></p>
+            <!--<p>From here, you can read the entire course textbook on Medium for <strong>free!</strong></p>-->
+            <p class="pay"><em>If you like Medium and use my <a href="https://medium.com/@thonly/membership">referral link</a> to join, I will give you a <strong>special coupon</strong> to get ALL my <a href="https://siliconwat.com">Udemy courses</a> for <strong>90% OFF</strong> for Life!</em></p>
             <br>
             <button>Read <span></span></button>
         </section>

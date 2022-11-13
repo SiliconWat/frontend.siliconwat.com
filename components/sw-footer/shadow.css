@@ -3,13 +3,12 @@
     color: #fffa;
     font-size: small;
     padding-top: 40px;
+    height: 100%;
 }
 
 nav {
-    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
 }
 

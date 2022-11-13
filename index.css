@@ -28,6 +28,7 @@ sw-header {
 main {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     overflow: hidden scroll;
 }
 

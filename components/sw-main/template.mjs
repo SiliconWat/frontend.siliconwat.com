@@ -81,9 +81,7 @@ template.innerHTML = `
     </svg>
     <slot></slot>
     <footer>
-        <p>From here, you can read the entire course textbook on Medium for <strong>free!</strong></p>
-        <p>If you like Medium and use my <a href="https://medium.com/@thonly/membership">referral link</a> to join, I will give you a special coupon to get ALL my <a href="https://siliconwat.com">Udemy courses</a> for <strong>90% OFF</strong> for Life!</p>
-        <p>If you’re already a Medium member or don't like Medium, please consider donating to <a href="https://github.com/sponsors/SiliconWat">@SiliconWat</a> to receive the same discount!</p>
+        <p>If you’re already a Medium member or don't like Medium, please consider <strong>donating</strong> to <a href="https://github.com/sponsors/SiliconWat">@SiliconWat</a> to receive the same <strong>discount</strong>!</p>
     </footer>
 `;
 
