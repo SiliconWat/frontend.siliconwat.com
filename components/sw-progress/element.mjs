@@ -1,4 +1,4 @@
-import { UNITS } from "/data.mjs";
+import { FRONTEND } from "/global.mjs";
 import template from './template.mjs';
 
 class SwProgress extends HTMLElement {
@@ -14,8 +14,7 @@ class SwProgress extends HTMLElement {
         this.getAttribute('course');
         this.getAttribute('type'); // course or cohort
 
-        const origin = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5531" : "https://frontend.siliconwat.com";
-        const { UNITS } = await import(`${origin}/data.mjs`);
+        const { UNITS } = await import(`${FRONTEND}/data.mjs`);
 
         this.render(UNITS);
     }
