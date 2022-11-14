@@ -49,7 +49,7 @@ template.innerHTML = `
         <section class="group">
             <h2><span>#4</span> Join Study Group</h2>
             <figure>🧑🏻‍💻</figure>
-            <p>Every weekly session, <strong>new classmates</strong> are <em>randomly</em> assigned to your <strong>Study Group</strong> to maximize your <strong><em>learning experience</em></strong>.</p>
+            <p>Every week, <strong>new classmates</strong> are <em>randomly</em> assigned to your <strong>Study Group</strong> to maximize your <strong><em>learning experience</em></strong>.</p>
             <p>Go to the <strong>Discussion Board</strong> to <em>post any questions</em> you may have, or <em>read the responses</em> of your classmates. You may gain a <em>new</em> and <em>better</em> <strong>perspective</strong>.</p>
             <p>For your convenience, you can use the <strong>Group Live Chat</strong> to ask your classmates <em>questions</em> and give <em>answers</em> in <strong><em>real-time</em></strong>.</p>
             <p class="pay"><em>To join a Study Group, you need to sign up for the <strong>Cohort Program</strong>.</em></p>

@@ -1,7 +1,8 @@
 const template = document.createElement("template");
+const origin = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5531" : "https://frontend.siliconwat.com";
 
 template.innerHTML = `
-    <link rel="stylesheet" href="components/sw-music/shadow.css">
+    <link rel="stylesheet" href="${origin}/components/sw-music/shadow.css">
     <aside>
         <svg viewBox="0 0 10 10" width="0">
             <defs>

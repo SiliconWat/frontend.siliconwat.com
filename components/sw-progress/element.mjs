@@ -8,16 +8,23 @@ class SwProgress extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    connectedCallback() {
+    async connectedCallback() {
         this.style.display = 'block';
-        this.render();
+
+        this.getAttribute('course');
+        this.getAttribute('type'); // course or cohort
+
+        const origin = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5531" : "https://frontend.siliconwat.com";
+        const { UNITS } = await import(`${origin}/data.mjs`);
+
+        this.render(UNITS);
     }
 
-    render() {
+    render(units) {
         let sum = 0;
         let total = 0;
 
-        UNITS.forEach((unit, u) => {
+        units.forEach((unit, u) => {
             if (unit.from && unit.to) {
                 for (let c = unit.from - 1; c < unit.to; c++) {
                     total += 1;

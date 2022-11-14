@@ -25,7 +25,7 @@ template.innerHTML = `
         <section class="pair">
             <h2><span>#2</span> Pair Program</h2>
             <figure>👩🏻‍💻👨🏼‍💻</figure>
-            <p>Every weekly session, a <strong>new classmate</strong> is <em>randomly</em> assigned to be your <strong>Programming Partner</strong> to maximize your <strong><em>learning experience</em></strong>.</p>
+            <p>Every week, a <strong>new classmate</strong> is <em>randomly</em> assigned to be your <strong>Programming Partner</strong> to maximize your <strong><em>learning experience</em></strong>.</p>
             <p>You <em>take turns</em> acting like the <strong>Technical Lead</strong> to practice your <em>technical communication skills</em>.</p>
             <p>As the Technical Lead, your only task is to <em>explain how to solve</em> a <strong>Mock Interview Question</strong> while your partner <em>performs the actual coding</em>.</p>
             <p class="pay"><em>To get a <strong>Programming Partner</strong>, you need to join the <strong>Cohort Program</strong>.</em></p>
