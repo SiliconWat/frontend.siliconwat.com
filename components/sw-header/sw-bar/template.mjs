@@ -1,7 +1,8 @@
+import { FRONTEND } from "/global.mjs";
 const template = document.createElement("template");
 
 template.innerHTML = `
-    <link rel="stylesheet" href="components/sw-header/sw-bar/shadow.css">
+    <link rel="stylesheet" href="${FRONTEND}/components/sw-header/sw-bar/shadow.css">
     <svg viewBox="0 0 100 8">
         <!-- Bottom Layer -->
         <rect x="0" y="0" width="100" height="8" fill="#e0e5ee" stroke="#e0e5ee" stroke-width="2"/>
