@@ -7,15 +7,7 @@ template.innerHTML = `
     <nav>
         <main>
             <section>
-                <div>
-                    <h5>Donors</h5>
-                    <ul class="donors">
-                        <li><a href="https://github.com/thonly"><img src="https://github.com/thonly.png?size=100"></a></li>
-                        <li><a href="https://github.com/panhiathao"><img src="https://github.com/panhiathao.png?size=100"></a></li>
-                        <li><a href="https://github.com/chengsieuly"><img src="https://github.com/chengsieuly.png?size=100"></a></li>
-                        <li><a href="https://github.com/lykimche"><img src="https://github.com/lykimche.png?size=100"></a></li>
-                    </ul>
-                </div>
+                <sw-donors></sw-donors>
             </section>
             <section>
                 <div>

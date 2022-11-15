@@ -1,3 +1,4 @@
+import { CAMPUS } from '/global.mjs';
 import template from './template.mjs';
 
 class SwFooter extends HTMLElement {
@@ -7,8 +8,8 @@ class SwFooter extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    connectedCallback() {
-        
+    async connectedCallback() {
+        await import(`${CAMPUS}/components/sw-footer/sw-donors/element.mjs`);
     }
 }
 

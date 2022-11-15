@@ -46,43 +46,73 @@ export const UNITS = [
 export const WEEKS = [
     {
         title: "HTML/CSS/JS Orchestra",
-        description: false,
+        description: "false",
         from: 1,
         to: 5,
     },
     {
         title: "HTML Concerto",
-        description: false,
+        description: "false",
         from: 6,
         to: 18
     },
     {
         title: "CSS Concerto",
-        description: false,
+        description: "false",
         from: 19,
         to: 20
     },
     {
         title: "JavaScript Concerto",
-        description: false,
+        description: "false",
         from: null,
         to: null
     },
     {
         title: "Web Components in Unison",
-        description: false,
+        description: "false",
         from: null,
         to: null
     },
     {
         title: "Micro-Frontends in Harmony",
-        description: true,
+        description: "true",
         from: null,
         to: null
     },
     {
         title: "PWA Symphony",
-        description: true,
+        description: "true",
+        from: null,
+        to: null
+    },
+    {
+        title: "CSS Concerto",
+        description: "false",
+        from: 19,
+        to: 20
+    },
+    {
+        title: "JavaScript Concerto",
+        description: "false",
+        from: null,
+        to: null
+    },
+    {
+        title: "Web Components in Unison",
+        description: "false",
+        from: null,
+        to: null
+    },
+    {
+        title: "Micro-Frontends in Harmony",
+        description: "true",
+        from: null,
+        to: null
+    },
+    {
+        title: "PWA Symphony",
+        description: "true",
         from: null,
         to: null
     }
