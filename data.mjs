@@ -1,48 +1,3 @@
-export const WEEKS = [
-    {
-        title: "HTML/CSS/JS Orchestra",
-        description: false,
-        from: 1,
-        to: 5,
-    },
-    {
-        title: "HTML Concerto",
-        description: false,
-        from: 6,
-        to: 18
-    },
-    {
-        title: "CSS Concerto",
-        description: false,
-        from: 19,
-        to: 20
-    },
-    {
-        title: "JavaScript Concerto",
-        description: false,
-        from: null,
-        to: null
-    },
-    {
-        title: "Web Components in Unison",
-        description: false,
-        from: null,
-        to: null
-    },
-    {
-        title: "Micro-Frontends in Harmony",
-        description: true,
-        from: null,
-        to: null
-    },
-    {
-        title: "PWA Symphony",
-        description: true,
-        from: null,
-        to: null
-    }
-];
-
 export const UNITS = [
     {
         title: "HTML/CSS/JS Orchestra",
@@ -83,6 +38,51 @@ export const UNITS = [
     {
         title: "PWA Symphony",
         bonus: true,
+        from: null,
+        to: null
+    }
+];
+
+export const WEEKS = [
+    {
+        title: "HTML/CSS/JS Orchestra",
+        description: false,
+        from: 1,
+        to: 5,
+    },
+    {
+        title: "HTML Concerto",
+        description: false,
+        from: 6,
+        to: 18
+    },
+    {
+        title: "CSS Concerto",
+        description: false,
+        from: 19,
+        to: 20
+    },
+    {
+        title: "JavaScript Concerto",
+        description: false,
+        from: null,
+        to: null
+    },
+    {
+        title: "Web Components in Unison",
+        description: false,
+        from: null,
+        to: null
+    },
+    {
+        title: "Micro-Frontends in Harmony",
+        description: true,
+        from: null,
+        to: null
+    },
+    {
+        title: "PWA Symphony",
+        description: true,
         from: null,
         to: null
     }

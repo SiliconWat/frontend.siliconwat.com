@@ -1,4 +1,4 @@
-import { UNITS, CHAPTERS } from '/data.mjs';
+import { TRILOGY } from '/global.mjs';
 import template from './template.mjs';
 
 class SwPractice extends HTMLElement {
@@ -8,9 +8,10 @@ class SwPractice extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    render(unit, chapter) {
+    async render(unit, chapter) {
         this.style.display = 'block';
         const done = Number(localStorage.getItem(`practice-unit${unit}-chapter${chapter}`));
+        const { UNITS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
 
         this.shadowRoot.querySelector('header h1').textContent = `Unit ${unit}: ${UNITS[unit - 1].title}`;
         this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "💻"} Practice: Chapter ${chapter}`;
