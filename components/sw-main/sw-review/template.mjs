@@ -16,7 +16,7 @@ template.innerHTML = `
         <section class="flashcard">
             <h2><span>#1</span> Syntax Flashcards</h2>
             <figure>🗒</figure>
-            <p>Play my <strong>Flashcard Games</strong> to help you <em>remember</em> the <strong>code syntaxes</strong> of HTML, CSS, and especially JavaScript.</p>
+            <p>Play my <strong>Flashcard Games</strong> to help you <em>remember</em> the <strong>code syntaxes</strong> of <span id="code"></span>.</p>
             <p>There are <em>three</em> levels: <strong>Junior</strong>, <strong>Mid</strong>, and <strong>Senior</strong>. The <em>more difficult</em> the level, the <em>less time</em> you have.</p>
             <p>Also, the <em>more difficult</em> the level, the <strong>more SW Coins</strong> you will earn!</p>
             <p class="free"><em>The <strong>Flashcard Games</strong> are FREE to play to earn <strong>SW Coins</strong>.</em></p>
@@ -37,7 +37,7 @@ template.innerHTML = `
             <h2><span>#3</span> Mock Interview</h2>
             <figure>👩🏼‍🏫👨🏼‍🏫</figure>
             <p>After you <em>graduate</em> from the <strong>Cohort Project</strong>, you can sign up for <em>one</em> <strong>Mock Technical Interview</strong> with me <em>provided you allow me to <strong>record it</strong> for future students to watch</em>.</p>
-            <p>The <em>interview topics</em> are <strong>Data Structures</strong> and <strong>Algorithms</strong> that are popular in <em>Frontend Engineering</em>, which are <em>very similar</em> to the ones you practiced with your Programming Partner.</p>
+            <p>The <em>interview topics</em> are <strong>Data Structures</strong> and <strong>Algorithms</strong> that are popular in <em id="subject"></em>, which are <em>very similar</em> to the ones you practiced with your Programming Partner.</p>
             <p>In the meantime, you can watch <strong>past recordings</strong> located at my <strong>YouTube Channel</strong> for FREE. As you watch, <em>imagine</em> how you would answer instead.</p>
             <p><em class="free">It is FREE to watch <strong>past recordings</strong>,</em> <em class="pay">but to sign up for a <strong>Mock Interview</strong> with me, you need to <strong>graduate</strong> from the <strong>Cohort Program</strong>.</em></p>
             <br>

@@ -8,41 +8,71 @@ class SwReview extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    async render(unit, chapter) {
+    async render(u, c) {
         this.style.display = 'block';
-        const done = Number(localStorage.getItem(`review-unit${unit}-chapter${chapter}`));
+        const done = Number(localStorage.getItem(`review-unit${u}-chapter${c}`));
         const { UNITS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
+        const unit = UNITS[u - 1];
+        const chapter = CHAPTERS[c - 1];
 
-        this.shadowRoot.querySelector('header h1').textContent = `Unit ${unit}: ${UNITS[unit - 1].title}`;
-        this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "👩🏼‍💻"} Review: Chapter ${chapter}`;
-        this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${CHAPTERS[chapter - 1].title}`;
+        this.shadowRoot.querySelector('header h1').textContent = `Unit ${u}: ${unit.title}`;
+        this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "👩🏼‍💻"} Review: Chapter ${c}`;
+        this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
-        this.#renderFlashcard(unit, chapter, done);
-        this.#renderSummary(chapter, done);
-        this.#renderInterview(chapter, done);
+        this.#render();
+        this.#renderFlashcard(u, c, done);
+        this.#renderSummary(c, done);
+        this.#renderInterview(c, done);
     }
 
-    #renderFlashcard(unit, chapter, done) {
+    #render() {
+        let code, subject;
+
+        switch (TRILOGY[0]) {
+            case "Frontend":
+                code = "HTML, CSS, and especially JavaScript";
+                subject = "Frontend Engineering";
+                break;
+            case "Backend":
+                code = "Node and Solidity";
+                project = "Backend Engineering";
+                break;
+            case "iOS":
+                code = "Swift";
+                subject = "iOS Engineering";
+                break;
+        }
+
+        this.shadowRoot.getElementById('code').textContent = code;
+        this.shadowRoot.getElementById('subject').textContent = subject;
+    }
+
+    #renderFlashcard(u, c, done) {
         const button = this.shadowRoot.querySelector('.flashcard button');
         button.style.textDecorationLine = done ? "line-through" : "none";
-        button.firstElementChild.textContent = `Game ${chapter}`;
-        button.onclick = () => window.open(`https://flashcard.siliconwat.com/#frontend-unit${unit}-chapter${chapter}`, '_blank');
+        button.firstElementChild.textContent = `Game ${c}`;
+        button.onclick = () => window.open(`https://flashcard.siliconwat.com/#${TRILOGY[0].toLowerCase()}-unit${u}-chapter${c}`, '_blank');
     }
 
-    #renderSummary(chapter, done) {
-        const week = 0; // TODO:
+    #renderSummary(c, done) {
         const button = this.shadowRoot.querySelector('.summary button');
         button.style.textDecorationLine = done ? "line-through" : "none";
-        button.firstElementChild.textContent = `Summary ${chapter}`;
-        button.onclick = () => window.open(`https://frontend.siliconwat.org/#review-week${week}-chapter${chapter}`, '_blank');
+        button.firstElementChild.textContent = `Summary ${c}`;
+        button.onclick = async () => window.open(`https://${TRILOGY[0].toLowerCase()}.siliconwat.org/#review-week${await this.#getWeek(c)}-chapter${c}`, '_blank');
     }
     
-    #renderInterview(chapter, done) {
-        const week = 0; // TODO:
+    #renderInterview(c, done) {
         const button = this.shadowRoot.querySelector('.interview button');
         button.style.textDecorationLine = done ? "line-through" : "none";
-        button.firstElementChild.textContent = `Interview ${chapter}`;
-        button.onclick = () => window.open(`https://frontend.siliconwat.org/#review-week${week}-chapter${chapter}`, '_blank');
+        button.firstElementChild.textContent = `Interview ${c}`;
+        button.onclick = async () => window.open(`https://${TRILOGY[0].toLowerCase()}.siliconwat.org/#review-week${await this.#getWeek(c)}-chapter${c}`, '_blank');
+    }
+
+    async #getWeek(c) {
+        const { WEEKS } = await import(`${TRILOGY[2]}/data.mjs`);
+        for (let w = 0; w < WEEKS.length; w++) {
+            if (WEEKS[w].from <= c && c <= WEEKS[w].to) return w + 1;
+        }
     }
 }
 

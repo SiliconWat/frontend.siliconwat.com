@@ -17,7 +17,7 @@ template.innerHTML = `
             <h2><span>#1</span> Watch Video</h2>
             <figure>🖥</figure>
             <p>A great study strategy is to watch my lecture <em>first</em> for a <strong>general overview</strong> then a <em>second</em> time for the <strong>details</strong>.</p>
-            <p>Don't just watch me code. Have Codepen open and <strong>code along with me!</strong> This will <em>increase your retention</em>.</p>
+            <p>Don't just watch me code. Have <strong id="editor"></strong> open and <strong>code along with me!</strong> This will <em>increase your retention</em>.</p>
             <p>You can <strong>pause</strong>, <strong>slow down</strong> or <strong>speed up</strong> the video.</p>
             <p>You can turn on the <strong>English subtitle</strong> to catch my every word.</p>
             <p><em>Subtitles in other languages coming soon.</em></p>

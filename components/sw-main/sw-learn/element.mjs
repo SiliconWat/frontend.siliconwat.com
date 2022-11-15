@@ -19,10 +19,29 @@ class SwLearn extends HTMLElement {
         this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "📖"} Learn: Chapter ${c}`;
         this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
+        this.#render();
         this.#renderVideo(chapter, c, done);
         this.#renderTextbook(chapter, c, done);
         this.#renderQuiz(u, c, done);
         this.#renderGroup(c, done);
+    }
+
+    #render() {
+        let editor;
+
+        switch (TRILOGY[0]) {
+            case "Frontend":
+                editor = "Codepen";
+                break;
+            case "Backend":
+                editor = "Replit";
+                break;
+            case "iOS":
+                editor = "Replit";
+                break;
+        }
+
+        this.shadowRoot.getElementById('editor').textContent = editor;
     }
 
     #renderVideo(chapter, c, done) {

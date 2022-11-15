@@ -10,12 +10,14 @@ class SwHome extends HTMLElement {
 
     async render() {
         const { COURSE } = await import(`${TRILOGY[2]}/data.mjs`);
+        
         this.shadowRoot.getElementById('title').textContent = COURSE.title;
         this.shadowRoot.getElementById('subtitle').textContent = COURSE.subtitle;
         this.shadowRoot.getElementById('udemy').href = COURSE.udemy;
         this.shadowRoot.getElementById('quiz').href = `https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
         this.shadowRoot.getElementById('code').href = `https://code.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
         this.shadowRoot.getElementById('flashcard').href = `https://flashcard.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
+        
         this.shadowRoot.querySelectorAll('.medium').forEach(a => a.href = COURSE.medium);
         this.shadowRoot.querySelectorAll('.cohort').forEach(a => {
             a.textContent = "Remote Cohort Program";
