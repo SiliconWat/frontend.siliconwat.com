@@ -118,6 +118,13 @@ export const WEEKS = [
     }
 ];
 
+export const COURSE = {
+    title: "A Complete Frontend Developer Course for Beginners",
+    subtitle: "2023 Edition",
+    medium: "https://medium.com/siliconwat/a-complete-frontend-developer-textbook-for-beginners-3be48c1f07?sk=351a90e15ab63ee815dda3f3a395f843",
+    udemy: "https://siliconwat.com/#frontend"
+};
+
 export const CHAPTERS = [
     {
         title: "Hello World",
