@@ -36,7 +36,7 @@ template.innerHTML = `
             <ul>
                 <li>You can play my <a id="flashcard">Flashcard Games</a> for FREE to remember <em>code syntaxes</em> and earn <strong>SW Coins</strong>!</li>
                 <li><span class="program"></span> you join my <a class="cohort"></a>, you can submit your <strong>Medium Summaries</strong> for <em>grading</em> and <em>comments</em> by your classmates.</li>
-                <li>After you successfully finish my <a class="cohort"></a>, you can sign up for a <strong>Mock Coding Interview</strong> with me about <em>Data Structures</em> and <em>Algorithms</em> on Discord.</li>
+                <li>After you successfully finish my <a class="cohort"></a>, you can sign up for a <strong>Mock Coding Interview</strong> with me about <em>Data Structures</em> and <em>Algorithms</em>.</li>
             </ul>
             <br>
             <button><span>Private Discord</span></button>
@@ -45,8 +45,8 @@ template.innerHTML = `
             <div id="course">
                 <p>This course can be self-paced for self-motivated students.</p>
                 <p>However, if you prefer more structure, consider joining my Remote Cohort Program to study alongside other students!</p>
-                <p>It costs just $50 but requires a $100 commitment deposit to attract only the most serious students.</p>
-                <p>And to motivate you and your classmates to finish the course, a big bag of SW Coins will be rewarded upon graduation!</p>
+                <p>It costs just $50 but also requires a commitment loan of 100 SW Coins to attract only the most serious students.</p>
+                <p>And to motivate you and your classmates to finish the entire course, 50 SW Coins will be rewarded upon completion!</p>
             </div>
             <div id="cohort">
                 <p>Winter Semester (Part-Time)</p>

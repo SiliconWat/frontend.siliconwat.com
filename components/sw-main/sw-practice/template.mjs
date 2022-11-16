@@ -1,3 +1,5 @@
+import "../sw-students/element.mjs";
+import "../sw-grades/element.mjs";
 import { FRONTEND } from "/global.mjs";
 const template = document.createElement("template");
 
@@ -26,7 +28,7 @@ template.innerHTML = `
         <section class="pair">
             <h2><span>#2</span> Pair Program</h2>
             <figure>👩🏻‍💻👨🏼‍💻</figure>
-            <p>Every week, a <strong>new classmate</strong> is <em>randomly</em> assigned to be your <strong>Programming Partner</strong> to maximize your <strong><em>learning experience</em></strong>.</p>
+            <p>Every week, a <strong>new classmate</strong> from your <em>Study Group</em> is assigned to be your <strong>Programming Partner</strong>.</p>
             <p>You <em>take turns</em> acting like the <strong>Technical Lead</strong> to practice your <em>technical communication skills</em>.</p>
             <p>As the Technical Lead, your only task is to <em>explain how to solve</em> a <strong>Mock Interview Question</strong> while your partner <em>performs the actual coding</em>.</p>
             <p class="pay"><em>To get a <strong>Programming Partner</strong>, you need to join the <strong>Cohort Program</strong>.</em></p>
@@ -37,13 +39,16 @@ template.innerHTML = `
             <h2><span>#3</span> <b class="app"></b></h2>
             <figure>📑</figure>
             <p>The <em>best</em> and <em>funnest</em> way to <strong>master coding</strong> is to apply your newfound <em>knowledge</em> to a <strong>real project <em>of your choosing</em></strong>. You can create <em>one</em> <strong class="app"></strong> for FREE for this purpose.</p>
-            <p>To <em>graduate</em> from the <strong>Cohort Program</strong>, your classmates need to give your <strong class="app"></strong> a <strong><em>passing grade</em></strong>.</p>
+            <p>To <em>pass</em> the <strong>Cohort Program</strong>, your classmates need to give your <strong class="app"></strong> a <strong><em>passing grade</em></strong>.</p>
             <p>For additional motivation, <strong><span class="app"></span>s</strong> will be <strong><em>publicly ranked</em></strong> based on the <strong>Best Idea</strong>, the <strong>Best Code</strong>, and the <strong>Best Overall</strong> by you and your classmates.</p>
             <p><em class="free">It is FREE to create a <strong class="app"></strong>,</em> <em class="pay">but to have yours <strong>graded</strong> and <strong>ranked</strong>, you need to sign up for the <strong>Cohort Program</strong>.</em></p>
             <br>
             <button><span></span></button>
         </section>
-        <footer></footer>
+        <footer>
+            <sw-students></sw-students>
+            <sw-grades></sw-grades>
+        </footer>
     </main>
 `;
 

@@ -1,3 +1,5 @@
+import "../sw-students/element.mjs";
+import "../sw-grades/element.mjs";
 import { FRONTEND } from "/global.mjs";
 const template = document.createElement("template");
 
@@ -57,7 +59,10 @@ template.innerHTML = `
             <br>
             <button>Join <span></span></button>
         </section>
-        <footer></footer>
+        <footer>
+            <sw-students></sw-students>
+            <sw-grades></sw-grades>
+        </footer>
     </main>
 `;
 
