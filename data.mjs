@@ -45,74 +45,74 @@ export const UNITS = [
 
 export const WEEKS = [
     {
-        title: "HTML/CSS/JS Orchestra",
-        description: "false",
+        title: "Jan 1 - Jan 7",
+        description: "@thonly, @chengsieuly, <strong>@panhiathao</strong>, @lykimche",
         from: 1,
         to: 5,
     },
     {
-        title: "HTML Concerto",
-        description: "false",
+        title: "Jan 8 - Jan 14",
+        description: "TBA",
         from: 6,
         to: 18
     },
     {
-        title: "CSS Concerto",
-        description: "false",
+        title: "Jan 15 - Jan 21",
+        description: "TBA",
         from: 19,
         to: 20
     },
     {
-        title: "JavaScript Concerto",
-        description: "false",
+        title: "TBA",
+        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "Web Components in Unison",
-        description: "false",
+        title: "TBA",
+        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "Micro-Frontends in Harmony",
-        description: "true",
+        title: "TBA",
+        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "PWA Symphony",
-        description: "true",
+        title: "TBA",
+        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "CSS Concerto",
-        description: "false",
+        title: "TBA",
+        description: "TBA",
         from: 19,
         to: 20
     },
     {
-        title: "JavaScript Concerto",
-        description: "false",
+        title: "TBA",
+        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "Web Components in Unison",
-        description: "false",
+        title: "TBA",
+        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "Micro-Frontends in Harmony",
-        description: "true",
+        title: "TBA",
+        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "PWA Symphony",
-        description: "true",
+        title: "TBA",
+        description: "TBA",
         from: null,
         to: null
     }
@@ -120,16 +120,24 @@ export const WEEKS = [
 
 export const COURSE = {
     title: "A Complete Frontend Developer Course for Beginners",
-    subtitle: "2023 Edition",
+    edition: "2023 Edition",
+    academic: "Academic Year 2023",
     medium: "https://medium.com/siliconwat/a-complete-frontend-developer-textbook-for-beginners-3be48c1f07?sk=351a90e15ab63ee815dda3f3a395f843",
     udemy: "https://siliconwat.com/#frontend"
+    
 };
 
 export const CHAPTERS = [
     {
         title: "Hello World",
         medium: "https://medium.com/siliconwat/chapter-1-hello-world-9396ec9c6d7b?sk=e145f7945fec073d2ffab6b7f8188c1c",
-        udemy: null
+        udemy: null,
+        // github
+        discussion: null,
+        challenge: null,
+        suggestion: null,
+        summary: null,
+        interview: null
     },
     {
         title: "JavaScript Console",

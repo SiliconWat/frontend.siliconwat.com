@@ -12,7 +12,7 @@ class SwHome extends HTMLElement {
         const { COURSE } = await import(`${TRILOGY[2]}/data.mjs`);
         
         this.shadowRoot.getElementById('title').textContent = COURSE.title;
-        this.shadowRoot.getElementById('subtitle').textContent = COURSE.subtitle;
+        this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'Course' ? COURSE.edition : COURSE.academic;
         this.shadowRoot.getElementById('udemy').href = COURSE.udemy;
         this.shadowRoot.getElementById('quiz').href = `https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
         this.shadowRoot.getElementById('code').href = `https://code.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
@@ -27,6 +27,9 @@ class SwHome extends HTMLElement {
             if (TRILOGY[1] === 'Course') a.href = `https://${TRILOGY[0].toLowerCase()}.siliconwat.org`;
             if (TRILOGY[1] === 'Cohort') a.style.fontWeight = "bold";
         });
+
+        this.shadowRoot.getElementById('course').style.display = TRILOGY[1] === 'Course' ? "block" : "none";
+        this.shadowRoot.getElementById('cohort').style.display = TRILOGY[1] === 'Cohort' ? "block" : "none";
 
         this.#render();
         this.style.display = 'block';

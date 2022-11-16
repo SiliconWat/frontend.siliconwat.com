@@ -41,7 +41,23 @@ template.innerHTML = `
             <br>
             <button><span>Private Discord</span></button>
         </section>
-        <footer></footer>
+        <footer>
+            <div id="course">
+                <p>This course can be self-paced for self-motivated students.</p>
+                <p>However, if you prefer more structure, consider joining my Remote Cohort Program to study alongside other students!</p>
+                <p>It costs just $50 but requires a $100 commitment deposit to attract only the most serious students.</p>
+                <p>And to motivate you and your classmates to finish the course, a big bag of SW Coins will be rewarded upon graduation!</p>
+            </div>
+            <div id="cohort">
+                <p>Winter Semester (Part-Time)</p>
+                <p>Summer Semester (Part-Time)</p>
+                <p>§§§</p>
+                <p>Winter Quarter (Full-Time)</p>
+                <p>Spring Quarter (Full-Time)</p>
+                <p>Summer Quarter (Full-Time)</p>
+                <p>Fall Quarter (Full-Time)</p>
+            </div>
+        </footer>
     </main>
 `;
 
