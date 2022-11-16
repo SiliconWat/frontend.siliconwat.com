@@ -8,21 +8,21 @@ class SwPractice extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    async render(u, c) {
+    async render(i, c) {
         this.style.display = 'block';
-        const done = Number(localStorage.getItem(`practice-unit${u}-chapter${c}`));
-        const { UNITS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
-        const unit = UNITS[u - 1];
+        const done = Number(localStorage.getItem(`learn-${TRILOGY[1] === 'Course' ? 'unit' : 'week'}${i}-chapter${c}`));
+        const { YEAR, UNITS, WEEKS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
+        const item = TRILOGY[1] === 'Course' ? UNITS[i - 1] : WEEKS[i - 1];
         const chapter = CHAPTERS[c - 1];
 
-        this.shadowRoot.querySelector('header h1').textContent = `Unit ${u}: ${unit.title}`;
+        this.shadowRoot.querySelector('header h1').textContent = `${TRILOGY[1] === 'Course' ? 'Unit' : 'Week'} ${i}: ${item.title}`;
         this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "💻"} Practice: Chapter ${c}`;
         this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
         this.#render();
-        this.#renderCoding(u, c, done);
-        this.#renderPair(c, done);
-        this.#renderProject(c, done);
+        this.#renderCoding(UNITS, i, c, done);
+        this.#renderPair(WEEKS, YEAR, i, c, done);
+        this.#renderProject(WEEKS, YEAR, i, c, done);
     }
 
     #render() {
@@ -47,31 +47,44 @@ class SwPractice extends HTMLElement {
         this.shadowRoot.querySelectorAll('.app').forEach(element => element.textContent = project);
     }
 
-    #renderCoding(u, c, done) {
+    #renderCoding(units, i, c, done) {
         const button = this.shadowRoot.querySelector('.coding button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Exercise ${c}`;
-        button.onclick = () => window.open(`https://code.siliconwat.com/#${TRILOGY[0].toLowerCase()}-unit${u}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://code.siliconwat.com/#${TRILOGY[0].toLowerCase()}-${this.#getUnit(units, i, c)}-chapter${c}`, '_blank');
     }
 
-    #renderPair(c, done) {
+    #renderPair(weeks, y, i, c, done) {
         const button = this.shadowRoot.querySelector('.pair button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Challenge ${c}`;
-        button.onclick = async () => window.open(`https://${TRILOGY[0].toLowerCase()}.siliconwat.org/#practice-week${await this.#getWeek(c)}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Weeks/${this.#getWeek(weeks, i, c)}/Chapters/${c}/Challenge.md`, '_blank');
     }
     
-    #renderProject(c, done) {
+    #renderProject(weeks, y, i, c, done) {
         const button = this.shadowRoot.querySelector('.project button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Suggestion ${c}`;
-        button.onclick = async () => window.open(`https://${TRILOGY[0].toLowerCase()}.siliconwat.org/#practice-week${await this.#getWeek(c)}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Weeks/${this.#getWeek(weeks, i, c)}/Chapters/${c}/Suggestion.md`, '_blank');
     }
 
-    async #getWeek(c) {
-        const { WEEKS } = await import(`${TRILOGY[2]}/data.mjs`);
-        for (let w = 0; w < WEEKS.length; w++) {
-            if (WEEKS[w].from <= c && c <= WEEKS[w].to) return w + 1;
+    #getUnit(units, i, c) {
+        if (TRILOGY[1] === 'Course') {
+            return "unit" + i;
+        } else {
+            for (let u = 0; u < units.length; u++) {
+                if (units[u].from <= c && c <= units[u].to) return "unit" + (u + 1);
+            }
+        }
+    }
+
+    #getWeek(weeks, i, c) {
+        if (TRILOGY[1] === 'Cohort') {
+            return i;
+        } else {
+            for (let w = 0; w < weeks.length; w++) {
+                if (weeks[w].from <= c && c <= weeks[w].to) return w + 1;
+            }
         }
     }
 }

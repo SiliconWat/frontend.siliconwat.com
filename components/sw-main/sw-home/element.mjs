@@ -9,10 +9,10 @@ class SwHome extends HTMLElement {
     }
 
     async render() {
-        const { COURSE } = await import(`${TRILOGY[2]}/data.mjs`);
+        const { YEAR, COURSE } = await import(`${TRILOGY[2]}/data.mjs`);
         
         this.shadowRoot.getElementById('title').textContent = COURSE.title;
-        this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'Course' ? COURSE.edition : COURSE.academic;
+        this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'Course' ? COURSE.subtitle : `Academic Year ${YEAR}`;
         this.shadowRoot.getElementById('udemy').href = COURSE.udemy;
         this.shadowRoot.getElementById('quiz').href = `https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
         this.shadowRoot.getElementById('code').href = `https://code.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;

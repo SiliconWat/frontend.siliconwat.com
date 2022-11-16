@@ -1,3 +1,14 @@
+export const YEAR = 2023;
+
+export const COURSE = {
+    title: "A Complete Frontend Developer Course for Beginners",
+    subtitle: "2023 Edition",
+    medium: "https://medium.com/siliconwat/a-complete-frontend-developer-textbook-for-beginners-3be48c1f07?sk=351a90e15ab63ee815dda3f3a395f843",
+    udemy: "https://siliconwat.com/#frontend", // TODO: link to udemy course
+    youtube: "https://youtube.com/@SiliconWat", // TODO: link to frontend playlist
+    github: "https://github.com/SiliconWat/frontend-cohort"
+};
+
 export const UNITS = [
     {
         title: "HTML/CSS/JS Orchestra",
@@ -118,26 +129,12 @@ export const WEEKS = [
     }
 ];
 
-export const COURSE = {
-    title: "A Complete Frontend Developer Course for Beginners",
-    edition: "2023 Edition",
-    academic: "Academic Year 2023",
-    medium: "https://medium.com/siliconwat/a-complete-frontend-developer-textbook-for-beginners-3be48c1f07?sk=351a90e15ab63ee815dda3f3a395f843",
-    udemy: "https://siliconwat.com/#frontend"
-    
-};
-
 export const CHAPTERS = [
     {
         title: "Hello World",
         medium: "https://medium.com/siliconwat/chapter-1-hello-world-9396ec9c6d7b?sk=e145f7945fec073d2ffab6b7f8188c1c",
         udemy: null,
-        // github
-        discussion: null,
-        challenge: null,
-        suggestion: null,
-        summary: null,
-        interview: null
+        youtube: null, // link to playlist
     },
     {
         title: "JavaScript Console",

@@ -8,21 +8,21 @@ class SwReview extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    async render(u, c) {
+    async render(i, c) {
         this.style.display = 'block';
-        const done = Number(localStorage.getItem(`review-unit${u}-chapter${c}`));
-        const { UNITS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
-        const unit = UNITS[u - 1];
+        const done = Number(localStorage.getItem(`learn-${TRILOGY[1] === 'Course' ? 'unit' : 'week'}${i}-chapter${c}`));
+        const { YEAR, UNITS, WEEKS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
+        const item = TRILOGY[1] === 'Course' ? UNITS[i - 1] : WEEKS[i - 1];
         const chapter = CHAPTERS[c - 1];
 
-        this.shadowRoot.querySelector('header h1').textContent = `Unit ${u}: ${unit.title}`;
+        this.shadowRoot.querySelector('header h1').textContent = `${TRILOGY[1] === 'Course' ? 'Unit' : 'Week'} ${i}: ${item.title}`;
         this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "👩🏼‍💻"} Review: Chapter ${c}`;
         this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
         this.#render();
-        this.#renderFlashcard(u, c, done);
-        this.#renderSummary(c, done);
-        this.#renderInterview(c, done);
+        this.#renderFlashcard(UNITS, i, c, done);
+        this.#renderSummary(WEEKS, YEAR, i, c, done);
+        this.#renderInterview(chapter, c, done);
     }
 
     #render() {
@@ -47,31 +47,46 @@ class SwReview extends HTMLElement {
         this.shadowRoot.getElementById('subject').textContent = subject;
     }
 
-    #renderFlashcard(u, c, done) {
+    #renderFlashcard(units, i, c, done) {
         const button = this.shadowRoot.querySelector('.flashcard button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Game ${c}`;
-        button.onclick = () => window.open(`https://flashcard.siliconwat.com/#${TRILOGY[0].toLowerCase()}-unit${u}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://flashcard.siliconwat.com/#${TRILOGY[0].toLowerCase()}-${this.#getUnit(units, i, c)}-chapter${c}`, '_blank');
     }
 
-    #renderSummary(c, done) {
+    #renderSummary(weeks, y, i, c, done) {
         const button = this.shadowRoot.querySelector('.summary button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Summary ${c}`;
-        button.onclick = async () => window.open(`https://${TRILOGY[0].toLowerCase()}.siliconwat.org/#review-week${await this.#getWeek(c)}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Weeks/${this.#getWeek(weeks, i, c)}/Chapters/${c}/Summary.md`, '_blank');
     }
     
-    #renderInterview(c, done) {
+    #renderInterview(chapter, c, done) {
         const button = this.shadowRoot.querySelector('.interview button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Interview ${c}`;
-        button.onclick = async () => window.open(`https://${TRILOGY[0].toLowerCase()}.siliconwat.org/#review-week${await this.#getWeek(c)}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(chapter.youtube, '_blank');
+        button.disabled = !Boolean(chapter.youtube);
+        if (!Boolean(chapter.youtube)) button.style.opacity = "0.2";
     }
 
-    async #getWeek(c) {
-        const { WEEKS } = await import(`${TRILOGY[2]}/data.mjs`);
-        for (let w = 0; w < WEEKS.length; w++) {
-            if (WEEKS[w].from <= c && c <= WEEKS[w].to) return w + 1;
+    #getUnit(units, i, c) {
+        if (TRILOGY[1] === 'Course') {
+            return "unit" + i;
+        } else {
+            for (let u = 0; u < units.length; u++) {
+                if (units[u].from <= c && c <= units[u].to) return "unit" + (u + 1);
+            }
+        }
+    }
+
+    #getWeek(weeks, i, c) {
+        if (TRILOGY[1] === 'Cohort') {
+            return i;
+        } else {
+            for (let w = 0; w < weeks.length; w++) {
+                if (weeks[w].from <= c && c <= weeks[w].to) return w + 1;
+            }
         }
     }
 }

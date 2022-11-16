@@ -11,7 +11,7 @@ class SwLearn extends HTMLElement {
     async render(i, c) {
         this.style.display = 'block';
         const done = Number(localStorage.getItem(`learn-${TRILOGY[1] === 'Course' ? 'unit' : 'week'}${i}-chapter${c}`));
-        const { UNITS, WEEKS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
+        const { YEAR, UNITS, WEEKS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
         const item = TRILOGY[1] === 'Course' ? UNITS[i - 1] : WEEKS[i - 1];
         const chapter = CHAPTERS[c - 1];
 
@@ -22,8 +22,8 @@ class SwLearn extends HTMLElement {
         this.#render();
         this.#renderVideo(chapter, c, done);
         this.#renderTextbook(chapter, c, done);
-        this.#renderQuiz(i, c, done);
-        this.#renderGroup(c, done);
+        this.#renderQuiz(UNITS, i, c, done);
+        this.#renderGroup(WEEKS, YEAR, i, c, done);
     }
 
     #render() {
@@ -48,7 +48,9 @@ class SwLearn extends HTMLElement {
         const button = this.shadowRoot.querySelector('.video button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Lecture ${c}`;
-        if (chapter.udemy) button.onclick = () => window.open(chapter.udemy, '_blank');
+        button.onclick = () => window.open(chapter.udemy, '_blank');
+        button.disabled = !Boolean(chapter.udemy);
+        if (!Boolean(chapter.udemy)) button.style.opacity = "0.2";
     }
 
     #renderTextbook(chapter, c, done) {
@@ -58,27 +60,36 @@ class SwLearn extends HTMLElement {
         button.onclick = () => window.open(chapter.medium, '_blank');
     }
     
-    #renderQuiz(i, c, done) {
+    #renderQuiz(units, i, c, done) {
         const button = this.shadowRoot.querySelector('.quiz button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Quiz ${c}`;
-        button.onclick = () => window.open(`https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}-${TRILOGY[1] === 'Course' ? 'unit' : 'week'}${i}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}-${this.#getUnit(units, i, c)}-chapter${c}`, '_blank');
     }
 
-    #renderGroup(i, c, done) {
+    #renderGroup(weeks, y, i, c, done) {
         const button = this.shadowRoot.querySelector('.group button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Discussion ${c}`;
-        button.onclick = async () => window.open(`https://${TRILOGY[0].toLowerCase()}.siliconwat.org/#learn-week${await this.#getWeek(c)}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Weeks/${this.#getWeek(weeks, i, c)}/Chapters/${c}/Discussion.md`, '_blank');
     }
 
-    async #getWeek(i, c) {
+    #getUnit(units, i, c) {
+        if (TRILOGY[1] === 'Course') {
+            return "unit" + i;
+        } else {
+            for (let u = 0; u < units.length; u++) {
+                if (units[u].from <= c && c <= units[u].to) return "unit" + (u + 1);
+            }
+        }
+    }
+
+    #getWeek(weeks, i, c) {
         if (TRILOGY[1] === 'Cohort') {
             return i;
         } else {
-            const { WEEKS } = await import(`${TRILOGY[2]}/data.mjs`);
-            for (let w = 0; w < WEEKS.length; w++) {
-                if (WEEKS[w].from <= c && c <= WEEKS[w].to) return w + 1;
+            for (let w = 0; w < weeks.length; w++) {
+                if (weeks[w].from <= c && c <= weeks[w].to) return w + 1;
             }
         }
     }
