@@ -1,5 +1,19 @@
 export const YEAR = 2023;
 
+export const DISCORD = {
+    university: "https://discord.gg/9MAGPryJpN",
+    semester: {
+        winter: null,
+        summer: "https://discord.gg/qDr7q8Mgxu"
+    },
+    quarter: {
+        winter: null,
+        spring: null,
+        summer: null,
+        fall: null
+    }
+};
+
 export const COURSE = {
     title: "A Complete Frontend Developer Course for Beginners",
     subtitle: "2023 Edition",

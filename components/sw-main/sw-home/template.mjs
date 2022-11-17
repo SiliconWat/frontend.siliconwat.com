@@ -17,7 +17,7 @@ template.innerHTML = `
                 <li><span class="program"></span> you join my <a class="cohort"></a>, you can form <strong>Study Groups</strong> with your <em>classmates</em> on Discord.</li>
             </ul>
             <br>
-            <button><span>Join Cohort</span></button>
+            <button id="join"><span>Join Cohort</span></button>
         </section>
         <section>
             <h2>Practice</h2>
@@ -28,7 +28,7 @@ template.innerHTML = `
                 <li><span class="program"></span> you join my <a class="cohort"></a>, you can submit your <strong id="project"></strong> for <em>grading</em> and <em>ranking</em> by your classmates.</li>
             </ul>
             <br>
-            <button><span>Sign In</span></button>
+            <button id="login"><span>Log In</span></button>
         </section>
         <section>
             <h2>Review</h2>
@@ -39,7 +39,7 @@ template.innerHTML = `
                 <li>After you successfully finish my <a class="cohort"></a>, you can sign up for a <strong>Mock Coding Interview</strong> with me about <em>Data Structures</em> and <em>Algorithms</em>.</li>
             </ul>
             <br>
-            <button><span>Private Discord</span></button>
+            <button id="discord"><span>Private Discord</span></button>
         </section>
         <footer>
             <div id="course">

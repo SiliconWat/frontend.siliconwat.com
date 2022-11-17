@@ -1,4 +1,5 @@
 import { TRILOGY } from "/global.mjs";
+import { YEAR, DISCORD } from "/data.mjs";
 import template from './template.mjs';
 
 class SwHome extends HTMLElement {
@@ -32,6 +33,7 @@ class SwHome extends HTMLElement {
         this.shadowRoot.getElementById('cohort').style.display = TRILOGY[1] === 'Cohort' ? "block" : "none";
 
         this.#render();
+        this.#renderButtons();
         this.style.display = 'block';
     }
 
@@ -51,6 +53,23 @@ class SwHome extends HTMLElement {
         }
 
         this.shadowRoot.getElementById('project').textContent = project;
+    }
+
+    #renderButtons() {
+        this.shadowRoot.getElementById('join').onclick = () => document.querySelector('sw-login').show();
+        this.shadowRoot.getElementById('join').onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort`, '_blank');
+
+        this.shadowRoot.getElementById('discord').onclick = async () => {
+            const student = await this.#getStudent();
+            window.open(student ? DISCORD[student.term][student.season] : DISCORD.university, '_blank');
+        }
+    }
+
+    //TODO:
+    async #getStudent() {
+        const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${YEAR}/Students.json`);
+        const students = await data.json();
+        return students.panhiathao;
     }
 }
 
