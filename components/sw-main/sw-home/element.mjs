@@ -56,8 +56,8 @@ class SwHome extends HTMLElement {
     }
 
     #renderButtons() {
-        this.shadowRoot.getElementById('join').onclick = () => document.querySelector('sw-login').show();
         this.shadowRoot.getElementById('join').onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort`, '_blank');
+        this.shadowRoot.getElementById('auth').onclick = () => document.querySelector('sw-auth').show();
 
         this.shadowRoot.getElementById('discord').onclick = async () => {
             const student = await this.#getStudent();
