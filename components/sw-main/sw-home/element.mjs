@@ -1,5 +1,5 @@
-import { TRILOGY } from "/global.mjs";
-import { YEAR, DISCORD } from "/data.mjs";
+import { TRILOGY, getGitHub } from "/global.mjs";
+import { DISCORD } from "/data.mjs";
 import template from './template.mjs';
 
 class SwHome extends HTMLElement {
@@ -12,6 +12,7 @@ class SwHome extends HTMLElement {
     async render() {
         const { YEAR, COURSE } = await import(`${TRILOGY[2]}/data.mjs`);
         
+        this.shadowRoot.querySelector('select').value = localStorage.getItem('term');
         this.shadowRoot.getElementById('title').textContent = COURSE.title;
         this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'Course' ? COURSE.subtitle : `Academic Year ${YEAR}`;
         this.shadowRoot.getElementById('udemy').href = COURSE.udemy;
@@ -28,9 +29,6 @@ class SwHome extends HTMLElement {
             if (TRILOGY[1] === 'Course') a.href = `https://${TRILOGY[0].toLowerCase()}.siliconwat.org`;
             if (TRILOGY[1] === 'Cohort') a.style.fontWeight = "bold";
         });
-
-        this.shadowRoot.getElementById('course').style.display = TRILOGY[1] === 'Course' ? "block" : "none";
-        this.shadowRoot.getElementById('cohort').style.display = TRILOGY[1] === 'Cohort' ? "block" : "none";
 
         this.#render();
         this.#renderButtons();
@@ -55,23 +53,33 @@ class SwHome extends HTMLElement {
         this.shadowRoot.getElementById('project').textContent = project;
     }
 
-    #renderButtons() {
+    async #renderButtons() {
+        const github = await getGitHub();
         this.shadowRoot.getElementById('join').onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort`, '_blank');
         
-        this.shadowRoot.getElementById('auth').firstElementChild.textContent = localStorage.getItem('github') ? "Log Out" : "Log In";
-        this.shadowRoot.getElementById('auth').onclick = () => localStorage.getItem('github') ? document.querySelector('sw-auth').logout() : document.querySelector('sw-auth').show();
+        const auth = this.shadowRoot.getElementById('auth');
+        auth.firstElementChild.textContent = github ? "Log Out" : "Log In";
+        auth.onclick = () => github ? document.querySelector('sw-auth').logout() : document.querySelector('sw-auth').show();
 
-        this.shadowRoot.getElementById('discord').onclick = async () => {
-            const student = await this.#getStudent();
-            window.open(student ? DISCORD[student.term][student.season] : DISCORD.university, '_blank');
+        const discord = this.shadowRoot.getElementById('discord');
+        if (github && github.student) {
+            discord.firstElementChild.textContent = "Private Discord";
+            discord.onclick = () => window.open(DISCORD[github.student.term][github.student.season], '_blank');
+        } else if (github) {
+            const term = localStorage.getItem('term').split('-');
+            discord.firstElementChild.textContent = "Visitor Discord";
+            discord.onclick = () => window.open(DISCORD[term[0]][term[1]], '_blank');
+        } else {
+            discord.firstElementChild.textContent = "Public Discord";
+            discord.onclick = () => window.open(DISCORD.university, '_blank');
         }
     }
 
-    //TODO:
-    async #getStudent() {
-        const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${YEAR}/Students.json`);
-        const students = await data.json();
-        return students.panhiathao;
+    changeTerm(event) {
+        localStorage.setItem('term', this.shadowRoot.querySelector('select').value);
+        this.#renderButtons();
+        //TODO: render header menu
+        document.querySelector('sw-header');
     }
 }
 

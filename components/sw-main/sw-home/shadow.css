@@ -31,9 +31,8 @@ header a {
     text-decoration: none;
 }
 
-header div {
-    font-size: smaller;
-    margin-top: 30px;
+header select {
+    font-size: 1em;
 }
 
 section {

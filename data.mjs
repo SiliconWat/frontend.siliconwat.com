@@ -1,4 +1,5 @@
 export const YEAR = 2023;
+export const TERM = "semester-summer"; // default
 
 export const DISCORD = {
     university: "https://discord.gg/9MAGPryJpN",

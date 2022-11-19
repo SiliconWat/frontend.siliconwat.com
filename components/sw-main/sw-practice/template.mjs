@@ -1,5 +1,4 @@
-import "../sw-students/element.mjs";
-import "../sw-grades/element.mjs";
+import "../sw-cohort/element.mjs";
 import { ORIGIN } from "/global.mjs";
 const template = document.createElement("template");
 
@@ -46,8 +45,7 @@ template.innerHTML = `
             <button><span></span></button>
         </section>
         <footer>
-            <sw-students></sw-students>
-            <sw-grades></sw-grades>
+            <sw-cohort></sw-cohort>
         </footer>
     </main>
 `;

@@ -1,3 +1,4 @@
+import "./sw-github/element.mjs";
 import { ORIGIN } from "/global.mjs";
 const template = document.createElement("template");
 
@@ -5,7 +6,20 @@ template.innerHTML = `
     <link rel="stylesheet" href="${ORIGIN}/components/sw-main/sw-home/shadow.css">
     <main>
         <header>
-            <h1><a class="medium"><span id="title"></span><div id="subtitle"></div></a></h1>
+            <a class="medium"><h1 id="title"></h1></a>
+            <h2 id="subtitle"></h2>
+            <select onchange="this.getRootNode().host.changeTerm(event)">
+                <optgroup label="Semester">
+                    <option value="semester-winter">Winter</option>
+                    <option value="semester-summer">Summer</option>
+                </optgroup>
+                <optgroup label="Quarter">
+                    <option value="quarter-winter">Winter</option>
+                    <option value="quarter-spring">Spring</option>
+                    <option value="quarter-summer">Summer</option>
+                    <option value="quarter-fall">Fall</option>
+                </optgroup>
+            </select>
         </header>
         <section>
             <h2>Learn</h2>
@@ -39,24 +53,10 @@ template.innerHTML = `
                 <li>After you successfully finish my <a class="cohort"></a>, you can sign up for a <strong>Mock Coding Interview</strong> with me about <em>Data Structures</em> and <em>Algorithms</em>.</li>
             </ul>
             <br>
-            <button id="discord"><span>Private Discord</span></button>
+            <button id="discord"><span></span></button>
         </section>
         <footer>
-            <div id="course">
-                <p>This course can be self-paced for self-motivated students.</p>
-                <p>However, if you prefer more structure, consider joining my Remote Cohort Program to study alongside other students!</p>
-                <p>It costs just $50 but also requires a commitment loan of 100 SW Coins to attract only the most serious students.</p>
-                <p>And to motivate you and your classmates to finish the entire course, 50 SW Coins will be rewarded upon completion!</p>
-            </div>
-            <div id="cohort">
-                <p>Winter Semester (Part-Time)</p>
-                <p>Summer Semester (Part-Time)</p>
-                <p>§§§</p>
-                <p>Winter Quarter (Full-Time)</p>
-                <p>Spring Quarter (Full-Time)</p>
-                <p>Summer Quarter (Full-Time)</p>
-                <p>Fall Quarter (Full-Time)</p>
-            </div>
+            <sw-github></sw-github>
         </footer>
     </main>
 `;
