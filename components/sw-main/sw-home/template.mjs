@@ -28,7 +28,7 @@ template.innerHTML = `
                 <li><span class="program"></span> you join my <a class="cohort"></a>, you can submit your <strong id="project"></strong> for <em>grading</em> and <em>ranking</em> by your classmates.</li>
             </ul>
             <br>
-            <button id="auth"><span>Log In</span></button>
+            <button id="auth"><span></span></button>
         </section>
         <section>
             <h2>Review</h2>
