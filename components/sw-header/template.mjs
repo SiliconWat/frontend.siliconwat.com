@@ -1,10 +1,10 @@
-import { ORIGIN } from "/global.mjs";
+import { THONLY } from "/global.mjs";
 import "./sw-bar/element.mjs";
 
 const template = document.createElement("template");
 
 template.innerHTML = `
-    <link rel="stylesheet" href="${ORIGIN}/components/tl-header/shadow.css">
+    <link rel="stylesheet" href="${THONLY}/components/tl-header/shadow.css">
     <link rel="stylesheet" href="components/sw-header/shadow.css">
     <header>
         <section>

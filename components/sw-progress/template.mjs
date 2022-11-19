@@ -1,8 +1,8 @@
-import { FRONTEND } from "/global.mjs";
+import { ORIGIN } from "/global.mjs";
 const template = document.createElement("template");
 
 template.innerHTML = `
-    <link rel="stylesheet" href="${FRONTEND}/components/sw-progress/shadow.css">
+    <link rel="stylesheet" href="${ORIGIN}/components/sw-progress/shadow.css">
     <svg viewBox="0 0 120 120" width="0">
         <circle cx="60" cy="60" r="54" fill="none" stroke="#f2b134" stroke-width="12"/>
         <circle id="ring" cx="60" cy="60" r="54" fill="none" stroke="white" stroke-width="12" pathLength="100"/>

@@ -1,8 +1,8 @@
-import { FRONTEND } from "/global.mjs";
+import { ORIGIN } from "/global.mjs";
 const template = document.createElement("template");
 
 template.innerHTML = `
-    <link rel="stylesheet" href="${FRONTEND}/components/sw-music/shadow.css">
+    <link rel="stylesheet" href="${ORIGIN}/components/sw-music/shadow.css">
     <aside>
         <svg viewBox="0 0 10 10" width="0">
             <defs>

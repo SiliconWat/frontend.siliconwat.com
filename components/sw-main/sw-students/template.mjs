@@ -1,8 +1,8 @@
-import { FRONTEND } from "/global.mjs";
+import { ORIGIN } from "/global.mjs";
 const template = document.createElement("template");
 
 template.innerHTML = `
-    <link rel="stylesheet" href="${FRONTEND}/components/sw-main/sw-students/shadow.css">
+    <link rel="stylesheet" href="${ORIGIN}/components/sw-main/sw-students/shadow.css">
     TODO: student body stats: number enrolled, number passed?
 `;
 

@@ -1,11 +1,11 @@
 import "../sw-students/element.mjs";
 import "../sw-grades/element.mjs";
-import { FRONTEND } from "/global.mjs";
+import { ORIGIN } from "/global.mjs";
 const template = document.createElement("template");
 
 template.innerHTML = `
-    <link rel="stylesheet" href="${FRONTEND}/components/sw-main/sw-home/shadow.css">
-    <link rel="stylesheet" href="${FRONTEND}/components/sw-main/sw-learn/shadow.css">
+    <link rel="stylesheet" href="${ORIGIN}/components/sw-main/sw-home/shadow.css">
+    <link rel="stylesheet" href="${ORIGIN}/components/sw-main/sw-learn/shadow.css">
     <main>
         <header>
             <h1></h1>
