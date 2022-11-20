@@ -17,7 +17,7 @@ class SwGitHub extends HTMLElement {
                 const a = this.shadowRoot.querySelector('a');
                 a.href = github.html_url;
                 a.firstElementChild.src = github.avatar_url;
-                a.lastElementChild.textContent = github.login;
+                a.lastElementChild.textContent = "@" + github.login;
                 this.shadowRoot.querySelector('section:last-child').style.display = 'block';
             } else {
                 this.shadowRoot.querySelector('section:first-child').style.display = 'block';

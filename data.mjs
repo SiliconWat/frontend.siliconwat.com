@@ -89,50 +89,62 @@ export const COHORT = {
 
 export const WEEKS = [
     {
+        active: true,
         from: 1,
         to: 5,
     },
     {
+        active: false,
         from: 6,
         to: 18
     },
     {
+        active: false,
         from: 19,
         to: 20
     },
     {
+        active: false,
         from: null,
         to: null
     },
     {
+        active: false,
         from: null,
         to: null
     },
     {
+        active: false,
         from: null,
         to: null
     },
     {
+        active: false,
         from: null,
         to: null
     },
     {
+        active: false,
         from: 19,
         to: 20
     },
     {
+        active: false,
         from: null,
         to: null
     },
     {
+        active: false,
         from: null,
         to: null
     },
     {
+        active: false,
         from: null,
         to: null
     },
     {
+        active: false,
         from: null,
         to: null
     }
