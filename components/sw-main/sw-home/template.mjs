@@ -9,11 +9,11 @@ template.innerHTML = `
             <a class="medium"><h1 id="title"></h1></a>
             <h2 id="subtitle"></h2>
             <select onchange="this.getRootNode().host.changeTerm(event)">
-                <optgroup label="Semester">
+                <optgroup label="Semester (Part-Time Program)">
                     <option value="semester-winter">Winter</option>
                     <option value="semester-summer">Summer</option>
                 </optgroup>
-                <optgroup label="Quarter">
+                <optgroup label="Quarter (Full-Time Program)">
                     <option value="quarter-winter">Winter</option>
                     <option value="quarter-spring">Spring</option>
                     <option value="quarter-summer">Summer</option>

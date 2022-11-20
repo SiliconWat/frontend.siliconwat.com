@@ -1,5 +1,4 @@
 import { TRILOGY, getGitHub } from "/global.mjs";
-import { DISCORD } from "/data.mjs";
 import template from './template.mjs';
 
 class SwHome extends HTMLElement {
@@ -10,7 +9,7 @@ class SwHome extends HTMLElement {
     }
 
     async render() {
-        const { YEAR, COURSE } = await import(`${TRILOGY[2]}/data.mjs`);
+        const { YEAR, COURSE, COHORT } = await import(`${TRILOGY[2]}/data.mjs`);
         
         this.shadowRoot.querySelector('select').value = localStorage.getItem('term');
         this.shadowRoot.getElementById('title').textContent = COURSE.title;
@@ -31,7 +30,7 @@ class SwHome extends HTMLElement {
         });
 
         this.#render();
-        this.#renderButtons();
+        this.#renderButtons(COURSE, COHORT);
         this.style.display = 'block';
     }
 
@@ -53,7 +52,7 @@ class SwHome extends HTMLElement {
         this.shadowRoot.getElementById('project').textContent = project;
     }
 
-    async #renderButtons() {
+    async #renderButtons(course, cohort) {
         const github = await getGitHub();
         this.shadowRoot.getElementById('join').onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort`, '_blank');
         
@@ -64,22 +63,21 @@ class SwHome extends HTMLElement {
         const discord = this.shadowRoot.getElementById('discord');
         if (github && github.student) {
             discord.firstElementChild.textContent = "Private Discord";
-            discord.onclick = () => window.open(DISCORD[github.student.term][github.student.season], '_blank');
+            discord.onclick = () => window.open(cohort[github.student.term][github.student.season].discord, '_blank');
         } else if (github) {
             const term = localStorage.getItem('term').split('-');
             discord.firstElementChild.textContent = "Visitor Discord";
-            discord.onclick = () => window.open(DISCORD[term[0]][term[1]], '_blank');
+            discord.onclick = () => window.open(cohort[term[0]][term[1]].discord, '_blank');
         } else {
             discord.firstElementChild.textContent = "Public Discord";
-            discord.onclick = () => window.open(DISCORD.university, '_blank');
+            discord.onclick = () => window.open(course.discord, '_blank');
         }
     }
 
     changeTerm(event) {
         localStorage.setItem('term', this.shadowRoot.querySelector('select').value);
-        this.#renderButtons();
-        //TODO: render header menu
-        document.querySelector('sw-header');
+        this.render();
+        document.querySelector('sw-header').render();
     }
 }
 

@@ -1,27 +1,14 @@
 export const YEAR = 2023;
 export const TERM = "semester-summer"; // default
 
-export const DISCORD = {
-    university: "https://discord.gg/9MAGPryJpN",
-    semester: {
-        winter: null,
-        summer: "https://discord.gg/qDr7q8Mgxu"
-    },
-    quarter: {
-        winter: null,
-        spring: null,
-        summer: null,
-        fall: null
-    }
-};
-
 export const COURSE = {
     title: "A Complete Frontend Developer Course for Beginners",
     subtitle: "2023 Edition",
     medium: "https://medium.com/siliconwat/a-complete-frontend-developer-textbook-for-beginners-3be48c1f07?sk=351a90e15ab63ee815dda3f3a395f843",
     udemy: "https://siliconwat.com/#frontend", // TODO: link to udemy course
     youtube: "https://youtube.com/@SiliconWat", // TODO: link to frontend playlist
-    github: "https://github.com/SiliconWat/frontend-cohort"
+    github: "https://github.com/SiliconWat/frontend-cohort",
+    discord: "https://discord.gg/9MAGPryJpN" // public: silicon wat
 };
 
 export const UNITS = [
@@ -69,76 +56,83 @@ export const UNITS = [
     }
 ];
 
+export const COHORT = { 
+    semester: { // intermission: 2 week break;
+        winter: {
+            discord: null,
+            start: new Date(YEAR, 0, 2)
+        }, 
+        summer: {
+            discord: "https://discord.gg/qDr7q8Mgxu",
+            start: new Date(YEAR, 6, 3) 
+        }
+    },
+    quarter: { // intermission: 1 week break;
+        winter: {
+            discord: null,
+            start: new Date(YEAR, 0, 2)
+        },
+        spring: {
+            discord: null,
+            start: new Date(YEAR, 3, 3)
+        },
+        summer: {
+            discord: null,
+            start: new Date(YEAR, 6, 3)
+        },
+        fall: {
+            discord: null,
+            start: new Date(YEAR, 9, 2)
+        }
+    }
+};
+
 export const WEEKS = [
     {
-        title: "Jan 1 - Jan 7",
-        description: "@thonly, @chengsieuly, <strong>@panhiathao</strong>, @lykimche",
         from: 1,
         to: 5,
     },
     {
-        title: "Jan 8 - Jan 14",
-        description: "TBA",
         from: 6,
         to: 18
     },
     {
-        title: "Jan 15 - Jan 21",
-        description: "TBA",
         from: 19,
         to: 20
     },
     {
-        title: "TBA",
-        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "TBA",
-        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "TBA",
-        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "TBA",
-        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "TBA",
-        description: "TBA",
         from: 19,
         to: 20
     },
     {
-        title: "TBA",
-        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "TBA",
-        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "TBA",
-        description: "TBA",
         from: null,
         to: null
     },
     {
-        title: "TBA",
-        description: "TBA",
         from: null,
         to: null
     }

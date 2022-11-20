@@ -7,7 +7,7 @@ template.innerHTML = `
         <section>
             <p>This course can be self-paced for self-motivated students.</p>
             <p>However, if you prefer more structure, consider joining my Remote Cohort Program to study alongside other students!</p>
-            <p>It costs just $50 but also requires a commitment loan of 100 SW Coins to attract only the most serious students.</p>
+            <p>It costs just $100 but also requires a commitment loan of 100 SW Coins to attract only the most serious students.</p>
             <p>And to motivate you and your classmates to finish the entire course, 50 SW Coins will be rewarded upon completion!</p>
         </section>
         <section>
