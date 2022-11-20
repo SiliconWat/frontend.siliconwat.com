@@ -11,7 +11,6 @@ class SwHome extends HTMLElement {
     async render() {
         const { YEAR, COURSE, COHORT } = await import(`${TRILOGY[2]}/data.mjs`);
         
-        this.shadowRoot.querySelector('select').value = localStorage.getItem('term');
         this.shadowRoot.getElementById('title').textContent = COURSE.title;
         this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'Course' ? COURSE.subtitle : `Academic Year ${YEAR}`;
         this.shadowRoot.getElementById('udemy').href = COURSE.udemy;
@@ -29,8 +28,10 @@ class SwHome extends HTMLElement {
             if (TRILOGY[1] === 'Cohort') a.style.fontWeight = "bold";
         });
 
+        const github = await getGitHub();
         this.#render();
-        this.#renderButtons(COURSE, COHORT);
+        this.#renderSelect(github);
+        this.#renderButtons(github, COURSE, COHORT);
         this.style.display = 'block';
     }
 
@@ -52,8 +53,14 @@ class SwHome extends HTMLElement {
         this.shadowRoot.getElementById('project').textContent = project;
     }
 
-    async #renderButtons(course, cohort) {
-        const github = await getGitHub();
+    async #renderSelect(github) {
+        const select = this.shadowRoot.querySelector('select');
+        select.value = localStorage.getItem('term');
+        select.disabled = github && github.student;
+    }
+
+    async #renderButtons(github, course, cohort) {
+        
         this.shadowRoot.getElementById('join').onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort`, '_blank');
         
         const auth = this.shadowRoot.getElementById('auth');

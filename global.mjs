@@ -18,7 +18,7 @@ export const TRILOGY = (() => {
 export async function getGitHub() {
     const github = JSON.parse(localStorage.getItem('github')) || {};
     if (github.login) {
-        const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${YEAR}/Students.json`);
+        const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${YEAR}/Students.json`, { cache: "no-store" });
         const students = await data.json();
         github.student = students[github.login];
         return github;
@@ -27,4 +27,20 @@ export async function getGitHub() {
     }   
 }
 
-localStorage.setItem('term', localStorage.getItem('term') || TERM);
+getGitHub().then(github => localStorage.setItem('term', github && github.student ? `${github.student.term}-${github.student.season}` : localStorage.getItem('term') || TERM));
+
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+export function getWeek(cohort, w) {
+    const term = localStorage.getItem('term').split('-');
+    const date = cohort[term[0]][term[1]].start;
+
+    const start = new Date(date);
+    if (term[0] === 'quarter') start.setDate(date.getDate() + 7*(w-1))
+    else start.setDate(date.getDate() + 7*(w-1)*2);
+
+    const end = new Date(start);
+    if (term[0] === 'quarter') end.setDate(start.getDate() + 6)
+    else end.setDate(start.getDate() + 7*2 - 1);
+
+    return `${months[start.getMonth()]} ${start.getDate()} - ${months[end.getMonth()]} ${end.getDate()}`;
+}

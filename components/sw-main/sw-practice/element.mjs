@@ -1,4 +1,4 @@
-import { TRILOGY } from '/global.mjs';
+import { TRILOGY, getWeek } from '/global.mjs';
 import template from './template.mjs';
 
 class SwPractice extends HTMLElement {
@@ -11,11 +11,11 @@ class SwPractice extends HTMLElement {
     async render(i, c) {
         this.style.display = 'block';
         const done = Number(localStorage.getItem(`learn-${TRILOGY[1] === 'Course' ? 'unit' : 'week'}${i}-chapter${c}`));
-        const { YEAR, UNITS, WEEKS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
+        const { YEAR, COHORT, UNITS, WEEKS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
         const item = TRILOGY[1] === 'Course' ? UNITS[i - 1] : WEEKS[i - 1];
         const chapter = CHAPTERS[c - 1];
 
-        this.shadowRoot.querySelector('header h1').textContent = `${TRILOGY[1] === 'Course' ? 'Unit' : 'Week'} ${i}: ${item.title}`;
+        this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'Course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${getWeek(COHORT, i)}`;
         this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "💻"} Practice: Chapter ${c}`;
         this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
