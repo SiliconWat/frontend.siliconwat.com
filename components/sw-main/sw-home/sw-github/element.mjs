@@ -13,7 +13,7 @@ class SwGitHub extends HTMLElement {
             this.shadowRoot.querySelector('section:first-child').style.display = 'block';
         } else {
             const github = await getGitHub();
-            if (github) { //TODO: overall grade!!
+            if (github.login) { //TODO: overall grade!!
                 const a = this.shadowRoot.querySelector('a');
                 a.href = github.html_url;
                 a.firstElementChild.src = github.avatar_url;

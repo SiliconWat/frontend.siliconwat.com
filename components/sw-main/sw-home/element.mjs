@@ -1,4 +1,4 @@
-import { TRILOGY, getGitHub } from "/global.mjs";
+import { TRILOGY, getGitHub, getTerm } from "/global.mjs";
 import template from './template.mjs';
 
 class SwHome extends HTMLElement {
@@ -55,8 +55,8 @@ class SwHome extends HTMLElement {
 
     async #renderSelect(github) {
         const select = this.shadowRoot.querySelector('select');
-        select.value = localStorage.getItem('term');
-        select.disabled = github && github.student;
+        select.value = getTerm(github)[0];
+        select.disabled = github.student;
         select.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
     }
 
@@ -64,17 +64,17 @@ class SwHome extends HTMLElement {
         this.shadowRoot.getElementById('join').onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort`, '_blank');
         
         const auth = this.shadowRoot.getElementById('auth');
-        auth.firstElementChild.textContent = github ? "Log Out" : "Log In";
-        auth.onclick = () => github ? document.querySelector('sw-auth').logout() : document.querySelector('sw-auth').show();
+        auth.firstElementChild.textContent = github.login ? "Log Out" : "Log In";
+        auth.onclick = () => github.login ? document.querySelector('sw-auth').logout() : document.querySelector('sw-auth').show();
 
         const discord = this.shadowRoot.getElementById('discord');
-        if (github && github.student) {
+        if (github.student) {
             discord.firstElementChild.textContent = "Private Discord";
             discord.onclick = () => window.open(cohort[github.student.term][github.student.season].discord, '_blank');
-        } else if (github) {
-            const term = localStorage.getItem('term').split('-');
+        } else if (github.login) {
+            const term = getTerm(github);
             discord.firstElementChild.textContent = "Visitor Discord";
-            discord.onclick = () => window.open(cohort[term[0]][term[1]].discord, '_blank');
+            discord.onclick = () => window.open(cohort[term[1]][term[2]].discord, '_blank');
         } else {
             discord.firstElementChild.textContent = "Public Discord";
             discord.onclick = () => window.open(course.discord, '_blank');

@@ -21,18 +21,19 @@ export async function getGitHub() {
         const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${YEAR}/Students.json`, { cache: "no-store" });
         const students = await data.json();
         github.student = students[github.login];
-        return github;
-    } else {
-        return null;
-    }   
+    } 
+    return github;
 }
 
-getGitHub().then(github => localStorage.setItem('term', github && github.student ? `${github.student.term}-${github.student.season}` : localStorage.getItem('term') || TERM));
+export function getTerm(github) {
+    const term = github.student ? `${github.student.term}-${github.student.season}` : localStorage.getItem('term') || TERM;
+    return [term, ...term.split('-')];
+}
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-export function getWeek(cohort, w) {
-    const term = localStorage.getItem('term').split('-');
-    const date = cohort[term[0]][term[1]].start;
+export async function getWeek(cohort, w) {
+    const term = getTerm(await getGitHub());
+    const date = cohort[term[1]][term[2]].start;
 
     const start = new Date(date);
     if (term[0] === 'quarter') start.setDate(date.getDate() + 7*(w-1))
@@ -64,4 +65,14 @@ export function getWeek2(weeks, i, c) {
             if (weeks[w].from <= c && c <= weeks[w].to) return w + 1;
         }
     }
+}
+
+// admin only
+window.admin = username => {
+    const github = JSON.parse(localStorage.getItem('github')) || {};
+    if (github.login) {
+        github.login = username;
+        localStorage.setItem('github', JSON.stringify(github));
+        window.location.reload();
+    } 
 }

@@ -1,4 +1,4 @@
-import { TRILOGY, getGitHub } from '/global.mjs';
+import { TRILOGY, getGitHub, getTerm } from '/global.mjs';
 import template from './template.mjs';
 
 class SwCohort extends HTMLElement {
@@ -13,14 +13,14 @@ class SwCohort extends HTMLElement {
             await this.#render(y);
         } else {
             const github = await getGitHub();
-            if (github) {
+            if (github.login) {
                 if (github.student) {
                     const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${github.student.term === 'semester' ? "Semesters" : "Quarters"}/${github.student.season.charAt(0).toUpperCase() + github.student.season.slice(1)}/Chapters/${c}/Gradebook.json`, { cache: "no-store" });
                     const gradebook = await data.json()
                     this.#renderStudent(gradebook[github.login]);
                 } else {
-                    const term = localStorage.getItem('term').split('-');
-                    const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${term[0] === 'semester' ? "Semesters" : "Quarters"}/${term[1].charAt(0).toUpperCase() + term[1].slice(1)}/Chapters/${c}/Gradebook.json`, { cache: "no-store" });
+                    const term = getTerm(github);
+                    const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${term[1] === 'semester' ? "Semesters" : "Quarters"}/${term[2].charAt(0).toUpperCase() + term[2].slice(1)}/Chapters/${c}/Gradebook.json`, { cache: "no-store" });
                     this.#renderStudents(await data.json());
                 }
                 this.shadowRoot.querySelector('section:first-child').style.display = 'block';

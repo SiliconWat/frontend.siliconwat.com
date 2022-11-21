@@ -16,7 +16,7 @@ template.innerHTML = `
                 <h3>Successfully Passed: <span></span></h3>
                 grades are pass / no pass only
                 chapter assignemnts = 70% to pass
-                exact scores will be recorded
+                exact score and rank will be recorded and rewarded proportinaly 
             </figure>
         </section>
         <section>

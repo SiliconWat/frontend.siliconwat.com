@@ -15,7 +15,7 @@ class SwLearn extends HTMLElement {
         const item = TRILOGY[1] === 'Course' ? UNITS[i - 1] : WEEKS[i - 1];
         const chapter = CHAPTERS[c - 1];
 
-        this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'Course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${getWeek(COHORT, i)}`;
+        this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'Course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${await getWeek(COHORT, i)}`;
         this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "📖"} Learn: Chapter ${c}`;
         this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
