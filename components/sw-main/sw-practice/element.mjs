@@ -1,4 +1,4 @@
-import { TRILOGY, getWeek } from '/global.mjs';
+import { TRILOGY, getWeek, getUnit } from '/global.mjs';
 import template from './template.mjs';
 
 class SwPractice extends HTMLElement {
@@ -23,6 +23,8 @@ class SwPractice extends HTMLElement {
         this.#renderCoding(UNITS, i, c, done);
         this.#renderPair(WEEKS, YEAR, i, c, done);
         this.#renderProject(WEEKS, YEAR, i, c, done);
+
+        this.shadowRoot.querySelector('sw-cohort').render(YEAR, c);
     }
 
     #render() {
@@ -51,41 +53,21 @@ class SwPractice extends HTMLElement {
         const button = this.shadowRoot.querySelector('.coding button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Exercise ${c}`;
-        button.onclick = () => window.open(`https://code.siliconwat.com/#${TRILOGY[0].toLowerCase()}-${this.#getUnit(units, i, c)}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://code.siliconwat.com/#${TRILOGY[0].toLowerCase()}-${getUnit(units, i, c)}-chapter${c}`, '_blank');
     }
 
     #renderPair(weeks, y, i, c, done) {
         const button = this.shadowRoot.querySelector('.pair button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Challenge ${c}`;
-        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Assignments/Weeks/${this.#getWeek(weeks, i, c)}/Chapters/${c}/Challenge.md`, '_blank');
+        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Challenge.md`, '_blank');
     }
     
     #renderProject(weeks, y, i, c, done) {
         const button = this.shadowRoot.querySelector('.project button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Suggestion ${c}`;
-        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Assignments/Weeks/${this.#getWeek(weeks, i, c)}/Chapters/${c}/Suggestion.md`, '_blank');
-    }
-
-    #getUnit(units, i, c) {
-        if (TRILOGY[1] === 'Course') {
-            return "unit" + i;
-        } else {
-            for (let u = 0; u < units.length; u++) {
-                if (units[u].from <= c && c <= units[u].to) return "unit" + (u + 1);
-            }
-        }
-    }
-
-    #getWeek(weeks, i, c) {
-        if (TRILOGY[1] === 'Cohort') {
-            return i;
-        } else {
-            for (let w = 0; w < weeks.length; w++) {
-                if (weeks[w].from <= c && c <= weeks[w].to) return w + 1;
-            }
-        }
+        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Suggestion.md`, '_blank');
     }
 }
 

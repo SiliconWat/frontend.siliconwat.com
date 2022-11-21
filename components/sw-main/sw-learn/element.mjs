@@ -1,4 +1,4 @@
-import { TRILOGY, getWeek } from '/global.mjs';
+import { TRILOGY, getWeek, getUnit } from '/global.mjs';
 import template from './template.mjs';
 
 class SwLearn extends HTMLElement {
@@ -24,6 +24,8 @@ class SwLearn extends HTMLElement {
         this.#renderTextbook(chapter, c, done);
         this.#renderQuiz(UNITS, i, c, done);
         this.#renderGroup(WEEKS, YEAR, i, c, done);
+
+        this.shadowRoot.querySelector('sw-cohort').render(YEAR, c);
     }
 
     #render() {
@@ -64,34 +66,14 @@ class SwLearn extends HTMLElement {
         const button = this.shadowRoot.querySelector('.quiz button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Quiz ${c}`;
-        button.onclick = () => window.open(`https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}-${this.#getUnit(units, i, c)}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}-${getUnit(units, i, c)}-chapter${c}`, '_blank');
     }
 
     #renderGroup(weeks, y, i, c, done) {
         const button = this.shadowRoot.querySelector('.group button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Discussion ${c}`;
-        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Assignments/Weeks/${this.#getWeek(weeks, i, c)}/Chapters/${c}/Discussion.md`, '_blank');
-    }
-
-    #getUnit(units, i, c) {
-        if (TRILOGY[1] === 'Course') {
-            return "unit" + i;
-        } else {
-            for (let u = 0; u < units.length; u++) {
-                if (units[u].from <= c && c <= units[u].to) return "unit" + (u + 1);
-            }
-        }
-    }
-
-    #getWeek(weeks, i, c) {
-        if (TRILOGY[1] === 'Cohort') {
-            return i;
-        } else {
-            for (let w = 0; w < weeks.length; w++) {
-                if (weeks[w].from <= c && c <= weeks[w].to) return w + 1;
-            }
-        }
+        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Discussion.md`, '_blank');
     }
 }
 

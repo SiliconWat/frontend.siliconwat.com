@@ -3,6 +3,6 @@
     font-size: medium;
 }
 
-section {
+section, figure {
     display: none;
 }

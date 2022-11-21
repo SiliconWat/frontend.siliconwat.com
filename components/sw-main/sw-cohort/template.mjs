@@ -5,10 +5,22 @@ template.innerHTML = `
     <link rel="stylesheet" href="${ORIGIN}/components/sw-main/sw-cohort/shadow.css">
     <aside>
         <section>
-            TODO: student body stats: number enrolled, number passed?
+            <figure>
+                <h3>Discussion: <span></span></h3>
+                <h3>Challenge: <span></span></h3>
+                <h3>Summary: <span></span></h3>
+                <h3>Suggestion: <span></span></h3>
+            </figure>
+            <figure>
+                <h3>Discussion Total Passed: <span></span></h3>
+                <h3>Challenge: <span></span></h3>
+                <h3>Summary: <span></span></h3>
+                <h3>Suggestion: <span></span></h3>
+            </figure>
         </section>
         <section>
-            TODO: grades and overall grade per student
+            <h3>Total Students: <span></span></h3>
+            <h3>Successfully Passed: <span></span></h3>
         </section>
     </aside>
 `;

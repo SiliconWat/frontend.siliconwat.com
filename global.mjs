@@ -44,3 +44,24 @@ export function getWeek(cohort, w) {
 
     return `${months[start.getMonth()]} ${start.getDate()} - ${months[end.getMonth()]} ${end.getDate()}`;
 }
+
+export function getUnit(units, i, c) {
+    if (TRILOGY[1] === 'Course') {
+        return "unit" + i;
+    } else {
+        for (let u = 0; u < units.length; u++) {
+            if (units[u].from <= c && c <= units[u].to) return "unit" + (u + 1);
+        }
+    }
+}
+
+// deprecated
+export function getWeek2(weeks, i, c) { 
+    if (TRILOGY[1] === 'Cohort') {
+        return i;
+    } else {
+        for (let w = 0; w < weeks.length; w++) {
+            if (weeks[w].from <= c && c <= weeks[w].to) return w + 1;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import { TRILOGY, getWeek } from '/global.mjs';
+import { TRILOGY, getWeek, getUnit } from '/global.mjs';
 import template from './template.mjs';
 
 class SwReview extends HTMLElement {
@@ -23,6 +23,8 @@ class SwReview extends HTMLElement {
         this.#renderFlashcard(UNITS, i, c, done);
         this.#renderSummary(WEEKS, YEAR, i, c, done);
         this.#renderInterview(chapter, c, done);
+
+        this.shadowRoot.querySelector('sw-cohort').render(YEAR, c);
     }
 
     #render() {
@@ -51,14 +53,14 @@ class SwReview extends HTMLElement {
         const button = this.shadowRoot.querySelector('.flashcard button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Game ${c}`;
-        button.onclick = () => window.open(`https://flashcard.siliconwat.com/#${TRILOGY[0].toLowerCase()}-${this.#getUnit(units, i, c)}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://flashcard.siliconwat.com/#${TRILOGY[0].toLowerCase()}-${getUnit(units, i, c)}-chapter${c}`, '_blank');
     }
 
     #renderSummary(weeks, y, i, c, done) {
         const button = this.shadowRoot.querySelector('.summary button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Summary ${c}`;
-        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Assignments/Weeks/${this.#getWeek(weeks, i, c)}/Chapters/${c}/Summary.md`, '_blank');
+        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Summary.md`, '_blank');
     }
     
     #renderInterview(chapter, c, done) {
@@ -68,26 +70,6 @@ class SwReview extends HTMLElement {
         button.onclick = () => window.open(chapter.youtube, '_blank');
         button.disabled = !Boolean(chapter.youtube);
         if (!Boolean(chapter.youtube)) button.style.opacity = "0.2";
-    }
-
-    #getUnit(units, i, c) {
-        if (TRILOGY[1] === 'Course') {
-            return "unit" + i;
-        } else {
-            for (let u = 0; u < units.length; u++) {
-                if (units[u].from <= c && c <= units[u].to) return "unit" + (u + 1);
-            }
-        }
-    }
-
-    #getWeek(weeks, i, c) {
-        if (TRILOGY[1] === 'Cohort') {
-            return i;
-        } else {
-            for (let w = 0; w < weeks.length; w++) {
-                if (weeks[w].from <= c && c <= weeks[w].to) return w + 1;
-            }
-        }
     }
 }
 
