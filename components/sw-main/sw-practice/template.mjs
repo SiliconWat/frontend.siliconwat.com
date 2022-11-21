@@ -38,8 +38,10 @@ template.innerHTML = `
             <h2><span>#3</span> <b class="app"></b></h2>
             <figure>📑</figure>
             <p>The <em>best</em> and <em>funnest</em> way to <strong>master coding</strong> is to apply your newfound <em>knowledge</em> to a <strong>real project <em>of your choosing</em></strong>. You can create <em>one</em> <strong class="app"></strong> for FREE for this purpose.</p>
-            <p>To <em>pass</em> the <strong>Cohort Program</strong>, your classmates need to give your <strong class="app"></strong> a <strong><em>passing grade</em></strong>.</p>
+            <p>To help your project excel, each week I provide some <strong><em>suggestions</em> for improvements</strong> while your Programming Partner <em><strong>grades</strong> your execution</em>.</p>
+            <!--<p>To <em>pass</em> the <strong>Cohort Program</strong>, your classmates need to give your <strong class="app"></strong> a <strong><em>passing grade</em></strong>.</p>-->
             <p>For additional motivation, <strong><span class="app"></span>s</strong> will be <strong><em>publicly ranked</em></strong> based on the <strong>Best Idea</strong>, the <strong>Best Code</strong>, and the <strong>Best Overall</strong> by you and your classmates.</p>
+            <p>The <strong>Winners</strong> in <em>each category</em> will be <strong><em>featured</em></strong> and <strong><em>showcased</em></strong>, and <em>nicely <strong>rewarded</strong>!</em></p>
             <p><em class="free">It is FREE to create a <strong class="app"></strong>,</em> <em class="pay">but to have yours <strong>graded</strong> and <strong>ranked</strong>, you need to sign up for the <strong>Cohort Program</strong>.</em></p>
             <br>
             <button><span></span></button>

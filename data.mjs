@@ -1,5 +1,5 @@
 export const YEAR = 2023;
-export const TERM = "semester-summer"; // default
+export const TERM = "semester-summer"; // current
 
 export const COURSE = {
     title: "A Complete Frontend Developer Course for Beginners",
