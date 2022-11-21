@@ -57,10 +57,10 @@ class SwHome extends HTMLElement {
         const select = this.shadowRoot.querySelector('select');
         select.value = localStorage.getItem('term');
         select.disabled = github && github.student;
+        select.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
     }
 
     async #renderButtons(github, course, cohort) {
-        
         this.shadowRoot.getElementById('join').onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort`, '_blank');
         
         const auth = this.shadowRoot.getElementById('auth');

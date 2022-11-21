@@ -10,14 +10,14 @@ template.innerHTML = `
             <h2 id="subtitle"></h2>
             <select onchange="this.getRootNode().host.changeTerm(event)">
                 <optgroup label="Semester (Part-Time Program)">
-                    <option value="semester-winter">Winter</option>
-                    <option value="semester-summer">Summer</option>
+                    <option value="semester-winter">Winter Semester</option>
+                    <option value="semester-summer">Summer Semester</option>
                 </optgroup>
                 <optgroup label="Quarter (Full-Time Program)">
-                    <option value="quarter-winter">Winter</option>
-                    <option value="quarter-spring">Spring</option>
-                    <option value="quarter-summer">Summer</option>
-                    <option value="quarter-fall">Fall</option>
+                    <option value="quarter-winter">Winter Quarter</option>
+                    <option value="quarter-spring">Spring Quarter</option>
+                    <option value="quarter-summer">Summer Quarter</option>
+                    <option value="quarter-fall">Fall Quarter</option>
                 </optgroup>
             </select>
         </header>
