@@ -1,4 +1,4 @@
-import { TRILOGY } from '/global.mjs';
+import { TRILOGY, getYear } from '/global.mjs';
 import template from './template.mjs';
 
 class SwHeader extends HTMLElement {
@@ -9,8 +9,9 @@ class SwHeader extends HTMLElement {
     }
 
     async connectedCallback() {
-        const { UNITS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
-        this.#render(UNITS, CHAPTERS);
+        const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${await getYear()}/Syllabus.json`, { cache: "no-store" });
+        const { units, chapters } = await syllabus.json();
+        this.#render(units, chapters);
     }
 
     #render(units, chapters) {

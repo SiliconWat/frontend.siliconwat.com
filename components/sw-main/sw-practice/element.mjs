@@ -11,19 +11,21 @@ class SwPractice extends HTMLElement {
     async render(i, c) {
         this.style.display = 'block';
         const done = Number(localStorage.getItem(`learn-${TRILOGY[1] === 'Course' ? 'unit' : 'week'}${i}-chapter${c}`));
-        const { COHORT, UNITS, WEEKS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
-        const item = TRILOGY[1] === 'Course' ? UNITS[i - 1] : WEEKS[i - 1];
-        const chapter = CHAPTERS[c - 1];
 
-        this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'Course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${await getWeek(COHORT, i)}`;
+        const y = await getYear();
+        const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`, { cache: "no-store" });
+        const { cohort, units, weeks, chapters } = await syllabus.json();
+        const item = TRILOGY[1] === 'Course' ? units[i - 1] : weeks[i - 1];
+        const chapter = chapters[c - 1];
+
+        this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'Course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${await getWeek(cohort, i)}`;
         this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "💻"} Practice: Chapter ${c}`;
         this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
-        const y = await getYear();
         this.#render();
-        this.#renderCoding(UNITS, i, c, done);
-        this.#renderPair(WEEKS, y, i, c, done);
-        this.#renderProject(WEEKS, y, i, c, done);
+        this.#renderCoding(units, i, c, done);
+        this.#renderPair(weeks, y, i, c, done);
+        this.#renderProject(weeks, y, i, c, done);
 
         this.shadowRoot.querySelector('sw-cohort').render(y, c);
     }

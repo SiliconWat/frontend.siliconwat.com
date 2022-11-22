@@ -1,4 +1,4 @@
-import { TRILOGY } from "/global.mjs";
+import { TRILOGY, getYear } from "/global.mjs";
 import template from './template.mjs';
 
 class SwBar extends HTMLElement {
@@ -16,11 +16,12 @@ class SwBar extends HTMLElement {
     }
 
     async render() {
-        const { UNITS, WEEKS } = await import(`${TRILOGY[2]}/data.mjs`);
-        const data = TRILOGY[1] === 'Course' ? UNITS : WEEKS;
+        const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${await getYear()}/Syllabus.json`, { cache: "no-store" });
+        const { units, weeks } = await syllabus.json();
+        const data = TRILOGY[1] === 'Course' ? units : weeks;
 
         let sum = 0;
-        const item = data[Number(this.getAttribute('id')) - 1] // UNITS[this.unit - 1];
+        const item = data[Number(this.getAttribute('id')) - 1] // units[this.unit - 1];
         const total = item.from && item.to ? (item.to - item.from + 1)*3 : 0;
 
         for (let c = item.from ; c <= item.to; c++) {

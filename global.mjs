@@ -40,7 +40,7 @@ export function getTerm(github) {
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export async function getWeek(cohort, w) {
     const term = getTerm(await getGitHub());
-    const date = cohort[term[1]][term[2]].start;
+    const date = new Date(await getYear(), cohort[term[1]][term[2]].start[0], cohort[term[1]][term[2]].start[1]);
 
     const start = new Date(date);
     if (term[0] === 'quarter') start.setDate(date.getDate() + 7*(w-1))

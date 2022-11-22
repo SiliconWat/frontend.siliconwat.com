@@ -1,4 +1,4 @@
-import { TRILOGY } from "/global.mjs";
+import { TRILOGY, getYear } from "/global.mjs";
 import template from './template.mjs';
 
 class SwProgress extends HTMLElement {
@@ -14,8 +14,9 @@ class SwProgress extends HTMLElement {
     }
 
     async render() {
-        const { UNITS, WEEKS } = await import(`${TRILOGY[2]}/data.mjs`);
-        const data = TRILOGY[1] === 'Course' ? UNITS : WEEKS;
+        const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${await getYear()}/Syllabus.json`, { cache: "no-store" });
+        const { units, weeks } = await syllabus.json();
+        const data = TRILOGY[1] === 'Course' ? units : weeks;
 
         let sum = 0;
         let total = 0;

@@ -59,29 +59,29 @@ export const COHORT = {
     semester: { // intermission: 2 week break;
         winter: {
             discord: null,
-            start: new Date(YEAR, 0, 2)
+            start: new Date(2023, 0, 2)
         }, 
         summer: {
             discord: "https://discord.gg/qDr7q8Mgxu",
-            start: new Date(YEAR, 6, 3) 
+            start: new Date(2023, 6, 3) 
         }
     },
     quarter: { // intermission: 1 week break;
         winter: {
             discord: null,
-            start: new Date(YEAR, 0, 2)
+            start: [0, 2] //new Date(2023, 0, 2)
         },
         spring: {
             discord: null,
-            start: new Date(YEAR, 3, 3)
+            start: [3, 3] //new Date(2023, 3, 3)
         },
         summer: {
             discord: null,
-            start: new Date(YEAR, 6, 3)
+            start: [6, 3] //new Date(2023, 6, 3)
         },
         fall: {
             discord: null,
-            start: new Date(YEAR, 9, 2)
+            start: [9, 2] //new Date(2023, 9, 2)
         }
     }
 };

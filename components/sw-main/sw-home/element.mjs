@@ -9,16 +9,18 @@ class SwHome extends HTMLElement {
     }
 
     async render() {
-        const { COURSE, COHORT } = await import(`${TRILOGY[2]}/data.mjs`);
+        const y = await getYear();
+        const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`, { cache: "no-store" });
+        const { course, cohort } = await syllabus.json();
         
-        this.shadowRoot.getElementById('title').textContent = COURSE.title;
-        this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'Course' ? COURSE.subtitle : "Academic Year";
-        this.shadowRoot.getElementById('udemy').href = COURSE.udemy;
+        this.shadowRoot.getElementById('title').textContent = course.title;
+        this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'Course' ? course.subtitle : "Academic Year";
+        this.shadowRoot.getElementById('udemy').href = course.udemy;
         this.shadowRoot.getElementById('quiz').href = `https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
         this.shadowRoot.getElementById('code').href = `https://code.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
         this.shadowRoot.getElementById('flashcard').href = `https://flashcard.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
         
-        this.shadowRoot.querySelectorAll('.medium').forEach(a => a.href = COURSE.medium);
+        this.shadowRoot.querySelectorAll('.medium').forEach(a => a.href = course.medium);
         this.shadowRoot.querySelectorAll('.program').forEach(span => span.textContent = TRILOGY[1] === 'Course' ? "If" : "When");
         this.shadowRoot.querySelectorAll('button').forEach(button => button.style.display = TRILOGY[1] === 'Cohort' ? "block" : "none");
 
@@ -30,8 +32,8 @@ class SwHome extends HTMLElement {
 
         const github = await getGitHub();
         this.#render();
-        this.#renderSelects(github);
-        this.#renderButtons(github, COURSE, COHORT);
+        this.#renderSelects(github, y);
+        this.#renderButtons(github, course, cohort);
         this.style.display = 'block';
     }
 
@@ -53,9 +55,9 @@ class SwHome extends HTMLElement {
         this.shadowRoot.getElementById('project').textContent = project;
     }
 
-    async #renderSelects(github) {
+    async #renderSelects(github, y) {
         const year = this.shadowRoot.getElementById('year');
-        year.value = await getYear();
+        year.value = y;
         year.disabled = github.student;
         year.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
 
