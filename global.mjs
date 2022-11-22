@@ -1,4 +1,6 @@
-import { YEAR, TERM } from "./data.mjs";
+// current
+const YEAR = 2023;
+const TERM = "semester-summer";
 
 export const ORIGIN = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5531" : "https://frontend.siliconwat.com";
 export const THONLY = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5500" : "https://thonly.org";
@@ -18,11 +20,16 @@ export const TRILOGY = (() => {
 export async function getGitHub() {
     const github = JSON.parse(localStorage.getItem('github')) || {};
     if (github.login) {
-        const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${YEAR}/Students.json`, { cache: "no-store" });
+        const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/Students.json`, { cache: "no-store" });
         const students = await data.json();
         github.student = students[github.login];
     } 
     return github;
+}
+
+export async function getYear() {
+    const github = await getGitHub();
+    return github.student ? github.student.year : localStorage.getItem('year') || YEAR;
 }
 
 export function getTerm(github) {

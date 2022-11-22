@@ -1,4 +1,4 @@
-import { TRILOGY, getGitHub, getTerm } from "/global.mjs";
+import { TRILOGY, getGitHub, getTerm, getYear } from "/global.mjs";
 import template from './template.mjs';
 
 class SwHome extends HTMLElement {
@@ -9,10 +9,10 @@ class SwHome extends HTMLElement {
     }
 
     async render() {
-        const { YEAR, COURSE, COHORT } = await import(`${TRILOGY[2]}/data.mjs`);
+        const { COURSE, COHORT } = await import(`${TRILOGY[2]}/data.mjs`);
         
         this.shadowRoot.getElementById('title').textContent = COURSE.title;
-        this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'Course' ? COURSE.subtitle : `Academic Year ${YEAR}`;
+        this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'Course' ? COURSE.subtitle : "Academic Year";
         this.shadowRoot.getElementById('udemy').href = COURSE.udemy;
         this.shadowRoot.getElementById('quiz').href = `https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
         this.shadowRoot.getElementById('code').href = `https://code.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
@@ -30,7 +30,7 @@ class SwHome extends HTMLElement {
 
         const github = await getGitHub();
         this.#render();
-        this.#renderSelect(github);
+        this.#renderSelects(github);
         this.#renderButtons(github, COURSE, COHORT);
         this.style.display = 'block';
     }
@@ -53,11 +53,16 @@ class SwHome extends HTMLElement {
         this.shadowRoot.getElementById('project').textContent = project;
     }
 
-    async #renderSelect(github) {
-        const select = this.shadowRoot.querySelector('select');
-        select.value = getTerm(github)[0];
-        select.disabled = github.student;
-        select.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
+    async #renderSelects(github) {
+        const year = this.shadowRoot.getElementById('year');
+        year.value = await getYear();
+        year.disabled = github.student;
+        year.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
+
+        const term = this.shadowRoot.getElementById('term');
+        term.value = getTerm(github)[0];
+        term.disabled = github.student;
+        term.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
     }
 
     async #renderButtons(github, course, cohort) {
@@ -81,8 +86,8 @@ class SwHome extends HTMLElement {
         }
     }
 
-    changeTerm(event) {
-        localStorage.setItem('term', this.shadowRoot.querySelector('select').value);
+    changeYearTerm(event) {
+        localStorage.setItem(event.target.id, event.target.value);
         this.render();
         document.querySelector('sw-header').render();
     }

@@ -1,4 +1,4 @@
-import { TRILOGY, getWeek, getUnit } from '/global.mjs';
+import { TRILOGY, getYear, getWeek, getUnit } from '/global.mjs';
 import template from './template.mjs';
 
 class SwLearn extends HTMLElement {
@@ -11,7 +11,7 @@ class SwLearn extends HTMLElement {
     async render(i, c) {
         this.style.display = 'block';
         const done = Number(localStorage.getItem(`learn-${TRILOGY[1] === 'Course' ? 'unit' : 'week'}${i}-chapter${c}`));
-        const { YEAR, COHORT, UNITS, WEEKS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
+        const { COHORT, UNITS, WEEKS, CHAPTERS } = await import(`${TRILOGY[2]}/data.mjs`);
         const item = TRILOGY[1] === 'Course' ? UNITS[i - 1] : WEEKS[i - 1];
         const chapter = CHAPTERS[c - 1];
 
@@ -19,13 +19,14 @@ class SwLearn extends HTMLElement {
         this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "📖"} Learn: Chapter ${c}`;
         this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
+        const y = await getYear();
         this.#render();
         this.#renderVideo(chapter, c, done);
         this.#renderTextbook(chapter, c, done);
         this.#renderQuiz(UNITS, i, c, done);
-        this.#renderGroup(WEEKS, YEAR, i, c, done);
+        this.#renderGroup(WEEKS, y, i, c, done);
 
-        this.shadowRoot.querySelector('sw-cohort').render(YEAR, c);
+        this.shadowRoot.querySelector('sw-cohort').render(y, c);
     }
 
     #render() {
