@@ -9,8 +9,8 @@ class SwMain extends HTMLElement {
     }
 
     connectedCallback() {
-        this.style.display = 'block';
         this.render();
+        this.style.display = 'block';
     }
 
     render() {

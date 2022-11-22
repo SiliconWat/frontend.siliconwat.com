@@ -29,11 +29,11 @@ export async function getGitHub() {
 
 export async function getYear() {
     const github = await getGitHub();
-    return github.student ? github.student.year : localStorage.getItem('year') || YEAR;
+    return localStorage.getItem('year') || github.student ? github.student.cohorts[0].year : YEAR;
 }
 
 export function getTerm(github) {
-    const term = github.student ? `${github.student.term}-${github.student.season}` : localStorage.getItem('term') || TERM;
+    const term = localStorage.getItem('term') || github.student ? `${github.student.cohorts[0].term}-${github.student.cohorts[0].season}` : TERM;
     return [term, ...term.split('-')];
 }
 

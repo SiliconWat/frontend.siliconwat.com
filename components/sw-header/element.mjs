@@ -12,6 +12,7 @@ class SwHeader extends HTMLElement {
         const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${await getYear()}/Syllabus.json`, { cache: "no-store" });
         const { units, chapters } = await syllabus.json();
         this.#render(units, chapters);
+        this.style.display = 'block';
     }
 
     #render(units, chapters) {

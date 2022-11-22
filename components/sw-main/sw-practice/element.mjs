@@ -9,15 +9,13 @@ class SwPractice extends HTMLElement {
     }
 
     async render(c) {
-        this.style.display = 'block';
-        const done = Number(localStorage.getItem(`practice-chapter${c}`));
-
         const y = await getYear();
         const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`, { cache: "no-store" });
         const { cohort, units, weeks, chapters } = await syllabus.json();
         const i = TRILOGY[1] === 'Course' ? getUnit(units, c) : getWeek(weeks, c);
         const item = TRILOGY[1] === 'Course' ? units[i - 1] : weeks[i - 1];
         const chapter = chapters[c - 1];
+        const done = Number(localStorage.getItem(`practice-chapter${c}`));
 
         this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'Course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${await getWeeks(cohort, i)}`;
         this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "💻"} Practice: Chapter ${c}`;
@@ -29,6 +27,7 @@ class SwPractice extends HTMLElement {
         this.#renderProject(y, c, done);
 
         this.shadowRoot.querySelector('sw-cohort').render(y, c);
+        this.style.display = 'block';
     }
 
     #render() {
