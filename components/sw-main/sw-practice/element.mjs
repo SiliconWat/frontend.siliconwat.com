@@ -1,4 +1,4 @@
-import { TRILOGY, getYear, getWeek, getUnit } from '/global.mjs';
+import { TRILOGY, getYear, getWeeks, getUnit, getWeek } from '/global.mjs';
 import template from './template.mjs';
 
 class SwPractice extends HTMLElement {
@@ -8,24 +8,25 @@ class SwPractice extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    async render(i, c) {
+    async render(c) {
         this.style.display = 'block';
-        const done = Number(localStorage.getItem(`learn-${TRILOGY[1] === 'Course' ? 'unit' : 'week'}${i}-chapter${c}`));
+        const done = Number(localStorage.getItem(`practice-chapter${c}`));
 
         const y = await getYear();
         const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`, { cache: "no-store" });
         const { cohort, units, weeks, chapters } = await syllabus.json();
+        const i = TRILOGY[1] === 'Course' ? getUnit(units, c) : getWeek(weeks, c);
         const item = TRILOGY[1] === 'Course' ? units[i - 1] : weeks[i - 1];
         const chapter = chapters[c - 1];
 
-        this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'Course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${await getWeek(cohort, i)}`;
+        this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'Course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${await getWeeks(cohort, i)}`;
         this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "💻"} Practice: Chapter ${c}`;
         this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
         this.#render();
-        this.#renderCoding(units, i, c, done);
-        this.#renderPair(weeks, y, i, c, done);
-        this.#renderProject(weeks, y, i, c, done);
+        this.#renderCoding(c, done);
+        this.#renderPair(y, c, done);
+        this.#renderProject(y, c, done);
 
         this.shadowRoot.querySelector('sw-cohort').render(y, c);
     }
@@ -52,21 +53,21 @@ class SwPractice extends HTMLElement {
         this.shadowRoot.querySelectorAll('.app').forEach(element => element.textContent = project);
     }
 
-    #renderCoding(units, i, c, done) {
+    #renderCoding(c, done) {
         const button = this.shadowRoot.querySelector('.coding button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Exercise ${c}`;
-        button.onclick = () => window.open(`https://code.siliconwat.com/#${TRILOGY[0].toLowerCase()}-${getUnit(units, i, c)}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://code.siliconwat.com/#${TRILOGY[0].toLowerCase()}-chapter${c}`, '_blank');
     }
 
-    #renderPair(weeks, y, i, c, done) {
+    #renderPair(y, c, done) {
         const button = this.shadowRoot.querySelector('.pair button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Challenge ${c}`;
         button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Challenge.md`, '_blank');
     }
     
-    #renderProject(weeks, y, i, c, done) {
+    #renderProject(y, c, done) {
         const button = this.shadowRoot.querySelector('.project button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Suggestion ${c}`;

@@ -51,7 +51,8 @@ class SwHeader extends HTMLElement {
                         const a = document.createElement('a');
 
                         li.classList.add(taskLowerCase);
-                        input.id = `${taskLowerCase}-unit${u + 1}-chapter${c + 1}`;
+                        input.id = `${taskLowerCase}-chapter${c + 1}`;
+                        input.setAttribute('data-unit', u + 1);
                         input.type = 'checkbox';
                         input.checked = Boolean(Number(localStorage.getItem(input.id)));
                         input.oninput = this.#checkMark.bind(this);
@@ -70,8 +71,7 @@ class SwHeader extends HTMLElement {
 
     #checkMark(event) {
         localStorage.setItem(event.target.id, Number(event.target.checked));
-        const unit = event.target.id.split('-')[1].replace('unit', "");
-        this.shadowRoot.getElementById(unit).render();
+        this.shadowRoot.getElementById(event.target.dataset.unit).render();
         document.querySelector('sw-main').render();
         document.querySelector('sw-progress').render();
     }

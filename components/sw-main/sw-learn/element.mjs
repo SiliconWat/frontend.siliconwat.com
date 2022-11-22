@@ -1,4 +1,4 @@
-import { TRILOGY, getYear, getWeek, getUnit } from '/global.mjs';
+import { TRILOGY, getYear, getWeeks, getUnit, getWeek } from '/global.mjs';
 import template from './template.mjs';
 
 class SwLearn extends HTMLElement {
@@ -8,25 +8,26 @@ class SwLearn extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    async render(i, c) {
+    async render(c) {
         this.style.display = 'block';
-        const done = Number(localStorage.getItem(`learn-${TRILOGY[1] === 'Course' ? 'unit' : 'week'}${i}-chapter${c}`));
+        const done = Number(localStorage.getItem(`learn-chapter${c}`));
 
         const y = await getYear();
         const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`, { cache: "no-store" });
         const { cohort, units, weeks, chapters } = await syllabus.json();
+        const i = TRILOGY[1] === 'Course' ? getUnit(units, c) : getWeek(weeks, c);
         const item = TRILOGY[1] === 'Course' ? units[i - 1] : weeks[i - 1];
         const chapter = chapters[c - 1];
 
-        this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'Course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${await getWeek(cohort, i)}`;
+        this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'Course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${await getWeeks(cohort, i)}`;
         this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "📖"} Learn: Chapter ${c}`;
         this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
         this.#render();
         this.#renderVideo(chapter, c, done);
         this.#renderTextbook(chapter, c, done);
-        this.#renderQuiz(units, i, c, done);
-        this.#renderGroup(weeks, y, i, c, done);
+        this.#renderQuiz(c, done);
+        this.#renderGroup(y, c, done);
 
         this.shadowRoot.querySelector('sw-cohort').render(y, c);
     }
@@ -65,14 +66,14 @@ class SwLearn extends HTMLElement {
         button.onclick = () => window.open(chapter.medium, '_blank');
     }
     
-    #renderQuiz(units, i, c, done) {
+    #renderQuiz(c, done) {
         const button = this.shadowRoot.querySelector('.quiz button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Quiz ${c}`;
-        button.onclick = () => window.open(`https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}-${getUnit(units, i, c)}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}-chapter${c}`, '_blank');
     }
 
-    #renderGroup(weeks, y, i, c, done) {
+    #renderGroup(y, c, done) {
         const button = this.shadowRoot.querySelector('.group button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Discussion ${c}`;

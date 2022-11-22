@@ -26,7 +26,7 @@ class SwProgress extends HTMLElement {
                 for (let c = item.from - 1; c < item.to; c++) {
                     total += 1;
                     ['learn', 'practice', 'review'].forEach(task => {
-                        if (Number(localStorage.getItem(`${task}-${TRILOGY[1] === 'Course' ? "unit" : "week"}${i + 1}-chapter${c}`))) sum += 1;
+                        if (Number(localStorage.getItem(`${task}-chapter${c}`))) sum += 1;
                     });
                 }
             }

@@ -10,7 +10,7 @@ class SwCohort extends HTMLElement {
 
     async render(y, c) {
         if (TRILOGY[1] === 'Course') {
-            await this.#render(y);
+            await this.#render();
         } else {
             const github = await getGitHub();
             if (github.login) {
@@ -25,15 +25,15 @@ class SwCohort extends HTMLElement {
                 }
                 this.shadowRoot.querySelector('section:first-child').style.display = 'block';
             } else {
-                await this.#render(y);
+                await this.#render();
             }
         }
         this.style.display = 'block';
     }
 
-    async #render(y) {
+    async #render() {
         const section = this.shadowRoot.querySelector('section:last-child');
-        const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Students.json`, { cache: "no-store" });
+        const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/Students.json`, { cache: "no-store" });
         const students = await data.json();
 
         section.firstElementChild.lastElementChild.textContent = Object.keys(students).length;

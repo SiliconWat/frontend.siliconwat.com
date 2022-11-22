@@ -26,7 +26,7 @@ class SwBar extends HTMLElement {
 
         for (let c = item.from ; c <= item.to; c++) {
             ['learn', 'practice', 'review'].forEach(task => {
-                if (Number(localStorage.getItem(`${task}-${TRILOGY[1] === 'Course' ? "unit" : "week"}${this.getAttribute('id')}-chapter${c}`))) sum += 1;
+                if (Number(localStorage.getItem(`${task}-chapter${c}`))) sum += 1;
             });
         }
 
