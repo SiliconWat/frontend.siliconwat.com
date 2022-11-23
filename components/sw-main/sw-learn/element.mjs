@@ -8,7 +8,7 @@ class SwLearn extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    async render(c) {
+    async render(github, c) {
         const y = await getYear();
         const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`, { cache: "no-store" });
         const { cohort, units, weeks, chapters } = await syllabus.json();

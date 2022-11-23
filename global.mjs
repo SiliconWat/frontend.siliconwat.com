@@ -82,12 +82,42 @@ export function getWeek(weeks, c) {
     }
 }
 
+export async function fetchData(filename, y) {
+    let data;
+
+    switch (filename) {
+        case "syllabus":
+            data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`, { cache: "no-store" });
+            break;
+    }
+
+    return await data.json();
+}
+
 // admin only
-window.admin = username => {
+
+window.switchStudent = username => {
     const github = JSON.parse(localStorage.getItem('github')) || {};
     if (github.login) {
         github.login = username;
         localStorage.setItem('github', JSON.stringify(github));
         window.location.reload();
     } 
+}
+
+window.getStudents = async () => {
+    const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/Students.json`, { cache: "no-store" });
+    const students = await data.json();
+    const year = await getYear();
+    const github = await getGitHub();
+    const term = getTerm(github);
+
+    const Students = [];
+
+    for (let student in students) {
+        if (students[student].cohorts.some(cohort => cohort.year === year && cohort.term === term[1] && cohort.season === term[2]))
+            Students.push(student);
+    }
+
+    console.info(Students);
 }

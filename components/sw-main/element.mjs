@@ -1,4 +1,5 @@
 import template from './template.mjs';
+import { getGitHub } from "/global.mjs";
 
 class SwMain extends HTMLElement {
     constructor() {
@@ -8,14 +9,15 @@ class SwMain extends HTMLElement {
         window.addEventListener("hashchange", event => this.render());
     }
 
-    connectedCallback() {
-        this.render();
+    async connectedCallback() {
+        await this.render();
         this.style.display = 'block';
     }
 
-    render() {
+    async render() {
+        const github = await getGitHub();
         this.shadowRoot.querySelector("slot").assignedElements().forEach(element => element.style.display = 'none');
-        this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(this.#hash[1]);
+        this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(github, this.#hash[1]);
         this.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
     }
 

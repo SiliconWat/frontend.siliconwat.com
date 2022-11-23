@@ -8,12 +8,11 @@ class SwHome extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    async render() {
+    async render(github) {
         const y = await getYear();
         const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`, { cache: "no-store" });
         const { course, cohort } = await syllabus.json();
 
-        const github = await getGitHub();
         this.#renderCards(course);
         this.#renderSelects(github, y);
         this.#renderButtons(github, course, cohort);
@@ -133,6 +132,7 @@ class SwHome extends HTMLElement {
         localStorage.setItem(event.target.id, event.target.value);
         this.render();
         document.querySelector('sw-header').render();
+        document.querySelector('sw-progress').render();
     }
 }
 
