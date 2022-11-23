@@ -1,21 +1,24 @@
-import { TRILOGY, getYear } from '/global.mjs';
+import { getYear, getData } from '/global.mjs';
 import template from './template.mjs';
 
 class SwHeader extends HTMLElement {
+    #github;
+
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    async connectedCallback() {
-        const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${await getYear()}/Syllabus.json`, { cache: "no-store" });
-        const { units, chapters } = await syllabus.json();
-        this.#render(units, chapters);
+    async render(github=this.#github) {
+        this.#github = github;
+        const y = getYear(github);
+        const { units, chapters } = await getData('syllabus', y);
+        this.#render(github, units, chapters);
         this.style.display = 'block';
     }
 
-    #render(units, chapters) {
+    #render(github, units, chapters) {
         const fragment = document.createDocumentFragment();
 
         units.forEach((unit, u) => {
@@ -29,6 +32,7 @@ class SwHeader extends HTMLElement {
             h2.textContent = unit.title;
             bar.setAttribute("id", u + 1);
             // bar.unit = u + 1;
+            bar.render(github);
 
             fragment.append(li);
             li.append(h3, nav);

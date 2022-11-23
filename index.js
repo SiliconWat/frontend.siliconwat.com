@@ -10,6 +10,15 @@ import "./components/sw-footer/element.mjs";
 import "./components/sw-progress/element.mjs";
 import "./components/sw-music/element.mjs";
 
+import { getGitHub } from "/global.mjs";
+
+window.onload = async () => {
+    const github = await getGitHub();
+    document.querySelector('sw-header').render(github);
+    document.querySelector('sw-main').render(github);
+    document.querySelector('sw-progress').render(github);
+};
+
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());

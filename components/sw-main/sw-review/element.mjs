@@ -1,4 +1,4 @@
-import { TRILOGY, getYear, getWeeks, getUnit, getWeek } from '/global.mjs';
+import { TRILOGY, getYear, getTerm, getWeeks, getUnit, getWeek, getData } from '/global.mjs';
 import template from './template.mjs';
 
 class SwReview extends HTMLElement {
@@ -9,15 +9,15 @@ class SwReview extends HTMLElement {
     }
 
     async render(github, c) {
-        const y = await getYear();
-        const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`, { cache: "no-store" });
-        const { cohort, units, weeks, chapters } = await syllabus.json();
+        const y = getYear(github);
+        const term = getTerm(github);
+        const { cohort, units, weeks, chapters } = await getData('syllabus', y);
         const i = TRILOGY[1] === 'Course' ? getUnit(units, c) : getWeek(weeks, c);
         const item = TRILOGY[1] === 'Course' ? units[i - 1] : weeks[i - 1];
         const chapter = chapters[c - 1];
         const done = Number(localStorage.getItem(`review-chapter${c}`));
 
-        this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'Course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${await getWeeks(cohort, i)}`;
+        this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'Course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${getWeeks(term[1], y, cohort[term[1]][term[2]].start[0], cohort[term[1]][term[2]].start[1], i)}`;
         this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "👩🏼‍💻"} Review: Chapter ${c}`;
         this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
@@ -26,7 +26,7 @@ class SwReview extends HTMLElement {
         this.#renderSummary(y, c, done);
         this.#renderInterview(chapter, c, done);
 
-        this.shadowRoot.querySelector('sw-cohort').render(y, c);
+        await this.shadowRoot.querySelector('sw-cohort').render(github, y, c);
         this.style.display = 'block';
     }
 

@@ -21,8 +21,7 @@ export const TRILOGY = (() => {
 export async function getGitHub() {
     const github = JSON.parse(localStorage.getItem('github')) || {};
     if (github.login) {
-        const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/Students.json`, { cache: "no-store" });
-        const students = await data.json();
+        const students = await getData('students');
         github.student = students[github.login];
     } 
     return github;
@@ -44,27 +43,25 @@ export function getEmoji(cohort) {
     }
 }
 
-export async function getYear() {
-    const github = await getGitHub();
+export function getYear(github) {
     return localStorage.getItem('year') || (github.student ? github.student.cohorts[0].year : YEAR);
 }
 
 export function getTerm(github) {
-    const term = localStorage.getItem('term') || (github.student ? `${github.student.cohorts[0].term}-${github.student.cohorts[0].season}` : TERM);
+    const term = localStorage.getItem('term') || (github.student ? `${github.student.cohorts[0].system}-${github.student.cohorts[0].season}` : TERM);
     return [term, ...term.split('-')];
 }
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-export async function getWeeks(cohort, w) {
-    const term = getTerm(await getGitHub());
-    const date = new Date(await getYear(), cohort[term[1]][term[2]].start[0], cohort[term[1]][term[2]].start[1]);
+export function getWeeks(system, y, m, d, w) {
+    const date = new Date(y, m, d);
 
     const start = new Date(date);
-    if (term[0] === 'quarter') start.setDate(date.getDate() + 7*(w-1))
+    if (system === 'quarter') start.setDate(date.getDate() + 7*(w-1))
     else start.setDate(date.getDate() + 7*(w-1)*2);
 
     const end = new Date(start);
-    if (term[0] === 'quarter') end.setDate(start.getDate() + 6)
+    if (system === 'quarter') end.setDate(start.getDate() + 6)
     else end.setDate(start.getDate() + 7*2 - 1);
 
     return `${months[start.getMonth()]} ${start.getDate()} - ${months[end.getMonth()]} ${end.getDate()}`;
@@ -82,16 +79,28 @@ export function getWeek(weeks, c) {
     }
 }
 
-export async function fetchData(filename, y) {
-    let data;
+export async function getData(filename, y=null, options={}) {
+    let url, system, season, c, w;
 
     switch (filename) {
+        case "students":
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/Students.json`;
+            break;
         case "syllabus":
-            data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`, { cache: "no-store" });
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`;
+            break;
+        case "groups":
+            ({ system, season, w } = options);
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.charAt(0).toUpperCase() + season.slice(1)}/Weeks/${w}/Groups.json`;
+            break;
+        case "gradebook":
+            ({ system, season, c } = options);
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.charAt(0).toUpperCase() + season.slice(1)}/Chapters/${c}/Gradebook.json`;
             break;
     }
 
-    return await data.json();
+    const data = await fetch(url, { cache: "no-store" });
+    return data.json();
 }
 
 // admin only
@@ -106,8 +115,7 @@ window.switchStudent = username => {
 }
 
 window.getStudents = async () => {
-    const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/Students.json`, { cache: "no-store" });
-    const students = await data.json();
+    const students = await getData('students');
     const year = await getYear();
     const github = await getGitHub();
     const term = getTerm(github);
@@ -115,7 +123,7 @@ window.getStudents = async () => {
     const Students = [];
 
     for (let student in students) {
-        if (students[student].cohorts.some(cohort => cohort.year === year && cohort.term === term[1] && cohort.season === term[2]))
+        if (students[student].cohorts.some(cohort => cohort.year === year && cohort.system === term[1] && cohort.season === term[2]))
             Students.push(student);
     }
 

@@ -1,21 +1,19 @@
-import { TRILOGY, getYear } from "/global.mjs";
+import { TRILOGY, getYear, getData } from "/global.mjs";
 import template from './template.mjs';
 
 class SwProgress extends HTMLElement {
+    #github;
+
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    connectedCallback() {
-        this.render();
-        this.style.display = 'block';
-    }
-
-    async render() {
-        const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${await getYear()}/Syllabus.json`, { cache: "no-store" });
-        const { units, weeks } = await syllabus.json();
+    async render(github=this.#github) {
+        this.#github = github;
+        const y = getYear(github);
+        const { units, weeks } = await getData('syllabus', y);
         const data = TRILOGY[1] === 'Course' ? units : weeks;
 
         let sum = 0;
@@ -35,6 +33,7 @@ class SwProgress extends HTMLElement {
         this.shadowRoot.getElementById('fraction').textContent = `${sum}/${total*3}`;
         this.shadowRoot.getElementById('percent').textContent = `${Math.round(sum/(total*3)*100)}%`;
         this.shadowRoot.getElementById('ring').style.strokeDashoffset = sum/(total*3)*100;
+        this.style.display = 'block';
     }
 }
 

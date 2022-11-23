@@ -1,27 +1,30 @@
-import { YEAR_BEGAN, YEAR, TRILOGY, getGitHub, getEmoji, getTerm, getYear } from "/global.mjs";
+import { YEAR_BEGAN, YEAR, TRILOGY, getEmoji, getTerm, getYear, getData } from "/global.mjs";
 import template from './template.mjs';
 
 class SwHome extends HTMLElement {
+    #github;
+
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    async render(github) {
-        const y = await getYear();
-        const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`, { cache: "no-store" });
-        const { course, cohort } = await syllabus.json();
+    async render(github=this.#github) {
+        this.#github = github;
+        const y = getYear(github);
+        const { course, cohort } = await getData('syllabus', y);
 
         this.#renderCards(course);
         this.#renderSelects(github, y);
         this.#renderButtons(github, course, cohort);
+        await this.shadowRoot.querySelector('sw-github').render(github);
         this.style.display = 'block';
     }
 
     #renderCards(course) {
         this.shadowRoot.getElementById('title').textContent = course.title;
-        this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'Course' ? course.subtitle : "Academic Year";
+        this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'Course' ? course.subtitle : "";
         this.shadowRoot.getElementById('udemy').href = course.udemy;
         this.shadowRoot.getElementById('quiz').href = `https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
         this.shadowRoot.getElementById('code').href = `https://code.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
@@ -68,7 +71,7 @@ class SwHome extends HTMLElement {
         for (let y = YEAR_BEGAN; y <= YEAR+1; y++) {
             const option = document.createElement('option');
             option.setAttribute('value', y);
-            option.textContent = y;
+            option.textContent = `Academic Year ${y}`;
             option.disabled = y === YEAR + 1;
             fragment.append(option);
         }
@@ -88,12 +91,12 @@ class SwHome extends HTMLElement {
     }
 
     #renderSelectTerm(github, y) {
-        const term = this.shadowRoot.getElementById('term');
+        const select = this.shadowRoot.getElementById('term');
 
         if (github.student) {
             github.student.cohorts.forEach(cohort => {
                 if (cohort.year === y) {
-                    const option = term.querySelector(`option[value="${cohort.term}-${cohort.season}"]`);
+                    const option = select.querySelector(`option[value="${cohort.system}-${cohort.season}"]`);
                     if (option && !option.dataset.done) {
                         option.setAttribute('data-done', 1);
                         option.textContent += getEmoji(cohort);
@@ -102,9 +105,9 @@ class SwHome extends HTMLElement {
             });
         }
 
-        term.value = getTerm(github)[0];
-        //term.disabled = github.student;
-        term.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
+        select.value = getTerm(github)[0];
+        //select.disabled = github.student;
+        select.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
     }
 
     async #renderButtons(github, course, cohort) {
@@ -117,7 +120,7 @@ class SwHome extends HTMLElement {
         const discord = this.shadowRoot.getElementById('discord');
         if (github.student) {
             discord.firstElementChild.textContent = "Private Discord";
-            discord.onclick = () => window.open(cohort[github.student.term][github.student.season].discord, '_blank');
+            discord.onclick = () => window.open(cohort[github.student.system][github.student.season].discord, '_blank');
         } else if (github.login) {
             const term = getTerm(github);
             discord.firstElementChild.textContent = "Visitor Discord";

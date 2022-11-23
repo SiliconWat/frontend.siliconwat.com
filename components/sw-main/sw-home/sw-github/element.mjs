@@ -1,4 +1,4 @@
-import { TRILOGY, getGitHub } from '/global.mjs';
+import { TRILOGY } from '/global.mjs';
 import template from './template.mjs';
 
 class SwGitHub extends HTMLElement {
@@ -8,11 +8,10 @@ class SwGitHub extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    async connectedCallback() {
+    async render(github) {
         if (TRILOGY[1] === 'Course') {
             this.shadowRoot.querySelector('section:first-child').style.display = 'block';
         } else {
-            const github = await getGitHub();
             if (github.login) { //TODO: overall grade!!
                 const a = this.shadowRoot.querySelector('a');
                 a.href = github.html_url;

@@ -1,4 +1,4 @@
-import { TRILOGY, getGitHub, getTerm } from '/global.mjs';
+import { TRILOGY, getTerm, getData } from '/global.mjs';
 import template from './template.mjs';
 
 class SwCohort extends HTMLElement {
@@ -8,21 +8,15 @@ class SwCohort extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    async render(y, c) {
+    async render(github, y, c) {
         if (TRILOGY[1] === 'Course') {
             await this.#render();
         } else {
-            const github = await getGitHub();
             if (github.login) {
-                if (github.student) {
-                    const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${github.student.term === 'semester' ? "Semesters" : "Quarters"}/${github.student.season.charAt(0).toUpperCase() + github.student.season.slice(1)}/Chapters/${c}/Gradebook.json`, { cache: "no-store" });
-                    const gradebook = await data.json()
-                    this.#renderStudent(gradebook[github.login]);
-                } else {
-                    const term = getTerm(github);
-                    const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${term[1] === 'semester' ? "Semesters" : "Quarters"}/${term[2].charAt(0).toUpperCase() + term[2].slice(1)}/Chapters/${c}/Gradebook.json`, { cache: "no-store" });
-                    this.#renderStudents(await data.json());
-                }
+                const term = getTerm(github);
+                const gradebook = await getData('gradebook', y, { system: term[1], season: term[2], c });
+                if (github.student) this.#renderStudent(gradebook[github.login])
+                else this.#renderStudents(gradebook);
                 this.shadowRoot.querySelector('section:first-child').style.display = 'block';
             } else {
                 await this.#render();
@@ -33,8 +27,7 @@ class SwCohort extends HTMLElement {
 
     async #render() {
         const section = this.shadowRoot.querySelector('section:last-child');
-        const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/Students.json`, { cache: "no-store" });
-        const students = await data.json();
+        const students = await getData('students');
 
         section.firstElementChild.lastElementChild.textContent = Object.keys(students).length;
         section.style.display = 'block';

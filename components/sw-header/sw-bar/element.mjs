@@ -1,8 +1,8 @@
-import { TRILOGY, getYear } from "/global.mjs";
+import { TRILOGY, getYear, getData } from "/global.mjs";
 import template from './template.mjs';
 
 class SwBar extends HTMLElement {
-    // unit;
+    #github; // unit;
 
     constructor() {
         super();
@@ -10,14 +10,10 @@ class SwBar extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    connectedCallback() {
-        this.render();
-        this.style.display = 'block';
-    }
-
-    async render() {
-        const syllabus = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${await getYear()}/Syllabus.json`, { cache: "no-store" });
-        const { units, weeks } = await syllabus.json();
+    async render(github=this.#github) {
+        this.#github = github;
+        const y = getYear(github);
+        const { units, weeks } = await getData('syllabus', y);
         const data = TRILOGY[1] === 'Course' ? units : weeks;
 
         let sum = 0;
@@ -34,6 +30,7 @@ class SwBar extends HTMLElement {
         this.shadowRoot.getElementById('fraction').textContent = `${sum}/${total}`;
         this.shadowRoot.getElementById('percent').textContent = `${percent}%`;
         this.shadowRoot.getElementById('bar').style.transform = `translateX(-${100 - percent}%)`;
+        this.style.display = 'block';
     }
 }
 
