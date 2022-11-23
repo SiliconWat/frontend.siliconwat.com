@@ -80,27 +80,38 @@ export function getWeek(weeks, c) {
 }
 
 export async function getData(filename, y=null, options={}) {
-    let url, system, season, c, w;
+    let url, backup, system, season, c, w;
 
     switch (filename) {
         case "students":
             url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/Students.json`;
+            backup = {}; // `/docs/students.mjs`;
             break;
         case "syllabus":
             url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`;
+            // backup = `${TRILOGY[2]}/docs/syllabus.mjs`;
+            const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/2023/Syllabus.json`, { cache: "no-store" });
+            backup = await data.json();
             break;
         case "groups":
             ({ system, season, w } = options);
             url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.charAt(0).toUpperCase() + season.slice(1)}/Weeks/${w}/Groups.json`;
+            backup = []; // "/docs/groups.mjs";
             break;
         case "gradebook":
             ({ system, season, c } = options);
             url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.charAt(0).toUpperCase() + season.slice(1)}/Chapters/${c}/Gradebook.json`;
+            backup = {}; // "/docs/gradebook.mjs";
             break;
     }
 
-    const data = await fetch(url, { cache: "no-store" });
-    return data.json();
+    try {
+        const data = await fetch(url, { cache: "no-store" });
+        return await data.json();
+    } catch(error) {
+        //return import(backup);
+        return backup;
+    }
 }
 
 // admin only

@@ -72,7 +72,7 @@ class SwHome extends HTMLElement {
             const option = document.createElement('option');
             option.setAttribute('value', y);
             option.textContent = `Academic Year ${y}`;
-            option.disabled = y === YEAR + 1;
+            //option.disabled = y === YEAR + 1;
             fragment.append(option);
         }
 
