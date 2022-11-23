@@ -1,4 +1,4 @@
-import { TRILOGY, getGitHub, getTerm, getYear } from "/global.mjs";
+import { YEAR_BEGAN, YEAR, TRILOGY, getGitHub, getEmoji, getTerm, getYear } from "/global.mjs";
 import template from './template.mjs';
 
 class SwHome extends HTMLElement {
@@ -59,19 +59,52 @@ class SwHome extends HTMLElement {
         this.shadowRoot.getElementById('project').textContent = project;
     }
 
-    async #renderSelectsOptions(github) {
-        
+    #renderSelects(github, y) {
+        this.#renderSelectYear(github, y);
+        this.#renderSelectTerm(github, y);
     }
 
-    async #renderSelectsDefaults(github, y) {
-        const year = this.shadowRoot.getElementById('year');
-        year.value = y;
-        year.disabled = github.student;
-        year.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
+    #renderSelectYear(github, year) {
+        const fragment = document.createDocumentFragment();
+        for (let y = YEAR_BEGAN; y <= YEAR+1; y++) {
+            const option = document.createElement('option');
+            option.setAttribute('value', y);
+            option.textContent = y;
+            option.disabled = y === YEAR + 1;
+            fragment.append(option);
+        }
 
+        if (github.student) {
+            github.student.cohorts.forEach(cohort => {
+                const option = fragment.querySelector(`option[value="${cohort.year}"]`);
+                if (option) option.textContent += getEmoji(cohort);
+            });
+        }
+
+        const select = this.shadowRoot.getElementById('year');
+        select.replaceChildren(fragment);
+        select.value = year;
+        //select.disabled = github.student;
+        select.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
+    }
+
+    #renderSelectTerm(github, y) {
         const term = this.shadowRoot.getElementById('term');
+
+        if (github.student) {
+            github.student.cohorts.forEach(cohort => {
+                if (cohort.year === y) {
+                    const option = term.querySelector(`option[value="${cohort.term}-${cohort.season}"]`);
+                    if (option && !option.dataset.done) {
+                        option.setAttribute('data-done', 1);
+                        option.textContent += getEmoji(cohort);
+                    }
+                }
+            });
+        }
+
         term.value = getTerm(github)[0];
-        term.disabled = github.student;
+        //term.disabled = github.student;
         term.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
     }
 

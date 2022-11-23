@@ -1,5 +1,6 @@
 // current
-const YEAR = 2023;
+export const YEAR_BEGAN = 2023;
+export const YEAR = 2023;
 const TERM = "semester-summer";
 
 export const ORIGIN = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5531" : "https://frontend.siliconwat.com";
@@ -27,13 +28,29 @@ export async function getGitHub() {
     return github;
 }
 
+export function getEmoji(cohort) {
+    switch (cohort.type) {
+        case "student":
+            switch (cohort.status) {
+                case "current":
+                    return " ✏️";
+                case "pass":
+                    return " 🎓";
+                case "fail":
+                    return " 🆘";
+            }
+        case "tutor":
+            return " 🧑🏻‍🏫";
+    }
+}
+
 export async function getYear() {
     const github = await getGitHub();
-    return localStorage.getItem('year') || github.student ? github.student.cohorts[0].year : YEAR;
+    return localStorage.getItem('year') || (github.student ? github.student.cohorts[0].year : YEAR);
 }
 
 export function getTerm(github) {
-    const term = localStorage.getItem('term') || github.student ? `${github.student.cohorts[0].term}-${github.student.cohorts[0].season}` : TERM;
+    const term = localStorage.getItem('term') || (github.student ? `${github.student.cohorts[0].term}-${github.student.cohorts[0].season}` : TERM);
     return [term, ...term.split('-')];
 }
 

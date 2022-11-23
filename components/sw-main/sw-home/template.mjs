@@ -9,10 +9,7 @@ template.innerHTML = `
             <a class="medium"><h1 id="title"></h1></a>
             <h2 id="subtitle"></h2>
             <div>
-                <select id="year" onchange="this.getRootNode().host.changeYearTerm(event)">
-                    <option>2023</option>
-                    <option disabled>2024</option>
-                </select>
+                <select id="year" onchange="this.getRootNode().host.changeYearTerm(event)"></select>
                 <select id="term" onchange="this.getRootNode().host.changeYearTerm(event)">
                     <optgroup label="Semester (Part-Time Program)">
                         <option value="semester-winter">Winter Semester</option>
