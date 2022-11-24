@@ -11,6 +11,7 @@ class SwHeader extends HTMLElement {
     }
 
     async render(github=this.#github) {
+        this.style.display = 'none';
         this.#github = github;
         const y = getYear(github);
         const { units, chapters } = await getData('syllabus', y);

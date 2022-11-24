@@ -9,12 +9,16 @@
 html {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: medium;
+    background-image: url(background.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 
 body {
     background: linear-gradient(90deg, rgba(5,117,230,1) 0%, rgba(2,27,121,1) 100%);
     margin: 0;
-    display: flex;
+    display: none;
     flex-direction: column;
     height: 100vh;
     overflow: hidden;

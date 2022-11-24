@@ -14,11 +14,13 @@ class SwMain extends HTMLElement {
         this.style.display = 'block';
     }
 
-    render(github=this.#github) {
+    async render(github=this.#github) {
+        document.querySelector('main').style.display = 'none';
         this.#github = github;
         this.shadowRoot.querySelector("slot").assignedElements().forEach(element => element.style.display = 'none');
-        this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(github, this.#hash[1]);
+        await this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(github, this.#hash[1]);
         this.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
+        document.querySelector('main').style.display = 'flex';
     }
 
     get #hash() {

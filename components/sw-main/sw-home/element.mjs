@@ -79,7 +79,7 @@ class SwHome extends HTMLElement {
         }
 
         if (github.student) {
-            github.student.cohorts.forEach(cohort => {
+            github.student.cohorts.reverse().forEach(cohort => {
                 const option = fragment.querySelector(`option[value="${cohort.year}"]`);
                 if (option) option.textContent = getEmoji(cohort) + option.textContent;
             });

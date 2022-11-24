@@ -14,9 +14,10 @@ import { getGitHub } from "/global.mjs";
 
 window.onload = async () => {
     const github = await getGitHub();
-    document.querySelector('sw-header').render(github);
-    document.querySelector('sw-main').render(github);
-    document.querySelector('sw-progress').render(github);
+    await document.querySelector('sw-header').render(github);
+    await document.querySelector('sw-main').render(github);
+    await document.querySelector('sw-progress').render(github);
+    document.body.style.display = 'flex';
 };
 
 window.dataLayer = window.dataLayer || [];

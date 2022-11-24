@@ -146,4 +146,8 @@ section p {
     header h3 {
         font-size: 1em;
     }
+
+    header select {
+        font-size: 0.8em;
+    }
 }

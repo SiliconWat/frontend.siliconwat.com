@@ -1,5 +1,5 @@
 // current
-export const YEAR_BEGAN = 2023;
+export const YEAR_BEGAN = 2022;
 export const YEAR = 2023;
 const TERM = "semester-summer";
 
