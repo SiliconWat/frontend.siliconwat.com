@@ -35,7 +35,7 @@ class SwCohort extends HTMLElement {
 
     #renderStudent(grade) {
         const figure = this.shadowRoot.querySelector('figure:first-child');
-        figure.lastElementChild.lastElementChild.textContent = JSON.stringify(grade.suggestion);
+        //figure.lastElementChild.lastElementChild.textContent = JSON.stringify(grade.suggestion);
         figure.style.display = 'block';
     }
 

@@ -16,8 +16,8 @@ class SwHome extends HTMLElement {
         const { course, cohort } = await getData('syllabus', y);
 
         this.#renderCards(course);
-        this.#renderSelects(github, y);
         this.#renderButtons(github, course, cohort);
+        await this.#renderSelects(github, y);
         await this.shadowRoot.querySelector('sw-github').render(github);
         this.style.display = 'block';
     }
@@ -61,17 +61,19 @@ class SwHome extends HTMLElement {
         this.shadowRoot.getElementById('project').textContent = project;
     }
 
-    #renderSelects(github, y) {
-        this.#renderSelectYear(github, y);
-        this.#renderSelectTerm(github, y);
+    async #renderSelects(github, y) {
+        const students = await getData('students');
+        this.#renderSelectYear(github, students, y);
+        this.#renderSelectTerm(github, students, y);
     }
 
-    #renderSelectYear(github, year) {
+    #renderSelectYear(github, students, year) {
         const fragment = document.createDocumentFragment();
         for (let y = YEAR_BEGAN; y <= YEAR+1; y++) {
+            const total = this.#getYearTotalStudents(students, y);
             const option = document.createElement('option');
             option.setAttribute('value', y);
-            option.textContent = `Academic Year ${y}`;
+            option.textContent = `Academic Year ${y} - ${total} ${total === 1 ? "student" : "students"}`;
             //option.disabled = y === YEAR + 1;
             fragment.append(option);
         }
@@ -79,7 +81,7 @@ class SwHome extends HTMLElement {
         if (github.student) {
             github.student.cohorts.forEach(cohort => {
                 const option = fragment.querySelector(`option[value="${cohort.year}"]`);
-                if (option) option.textContent += getEmoji(cohort);
+                if (option) option.textContent = getEmoji(cohort) + option.textContent;
             });
         }
 
@@ -90,17 +92,29 @@ class SwHome extends HTMLElement {
         select.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
     }
 
-    #renderSelectTerm(github, y) {
+    #getYearTotalStudents(students, y) {
+        let total = 0;
+        for (let student in students) {
+            total += students[student].cohorts.filter(cohort => cohort.year === y).length;
+        }
+        return total;
+    }
+
+    #renderSelectTerm(github, students, y) {
+        const semesters = document.createDocumentFragment();
+        const quarters = document.createDocumentFragment();
+        this.#createTermOptions(semesters, ["semester-winter", "semester-summer"], students, y);
+        this.#createTermOptions(quarters, ["quarter-winter", "quarter-spring", "quarter-summer", "quarter-fall"], students, y);
+
         const select = this.shadowRoot.getElementById('term');
+        select.firstElementChild.replaceChildren(semesters);
+        select.lastElementChild.replaceChildren(quarters);
 
         if (github.student) {
             github.student.cohorts.forEach(cohort => {
                 if (cohort.year === y) {
                     const option = select.querySelector(`option[value="${cohort.system}-${cohort.season}"]`);
-                    if (option && !option.dataset.done) {
-                        option.setAttribute('data-done', 1);
-                        option.textContent += getEmoji(cohort);
-                    }
+                    if (option) option.textContent = getEmoji(cohort) + option.textContent;
                 }
             });
         }
@@ -108,6 +122,25 @@ class SwHome extends HTMLElement {
         select.value = getTerm(github)[0];
         //select.disabled = github.student;
         select.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
+    }
+
+    #createTermOptions(fragment, array, students, y) {
+        array.forEach(cycle => {
+            const term = cycle.split('-');
+            const total = this.#getTermTotalStudents(students, y, term[0], term[1]);
+            const option = document.createElement('option');
+            option.value = cycle;
+            option.textContent = `${term[0].capitalize()} ${term[1].capitalize()} - ${total} ${total === 1 ? "student" : "students"}`;
+            fragment.append(option);
+        });
+    }
+
+    #getTermTotalStudents(students, y, system, season) {
+        let total = 0;
+        for (let student in students) {
+            total += students[student].cohorts.filter(cohort => cohort.year === y && cohort.system === system && cohort.season === season).length;
+        }
+        return total;
     }
 
     async #renderButtons(github, course, cohort) {
@@ -135,7 +168,7 @@ class SwHome extends HTMLElement {
         localStorage.setItem(event.target.id, event.target.value);
         this.render();
         document.querySelector('sw-header').render();
-        document.querySelector('sw-progress').render();
+        // document.querySelector('sw-progress').render();
     }
 }
 

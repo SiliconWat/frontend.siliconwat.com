@@ -32,19 +32,19 @@ export function getEmoji(cohort) {
         case "student":
             switch (cohort.status) {
                 case "current":
-                    return " ✏️";
+                    return "✏️ ";
                 case "pass":
-                    return " 🎓";
+                    return "🎓 ";
                 case "fail":
-                    return " 🆘";
+                    return "🆘 ";
             }
         case "tutor":
-            return " 🧑🏻‍🏫";
+            return "🧑🏻‍🏫 ";
     }
 }
 
 export function getYear(github) {
-    return localStorage.getItem('year') || (github.student ? github.student.cohorts[0].year : YEAR);
+    return Number(localStorage.getItem('year')) || (github.student ? github.student.cohorts[0].year : YEAR);
 }
 
 export function getTerm(github) {
@@ -89,18 +89,16 @@ export async function getData(filename, y=null, options={}) {
             break;
         case "syllabus":
             url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`;
-            // backup = `${TRILOGY[2]}/docs/syllabus.mjs`;
-            const data = await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/2023/Syllabus.json`, { cache: "no-store" });
-            backup = await data.json();
+            backup = await (await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${YEAR}/Syllabus.json`, { cache: "no-store" })).json(); // `${TRILOGY[2]}/docs/syllabus.mjs`;
             break;
         case "groups":
             ({ system, season, w } = options);
-            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.charAt(0).toUpperCase() + season.slice(1)}/Weeks/${w}/Groups.json`;
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.capitalize()}/Weeks/${w}/Groups.json`;
             backup = []; // "/docs/groups.mjs";
             break;
         case "gradebook":
             ({ system, season, c } = options);
-            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.charAt(0).toUpperCase() + season.slice(1)}/Chapters/${c}/Gradebook.json`;
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.capitalize()}/Chapters/${c}/Gradebook.json`;
             backup = {}; // "/docs/gradebook.mjs";
             break;
     }
@@ -109,8 +107,7 @@ export async function getData(filename, y=null, options={}) {
         const data = await fetch(url, { cache: "no-store" });
         return await data.json();
     } catch(error) {
-        //return import(backup);
-        return backup;
+        return backup // import(backup);
     }
 }
 
@@ -140,3 +137,7 @@ window.getStudents = async () => {
 
     console.info(Students);
 }
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+};
