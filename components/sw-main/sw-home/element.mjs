@@ -70,10 +70,9 @@ class SwHome extends HTMLElement {
     #renderSelectYear(github, students, year) {
         const fragment = document.createDocumentFragment();
         for (let y = YEAR_BEGAN; y <= YEAR+1; y++) {
-            const total = this.#getYearTotalStudents(students, y);
             const option = document.createElement('option');
             option.setAttribute('value', y);
-            option.textContent = `Academic Year ${y} - ${total} ${total === 1 ? "student" : "students"}`;
+            option.textContent = `Academic Year ${y} - ${this.#getYearTotal(students, y)}`;
             //option.disabled = y === YEAR + 1;
             fragment.append(option);
         }
@@ -92,12 +91,27 @@ class SwHome extends HTMLElement {
         select.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
     }
 
-    #getYearTotalStudents(students, y) {
-        let total = 0;
-        for (let student in students) {
-            total += students[student].cohorts.filter(cohort => cohort.year === y).length;
+    #getYearTotal(people, y) {
+        let tutors = 0
+        let students = 0;
+
+        for (let person in people) {
+            people[person].cohorts.filter(cohort => cohort.year === y).forEach(cohort => {
+                if (cohort.type === 'tutor') tutors += 1
+                else students += 1;
+            });
         }
-        return total;
+
+        return `${this.#getEmoji('tutor')} ${tutors} ${this.#getEmoji('student')} ${students}`;
+    }
+
+    #getEmoji(type) {
+        switch (type) {
+            case "tutor":
+                return "🧑🏻‍🏫";
+            case "student":
+                return "👩🏻‍💻"
+        }
     }
 
     #renderSelectTerm(github, students, y) {
@@ -127,20 +141,25 @@ class SwHome extends HTMLElement {
     #createTermOptions(fragment, array, students, y) {
         array.forEach(cycle => {
             const term = cycle.split('-');
-            const total = this.#getTermTotalStudents(students, y, term[0], term[1]);
             const option = document.createElement('option');
             option.value = cycle;
-            option.textContent = `${term[0].capitalize()} ${term[1].capitalize()} - ${total} ${total === 1 ? "student" : "students"}`;
+            option.textContent = `${term[0].capitalize()} ${term[1].capitalize()} - ${this.#getTermTotal(students, y, term[0], term[1])}`;
             fragment.append(option);
         });
     }
 
-    #getTermTotalStudents(students, y, system, season) {
-        let total = 0;
-        for (let student in students) {
-            total += students[student].cohorts.filter(cohort => cohort.year === y && cohort.system === system && cohort.season === season).length;
+    #getTermTotal(people, y, system, season) {
+        let tutors = 0;
+        let students = 0;
+
+        for (let person in people) {
+            people[person].cohorts.filter(cohort => cohort.year === y && cohort.system === system && cohort.season === season).forEach(cohort => {
+                if (cohort.type === 'tutor') tutors += 1
+                else students += 1;
+            });
         }
-        return total;
+
+        return `${this.#getEmoji('tutor')} ${tutors} ${this.#getEmoji('student')} ${students}`;
     }
 
     async #renderButtons(github, course, cohort) {
