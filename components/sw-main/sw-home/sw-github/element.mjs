@@ -13,7 +13,7 @@ class SwGitHub extends HTMLElement {
             this.shadowRoot.getElementById('course').style.display = 'block';
         } else {
             if (github.login) await this.#render(github, y)
-            else this.shadowRoot.querySelector('aside').style.display = 'block';
+            else await this.#renderAll();
             this.shadowRoot.getElementById('cohort').style.display = 'block';
         }
         this.style.display = 'block';
@@ -24,12 +24,12 @@ class SwGitHub extends HTMLElement {
         a.href = github.html_url;
         a.firstElementChild.src = github.avatar_url;
         a.lastElementChild.textContent = "@" + github.login;
-        this.shadowRoot.querySelector('a').style.display = 'block';
+        this.shadowRoot.querySelector('aside').style.display = 'block';
 
         const { chapters } = await getData('syllabus', y);
         if (github.student) this.#renderStudent(chapters);
         else this.#renderStudents(chapters);
-        this.shadowRoot.querySelector('table').style.display = 'block';
+        this.shadowRoot.querySelector('table:last-child').style.display = 'block';
     }
 
     #renderStudent(chapters) {
@@ -43,11 +43,15 @@ class SwGitHub extends HTMLElement {
             fragment.append(tr);
         });
 
-        this.shadowRoot.querySelector('tbody').replaceChildren(fragment);
+        this.shadowRoot.querySelector('table:last-child tbody').replaceChildren(fragment);
     }
 
     #renderStudents(chapters) {
 
+    }
+
+    async #renderAll() {
+        this.shadowRoot.querySelector('table:first-child').style.display = 'block';
     }
 }
 
