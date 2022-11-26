@@ -26,7 +26,7 @@ class SwPractice extends HTMLElement {
         this.#renderPair(y, c, done);
         this.#renderProject(y, c, done);
 
-        await this.shadowRoot.querySelector('sw-cohort').render(github, y, c);
+        await this.shadowRoot.querySelector('sw-cohort').render(github, 'practice', y, c);
         this.style.display = 'block';
     }
 

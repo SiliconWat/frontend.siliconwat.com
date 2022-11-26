@@ -18,7 +18,7 @@ class SwHome extends HTMLElement {
         this.#renderCards(course);
         this.#renderButtons(github, course, cohort);
         await this.#renderSelects(github, y);
-        await this.shadowRoot.querySelector('sw-github').render(github);
+        await this.shadowRoot.querySelector('sw-github').render(github, y);
         this.style.display = 'block';
     }
 

@@ -26,7 +26,7 @@ class SwReview extends HTMLElement {
         this.#renderSummary(y, c, done);
         this.#renderInterview(chapter, c, done);
 
-        await this.shadowRoot.querySelector('sw-cohort').render(github, y, c);
+        await this.shadowRoot.querySelector('sw-cohort').render(github, 'review', y, c);
         this.style.display = 'block';
     }
 

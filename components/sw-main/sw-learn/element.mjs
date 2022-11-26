@@ -27,7 +27,7 @@ class SwLearn extends HTMLElement {
         this.#renderQuiz(c, done);
         this.#renderGroup(y, c, done);
 
-        await this.shadowRoot.querySelector('sw-cohort').render(github, y, c);
+        await this.shadowRoot.querySelector('sw-cohort').render(github, "learn", y, c);
         this.style.display = 'block';
     }
 

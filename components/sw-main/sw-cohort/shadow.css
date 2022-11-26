@@ -3,6 +3,11 @@
     font-size: medium;
 }
 
-section, figure {
+section {
     display: none;
+}
+
+table {
+    color: currentColor;
+    width: 100%;
 }
