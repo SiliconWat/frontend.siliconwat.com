@@ -15,10 +15,12 @@ class SwMain extends HTMLElement {
     }
 
     async render(github=this.#github) {
+        document.documentElement.style.backgroundImage = "url(background.gif)";
         document.querySelector('main').style.display = 'none';
         this.#github = github;
         this.shadowRoot.querySelector("slot").assignedElements().forEach(element => element.style.display = 'none');
         await this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(github, this.#hash[1]);
+        document.documentElement.style.backgroundImage = "linear-gradient(90deg, rgba(5,117,230,1) 0%, rgba(2,27,121,1) 100%)";
         document.querySelector('main').style.display = 'flex';
         this.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
     }

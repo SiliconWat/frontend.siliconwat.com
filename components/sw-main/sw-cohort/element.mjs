@@ -32,7 +32,7 @@ class SwCohort extends HTMLElement {
         const fragmentFoot = document.createDocumentFragment();
         const fragmentGroup = document.createDocumentFragment();
 
-        group.members.filter(member => member !== github.login).forEach(member => {
+        if (group) group.members.filter(member => member !== github.login).forEach(member => {
             const tr = document.createElement('tr');
             const td = document.createElement('td');
             td.textContent = `@${member}`;
@@ -75,7 +75,7 @@ class SwCohort extends HTMLElement {
             tr.append(td);
         });
 
-        group.members.filter(member => member !== github.login).forEach(member => {
+        if (group) group.members.filter(member => member !== github.login).forEach(member => {
             const tr = document.createElement('tr');
             const td = document.createElement('td');
             td.textContent = `@${member}`;

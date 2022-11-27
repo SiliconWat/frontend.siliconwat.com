@@ -14,11 +14,11 @@ import { getGitHub } from "/global.mjs";
 
 window.onload = async () => {
     const github = await getGitHub();
-    await document.querySelector('sw-header').render(github);
     await document.querySelector('sw-main').render(github);
-    await document.querySelector('sw-progress').render(github);
-    document.documentElement.style.background = "linear-gradient(90deg, rgba(5,117,230,1) 0%, rgba(2,27,121,1) 100%)";
+    document.documentElement.style.backgroundImage = "linear-gradient(90deg, rgba(5,117,230,1) 0%, rgba(2,27,121,1) 100%)";
     document.body.style.display = 'flex';
+    await document.querySelector('sw-header').render(github);
+    await document.querySelector('sw-progress').render(github);
 };
 
 window.dataLayer = window.dataLayer || [];

@@ -61,7 +61,7 @@ class SwGitHub extends HTMLElement {
                         score += gradebook[github.login][assignment][grader].grade === 'pass' ? 1 : 0;
                     }
                 }
-                td.textContent = total > 0 ? (score / total * 100).toFixed(0) + "%" : "TBD";
+                td.textContent = total > 0 ? (score / total * 100).toFixed(0) + "%" : "tbd";
                 tr.append(td);
                 Total += total;
                 Score += score;
@@ -75,10 +75,10 @@ class SwGitHub extends HTMLElement {
         ///// tfoot
 
         const tr = document.createElement('tr');
-        const th = document.createElement('th');
-        th.scope = "row"
-        th.textContent = "Score";
-        tr.append(th);
+        const fth = document.createElement('th');
+        fth.scope = "row"
+        fth.textContent = "Score";
+        tr.append(fth);
         tfoot.append(tr);
         
         let Total = 0, Score = 0;
@@ -100,10 +100,10 @@ class SwGitHub extends HTMLElement {
             Total += total;
             Score += score;
         }
-        const th2 = document.createElement('th');
-        th2.scope = "row"
-        th2.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "TBD";
-        tr.append(th2);
+        const th = document.createElement('th');
+        th.scope = "row"
+        th.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "TBD";
+        tr.append(th);
 
         this.shadowRoot.querySelector('table:last-child tbody').replaceChildren(tbody);
         this.shadowRoot.querySelector('table:last-child tfoot').replaceChildren(tfoot);
@@ -149,10 +149,10 @@ class SwGitHub extends HTMLElement {
 
         const students = await this.#getStudents(y, term);
         const tr = document.createElement('tr');
-        const th = document.createElement('th');
-        th.scope = "col"
-        th.textContent = "Chapter";
-        tr.append(th);
+        const hth = document.createElement('th');
+        hth.scope = "col"
+        hth.textContent = "Chapter";
+        tr.append(hth);
         thead.append(tr);
 
         for (const student of students) {
@@ -162,10 +162,10 @@ class SwGitHub extends HTMLElement {
             tr.append(th)
         }
 
-        const th2 = document.createElement('th');
-        th2.scope = "col"
-        th2.textContent = "AVG";
-        tr.append(th2)
+        const th = document.createElement('th');
+        th.scope = "col"
+        th.textContent = "AVG";
+        tr.append(th)
 
         // tbody
 
@@ -190,11 +190,11 @@ class SwGitHub extends HTMLElement {
                             score += gradebook[student][assignment][grader].grade === 'pass' ? 1 : 0;
                         }
                     }
-                    td.title += `${assignment.capitalize()}: ${total > 0 ? (score / total * 100).toFixed(0) + "%" : "TBD"} || `;
+                    td.title += `${assignment.capitalize()}: ${total > 0 ? (score / total * 100).toFixed(0) + "%" : "tbd"} || `;
                     Total += total;
                     Score += score;
                 });
-                td.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "TBD";
+                td.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "tbd";
                 tr.append(td);
                 TOTAL += Total;
                 SCORE += Score;
@@ -206,6 +206,45 @@ class SwGitHub extends HTMLElement {
         }
 
         // tfoot
+
+        const ftr = document.createElement('tr');
+        const fth = document.createElement('th');
+        fth.scope = "row"
+        fth.textContent = "AVG";
+        ftr.append(fth);
+        tfoot.append(ftr);
+
+        let TOTAL = 0, SCORE = 0;
+        for (const student of students) {
+            let Total = 0, Score = 0;
+            const th = document.createElement('td');
+            th.scope = "col";
+            th.title = "|| ";
+            for (const assignment of this.#assignments) {
+                let total = 0, score = 0;
+                for (let c = 0; c < chapters.length; c++) {
+                    const gradebook = await getData('gradebook', y, { system: term[1], season: term[2], c: c + 1 });
+                    if (gradebook[student]) {
+                        for (let grader in gradebook[student][assignment]) {
+                            total += 1;
+                            score += gradebook[student][assignment][grader].grade === 'pass' ? 1 : 0;
+                        }
+                    }
+                }
+                th.title += `${assignment.capitalize()}: ${total > 0 ? (score / total * 100).toFixed(0) + "%" : "TBD"} || `;
+                Total += total;
+                Score += score;
+            }
+            th.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "TBD";
+            ftr.append(th);
+            TOTAL += Total;
+            SCORE += Score;
+        }
+
+        const th2 = document.createElement('th');
+        th2.scope = "row"
+        th2.textContent = TOTAL > 0 ? (SCORE / TOTAL * 100).toFixed(0) + "%" : "TBD";
+        ftr.append(th2);
 
         this.shadowRoot.querySelector('table:first-child thead').replaceChildren(thead);
         this.shadowRoot.querySelector('table:first-child tbody').replaceChildren(tbody);

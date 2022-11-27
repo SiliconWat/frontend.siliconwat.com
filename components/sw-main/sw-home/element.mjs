@@ -183,11 +183,15 @@ class SwHome extends HTMLElement {
         }
     }
 
-    changeYearTerm(event) {
+    async changeYearTerm(event) {
+        document.body.style.display = 'none';
+        document.documentElement.style.backgroundImage = "url(background.gif)";
         localStorage.setItem(event.target.id, event.target.value);
-        this.render();
-        document.querySelector('sw-header').render();
-        // document.querySelector('sw-progress').render();
+        await this.render();
+        document.documentElement.style.backgroundImage = "linear-gradient(90deg, rgba(5,117,230,1) 0%, rgba(2,27,121,1) 100%)";
+        document.body.style.display = 'flex';
+        await document.querySelector('sw-header').render();
+        // await document.querySelector('sw-progress').render();
     }
 }
 
