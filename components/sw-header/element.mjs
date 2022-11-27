@@ -11,12 +11,11 @@ class SwHeader extends HTMLElement {
     }
 
     async render(github=this.#github) {
-        this.style.display = 'none';
         this.#github = github;
         const y = getYear(github);
         const { units, chapters } = await getData('syllabus', y);
         this.#render(github, units, chapters);
-        this.style.display = 'block';
+        this.style.opacity = 1;
     }
 
     #render(github, units, chapters) {
@@ -78,8 +77,8 @@ class SwHeader extends HTMLElement {
     #checkMark(event) {
         localStorage.setItem(event.target.id, Number(event.target.checked));
         this.shadowRoot.getElementById(event.target.dataset.unit).render();
-        document.querySelector('sw-main').render();
         document.querySelector('sw-progress').render();
+        if (event.target.id === window.location.hash.substring(1)) document.querySelector('sw-main').render();
     }
 
     changeLanguage(event) {

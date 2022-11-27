@@ -1,6 +1,8 @@
 :host {
-	display: none;
+	display: block;
+	opacity: 0;
 	font-size: medium;
+	transition: opacity 300ms ease-in;
 }
 
 section {
