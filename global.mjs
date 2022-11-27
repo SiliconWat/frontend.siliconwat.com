@@ -2,6 +2,7 @@
 export const YEAR_BEGAN = 2022;
 export const YEAR = 2023;
 const TERM = "semester-summer";
+export const PASSING = 0.70;
 
 export const ORIGIN = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5531" : "https://frontend.siliconwat.com";
 export const THONLY = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5500" : "https://thonly.org";

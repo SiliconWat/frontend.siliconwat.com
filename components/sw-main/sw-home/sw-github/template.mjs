@@ -15,23 +15,16 @@ template.innerHTML = `
             <thead>
                 <tr>
                     <th scope="col">Chapter</th>
+                    <th scope="col">@thonly</th>
+                    <th scope="col">AVG</th>
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th scope="row">Score</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row">Grade</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <th scope="row">AVG</th>
+                    <th scope="col">100%</th>
+                    <th scope="row">Cohort Score</th>
                 </tr>
             </tfoot>
         </table>
@@ -39,8 +32,9 @@ template.innerHTML = `
             <a>
                 <img>
                 <h2></h2>
-            </a> 
-            todo: final score + final grade
+            </a>
+            <h3>Score: <span id="score">Not Enrolled</span></h3>
+            <h3>Grade: <span id="grade">70% to Pass</span></h3>
         </aside>    
         <table>
             <caption>assignemnts vs chapters</caption>
@@ -48,9 +42,9 @@ template.innerHTML = `
                 <tr>
                     <th scope="col">Chapter</th>
                     <th scope="col">Discussion</th>
+                    <th scope="col">Summary</th>
                     <th scope="col">Challenge</th>
                     <th scope="col">Suggestion</th>
-                    <th scope="col">Summary</th>
                     <th scope="col">Score</th>
                 </tr>
             </thead>
@@ -58,10 +52,11 @@ template.innerHTML = `
             <tfoot>
                 <tr>
                     <th scope="row">Score</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <th scope="col">N/A</th>
+                    <th scope="col">N/A</th>
+                    <th scope="col">N/A</th>
+                    <th scope="col">N/A</th>
+                    <th scope="row">Not Enrolled</th>
                 </tr>
             </tfoot>
         </table>

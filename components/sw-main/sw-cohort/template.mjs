@@ -37,10 +37,10 @@ template.innerHTML = `
             <tfoot>
                 <tr>
                     <th scope="row">Score</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </tfoot>
         </table>

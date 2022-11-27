@@ -65,11 +65,13 @@ class SwCohort extends HTMLElement {
             let total = 0;
             let score = 0;
             const td = document.createElement('td');
-            for (let grader in gradebook[github.login][assignment]) {
-                total += 1;
-                score += gradebook[github.login][assignment][grader].grade === 'pass' ? 1 : 0;
+            if (gradebook[github.login]) {
+                for (let grader in gradebook[github.login][assignment]) {
+                    total += 1;
+                    score += gradebook[github.login][assignment][grader].grade === 'pass' ? 1 : 0;
+                }
             }
-            td.textContent = (score / total * 100).toFixed(0) + "%";
+            td.textContent = total > 0 ? (score / total * 100).toFixed(0) + "%" : "TBD";
             tr.append(td);
         });
 
@@ -95,29 +97,31 @@ class SwCohort extends HTMLElement {
         this.#highlight(task);
     }
 
-    #renderStudents(task, gradebook) { //TODO: order
-        const cohort = document.createDocumentFragment();
+    #renderStudents(task, gradebook) {
+        const students = document.createDocumentFragment();
 
-        for (let classmate in gradebook) {
+        for (const student of Object.keys(gradebook).sort()) {
             const tr = document.createElement('tr');
             const td = document.createElement('td');
-            td.textContent = `@${classmate}`;
+            td.textContent = `@${student}`;
             tr.append(td);
-            cohort.append(tr);
+            students.append(tr);
             this.#assignments.forEach(assignment => {
                 let total = 0;
                 let score = 0;
                 const td = document.createElement('td');
-                for (let grader in gradebook[classmate][assignment]) {
-                    total += 1;
-                    score += gradebook[classmate][assignment][grader].grade === 'pass' ? 1 : 0;
+                if (gradebook[student]) {
+                    for (let grader in gradebook[student][assignment]) {
+                        total += 1;
+                        score += gradebook[student][assignment][grader].grade === 'pass' ? 1 : 0;
+                    }
                 }
-                td.textContent = (score / total * 100).toFixed(0) + "%";
+                td.textContent = total > 0 ? (score / total * 100).toFixed(0) + "%" : "TBD";
                 tr.append(td);
             });
         }
 
-        this.shadowRoot.querySelector('table:first-child tbody').replaceChildren(cohort);
+        this.shadowRoot.querySelector('table:first-child tbody').replaceChildren(students);
         this.shadowRoot.querySelector('table:nth-child(2)').style.display = 'none';
         this.shadowRoot.querySelector('table:last-child').style.display = 'none';
         this.shadowRoot.querySelector('table:first-child').style.display = 'block';
