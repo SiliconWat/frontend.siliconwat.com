@@ -100,11 +100,19 @@ export async function getData(filename, y=null, options={}) {
             break;
     }
 
-    try {
-        return await (await fetch(url, { cache: "no-store" })).json();
-    } catch(error) {
-        return getBackup(filename, y);
-    }
+    const cache = localStorage.getItem(url);
+    if (cache) {
+        return JSON.parse(cache);
+    } else {
+        let data;
+        try {
+            data = await (await fetch(url, { cache: "no-store" })).json();
+        } catch(error) {
+            data = await getBackup(filename, y);
+        }
+        localStorage.setItem(url, JSON.stringify(data))
+        return data;
+    }  
 }
 
 async function getBackup(filename, y) {
