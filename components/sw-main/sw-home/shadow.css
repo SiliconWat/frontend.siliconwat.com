@@ -15,8 +15,6 @@ main {
 }
 
 header, footer {
-    box-sizing: border-box;
-    width: 100%;
     grid-column: 1 / span 3;
     text-align: center;
     color: white;

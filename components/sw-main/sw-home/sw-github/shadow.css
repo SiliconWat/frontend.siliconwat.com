@@ -7,6 +7,18 @@ section, aside, table {
     display: none;
 }
 
+section {
+    flex-direction: column;
+    align-items: center;
+}
+
+aside {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
 img {
     border-radius: 50%;
     width: 50%;
@@ -19,5 +31,7 @@ a {
 
 table {
     color: currentColor;
-    width: 100%;
+    font-size: 0.3em;
+    overflow-x: scroll;
+    flex: 1;
 }

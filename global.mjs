@@ -136,6 +136,8 @@ async function getBackup(filename, y) {
 
 // admin only
 
+export const TESTING = true;
+
 window.switchStudent = username => {
     const github = JSON.parse(localStorage.getItem('github')) || {};
     if (github.login) {

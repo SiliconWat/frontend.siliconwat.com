@@ -10,11 +10,11 @@ import "./components/sw-footer/element.mjs";
 import "./components/sw-progress/element.mjs";
 import "./components/sw-music/element.mjs";
 
-import { getGitHub } from "/global.mjs";
+import { TESTING, getGitHub } from "/global.mjs";
 window.onload = async () => {
-    for (let item in localStorage) if (item.includes('https')) localStorage.removeItem(item);
-
+    if (!TESTING) for (let item in localStorage) if (item.includes('https')) localStorage.removeItem(item);
     const github = await getGitHub();
+    
     await document.querySelector('sw-main').render(github);
     document.documentElement.style.backgroundImage = "linear-gradient(90deg, rgba(5,117,230,1) 0%, rgba(2,27,121,1) 100%)";
     document.body.style.display = 'flex';

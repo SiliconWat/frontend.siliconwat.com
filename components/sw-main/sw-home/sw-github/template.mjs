@@ -29,12 +29,12 @@ template.innerHTML = `
             </tfoot>
         </table>
         <aside>
-            <a>
-                <img>
-                <h2></h2>
-            </a>
-            <h3>Score: <span id="score">Not Enrolled</span></h3>
-            <h3>Grade: <span id="grade">70% to Pass</span></h3>
+            <a id="avatar"><img></a>
+            <div>
+                <h2><a id="username"></a></h2>
+                <h3>Score: <span id="score">Not Enrolled</span></h3>
+                <h3>Grade: <span id="grade">70% to Pass</span></h3>
+            </div>
         </aside>    
         <table>
             <caption>assignemnts vs chapters</caption>

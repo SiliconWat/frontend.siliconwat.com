@@ -16,17 +16,19 @@ class SwGitHub extends HTMLElement {
             const { chapters } = await getData('syllabus', y);
             if (github.login) await this.#render(github, chapters, y, term)
             else await this.#renderAll(chapters, y, term);
-            this.shadowRoot.getElementById('cohort').style.display = 'block';
+            this.shadowRoot.getElementById('cohort').style.display = 'flex';
         }
         this.style.display = 'block';
     }
 
     async #render(github, chapters, y, term) {
-        const a = this.shadowRoot.querySelector('a');
-        a.href = github.html_url;
-        a.firstElementChild.src = github.avatar_url;
-        a.lastElementChild.textContent = "@" + github.login;
-        this.shadowRoot.querySelector('aside').style.display = 'block';
+        const avatar = this.shadowRoot.getElementById('avatar');
+        const username = this.shadowRoot.getElementById('username');
+        avatar.href = github.html_url;
+        username.href = github.html_url;
+        avatar.firstElementChild.src = github.avatar_url;
+        username.textContent = "@" + github.login;
+        this.shadowRoot.querySelector('aside').style.display = 'flex';
 
         if (github.student) await this.#renderStudent(github, chapters, y, term)
         else this.#renderStudents(chapters);
