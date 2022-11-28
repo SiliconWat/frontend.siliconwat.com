@@ -7,7 +7,7 @@ section, aside, table {
     display: none;
 }
 
-section {
+section:last-child {
     flex-direction: column;
     align-items: center;
 }
@@ -17,11 +17,15 @@ aside {
     justify-content: space-around;
     align-items: center;
     text-align: center;
+    margin-bottom: 50px;
 }
 
-img {
-    border-radius: 50%;
-    width: 50%;
+a#avatar {
+    flex: 1;
+}
+
+div {
+    flex: 2;
 }
 
 a {
@@ -29,9 +33,73 @@ a {
     color: currentColor;
 }
 
+img {
+    border-radius: 50%;
+    width: 100%;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h2 span {
+    color: orange;
+}
+
 table {
     color: currentColor;
-    font-size: 0.3em;
-    overflow-x: scroll;
-    flex: 1;
+    font-size: 1.5em;
+    background-color: rgba(0, 0, 0, 60%);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 60%);
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 25px;
+}
+
+caption {
+    display: none;
+}
+
+col:first-child, col:last-child {
+    background-color: rgba(0, 0, 0, 10%);
+}
+
+thead, tfoot {
+    background-color: rgba(0, 0, 0, 30%);
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 20%);
+}
+
+tfoot th:last-child {
+    color: orange;
+}
+
+td:hover {
+    color: lightgreen;
+}
+
+.highlight {
+    background-color: rgba(255, 255, 255, 20%);
+}
+
+@media (max-width: 480px) {
+    table {
+        font-size: 0.3em;
+    }
+
+    th, td {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1em;
+    }
 }

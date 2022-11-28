@@ -136,7 +136,11 @@ async function getBackup(filename, y) {
 
 // admin only
 
-export const TESTING = true;
+export const TESTING = window.location.hostname === '127.0.0.1';
+
+window.clearCache = () => {
+    for (let item in localStorage) if (item.includes('https')) localStorage.removeItem(item);
+}
 
 window.switchStudent = username => {
     const github = JSON.parse(localStorage.getItem('github')) || {};

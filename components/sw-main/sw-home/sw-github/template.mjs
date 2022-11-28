@@ -11,7 +11,7 @@ template.innerHTML = `
     </section>
     <section id="cohort">
         <table>
-            <caption>students vs chapters</caption>
+            <caption>Students vs Chapters</caption>
             <thead>
                 <tr>
                     <th scope="col">Chapter</th>
@@ -31,13 +31,21 @@ template.innerHTML = `
         <aside>
             <a id="avatar"><img></a>
             <div>
-                <h2><a id="username"></a></h2>
-                <h3>Score: <span id="score">Not Enrolled</span></h3>
-                <h3>Grade: <span id="grade">70% to Pass</span></h3>
+                <a><h1 id="username"></h1></a>
+                <h2>Score: <span id="score">Not Enrolled</span></h2>
+                <h2>Grade: <span id="grade">70% to Pass</span></h2>
             </div>
         </aside>    
         <table>
-            <caption>assignemnts vs chapters</caption>
+            <caption>Assignments vs Chapters</caption>
+            <colgroup>
+                <col span="1">
+                <col span="1">
+                <col span="1">
+                <col span="1">
+                <col span="1">
+                <col span="1">
+            </colgroup>
             <thead>
                 <tr>
                     <th scope="col">Chapter</th>
@@ -45,13 +53,13 @@ template.innerHTML = `
                     <th scope="col">Summary</th>
                     <th scope="col">Challenge</th>
                     <th scope="col">Suggestion</th>
-                    <th scope="col">Score</th>
+                    <th scope="col">SCORE</th>
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th scope="row">Score</th>
+                    <th scope="row">SCORE</th>
                     <th scope="col">N/A</th>
                     <th scope="col">N/A</th>
                     <th scope="col">N/A</th>

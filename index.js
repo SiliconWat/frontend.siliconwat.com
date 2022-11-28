@@ -12,7 +12,7 @@ import "./components/sw-music/element.mjs";
 
 import { TESTING, getGitHub } from "/global.mjs";
 window.onload = async () => {
-    if (!TESTING) for (let item in localStorage) if (item.includes('https')) localStorage.removeItem(item);
+    if (!TESTING) window.clearCache();
     const github = await getGitHub();
     
     await document.querySelector('sw-main').render(github);

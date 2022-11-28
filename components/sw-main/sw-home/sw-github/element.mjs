@@ -46,7 +46,7 @@ class SwGitHub extends HTMLElement {
             const gradebook = await getData('gradebook', y, { system: term[1], season: term[2], c: c + 1 });
 
             const tr = document.createElement('tr');
-            const td = document.createElement('td');
+            const td = document.createElement('th');
             td.textContent = c + 1;
             tr.append(td);
             tbody.append(tr);
@@ -64,6 +64,7 @@ class SwGitHub extends HTMLElement {
                     }
                 }
                 td.textContent = total > 0 ? (score / total * 100).toFixed(0) + "%" : "tbd";
+                this.#highlight(td);
                 tr.append(td);
                 Total += total;
                 Score += score;
@@ -79,14 +80,14 @@ class SwGitHub extends HTMLElement {
         const tr = document.createElement('tr');
         const fth = document.createElement('th');
         fth.scope = "row"
-        fth.textContent = "Score";
+        fth.textContent = "SCORE";
         tr.append(fth);
         tfoot.append(tr);
         
         let Total = 0, Score = 0;
         for (const assignment of this.#assignments) {
             let total = 0, score = 0;
-            const th = document.createElement('td');
+            const th = document.createElement('th');
             for (let c = 0; c < chapters.length; c++) {
                 const gradebook = await getData('gradebook', y, { system: term[1], season: term[2], c: c + 1 });
                 if (gradebook[github.login]) {
@@ -98,6 +99,7 @@ class SwGitHub extends HTMLElement {
             }
             th.textContent = total > 0 ? (score / total * 100).toFixed(0) + "%" : "TBD";
             th.scope = "col";
+            this.#highlight(th);
             tr.append(th);
             Total += total;
             Score += score;
@@ -107,6 +109,7 @@ class SwGitHub extends HTMLElement {
         th.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "TBD";
         tr.append(th);
 
+        this.shadowRoot.querySelectorAll('table:last-child thead th').forEach(element => this.#highlight(element));
         this.shadowRoot.querySelector('table:last-child tbody').replaceChildren(tbody);
         this.shadowRoot.querySelector('table:last-child tfoot').replaceChildren(tfoot);
         this.#renderFinalGrade(Score, Total);
@@ -114,7 +117,8 @@ class SwGitHub extends HTMLElement {
 
     #renderFinalGrade(score, total) {
         this.shadowRoot.getElementById('score').textContent = total > 0 ? (score / total * 100).toFixed(2) + "%" : "TBD";
-        this.shadowRoot.getElementById('grade').textContent = total > 0 ? (score / total >= PASSING ? "Pass" : "Fail") : "TBD";
+        this.shadowRoot.getElementById('grade').textContent = total > 0 ? (score / total >= PASSING ? "🎓 Pass" : "🆘 Fail") : "TBD";
+        this.shadowRoot.getElementById('grade').style.color = total > 0 ? (score / total >= PASSING ? "blue" : "red") : "orange";
     }
 
     #renderStudents(chapters) {
@@ -264,6 +268,19 @@ class SwGitHub extends HTMLElement {
         }
 
         return students.sort();
+    }
+
+    #highlight(element) {
+        element.onmouseenter = this.#highlightColumn.bind(this, true);
+        element.onmouseleave = this.#highlightColumn.bind(this, false);
+    }
+
+    #highlightColumn(hover, event) {
+        const table = event.target.parentElement.parentElement.parentElement;
+        const index = Array.prototype.indexOf.call(event.target.parentElement.children, event.target);
+        const col = table.querySelector(`col:nth-child(${index + 1})`);
+        if (hover) col.classList.add('highlight')
+        else col.classList.remove('highlight');
     }
 }
 

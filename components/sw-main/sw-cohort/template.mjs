@@ -10,7 +10,7 @@ template.innerHTML = `
     </section>
     <section id="cohort">
         <table>
-            <caption>assignemnts vs students</caption>
+            <caption>Assignments vs Students</caption>
             <thead>
                 <tr>
                     <th scope="col">Student</th>
@@ -23,7 +23,7 @@ template.innerHTML = `
             <tbody></tbody>
         </table>
         <table>
-            <caption>assignemnts vs graders</caption>
+            <caption>Assignments vs Graders</caption>
             <thead>
                 <tr>
                     <th scope="col">Grader</th>
@@ -45,7 +45,7 @@ template.innerHTML = `
             </tfoot>
         </table>
         <table>
-            <caption>assignemnts vs group members</caption>
+            <caption>Assignments vs Group Members</caption>
             <thead>
                 <tr>
                     <th scope="col">Group</th>
