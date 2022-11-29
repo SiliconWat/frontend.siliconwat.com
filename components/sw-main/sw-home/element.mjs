@@ -1,4 +1,4 @@
-import { YEAR_BEGAN, YEAR, TRILOGY, getEmoji, getTerm, getYear, getData } from "/global.mjs";
+import { YEAR_BEGAN, YEAR, TERM, TRILOGY, getEmoji, getTerm, getYear, getData } from "/global.mjs";
 import template from './template.mjs';
 
 class SwHome extends HTMLElement {
@@ -74,6 +74,8 @@ class SwHome extends HTMLElement {
             option.setAttribute('value', y);
             option.textContent = `Academic Year ${y} - ${this.#getYearTotal(students, y)}`;
             //option.disabled = y === YEAR + 1;
+            //option.style.color = y === YEAR ? "green" : "black"; // not supported in Safari
+            if (y === YEAR) option.textContent = option.textContent.toUpperCase();
             fragment.append(option);
         }
 
@@ -131,6 +133,11 @@ class SwHome extends HTMLElement {
                     if (option) option.textContent = getEmoji(cohort) + option.textContent;
                 }
             });
+        }
+
+        if (y === YEAR) {
+            const option = select.querySelector(`[value=${TERM}]`);
+            option.textContent = option.textContent.toUpperCase();
         }
 
         select.value = getTerm(github)[0];

@@ -11,22 +11,48 @@ template.innerHTML = `
     <section id="cohort">
         <table>
             <caption>Assignments vs Students</caption>
+            <colgroup>
+                <col span="1">
+                <col span="1">
+                <col span="1">
+                <col span="1">
+                <col span="1">
+                <col span="1">
+            </colgroup>
             <thead>
                 <tr>
-                    <th scope="col">Student</th>
+                    <th scope="col">STUDENT</th>
                     <th scope="col">Discussion</th>
                     <th scope="col">Challenge</th>
                     <th scope="col">Suggestion</th>
                     <th scope="col">Summary</th>
+                    <th scope="col">AVG</th>
                 </tr>
             </thead>
             <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th scope="row">AVG</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col">Overall AVG</th>
+                </tr>
+            </tfoot>
         </table>
         <table>
             <caption>Assignments vs Graders</caption>
+            <colgroup>
+                <col span="1">
+                <col span="1">
+                <col span="1">
+                <col span="1">
+                <col span="1">
+            </colgroup>
             <thead>
                 <tr>
-                    <th scope="col">Grader</th>
+                    <th scope="col">GRADER</th>
                     <th scope="col">Discussion</th>
                     <th scope="col">Challenge</th>
                     <th scope="col">Suggestion</th>
@@ -36,7 +62,7 @@ template.innerHTML = `
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th scope="row">Score</th>
+                    <th scope="row">SCORE</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -44,11 +70,19 @@ template.innerHTML = `
                 </tr>
             </tfoot>
         </table>
+        <br><br><br>
         <table>
             <caption>Assignments vs Group Members</caption>
+            <colgroup>
+                <col span="1">
+                <col span="1">
+                <col span="1">
+                <col span="1">
+                <col span="1">
+            </colgroup>
             <thead>
                 <tr>
-                    <th scope="col">Group</th>
+                    <th scope="col">GROUP</th>
                     <th scope="col">Discussion</th>
                     <th scope="col">Challenge</th>
                     <th scope="col">Suggestion</th>

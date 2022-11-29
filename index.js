@@ -10,9 +10,9 @@ import "./components/sw-footer/element.mjs";
 import "./components/sw-progress/element.mjs";
 import "./components/sw-music/element.mjs";
 
-import { TESTING, getGitHub } from "/global.mjs";
+import { getGitHub } from "/global.mjs";
 window.onload = async () => {
-    if (!TESTING) window.clearCache();
+    if (!window.TESTING) window.clearCache();
     const github = await getGitHub();
     
     await document.querySelector('sw-main').render(github);

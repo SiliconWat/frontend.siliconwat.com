@@ -3,7 +3,7 @@
     font-size: medium;
 }
 
-section, aside, table {
+section, aside, table, footer {
     display: none;
 }
 
@@ -52,6 +52,8 @@ table {
     background-color: rgba(0, 0, 0, 60%);
     box-shadow: 0 0 15px rgba(0, 0, 0, 60%);
     border-collapse: collapse;
+    text-align: center;
+    overflow-x: scroll;
 }
 
 th, td {
@@ -80,6 +82,7 @@ tfoot th:last-child {
 
 td:hover {
     color: lightgreen;
+    font-weight: bold;
 }
 
 .highlight {

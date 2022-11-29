@@ -16,7 +16,7 @@ class SwCohort extends HTMLElement {
             const gradebook = await getData('gradebook', y, { system: term[1], season: term[2], c });
             if (github.student) await this.#renderStudent(github, task, gradebook, y, term, c)
             else this.#renderStudents(task, gradebook);
-            this.shadowRoot.getElementById('cohort').style.display = 'block';
+            this.shadowRoot.getElementById('cohort').style.display = 'flex';
         }
         this.style.display = 'block';
     }
@@ -32,18 +32,21 @@ class SwCohort extends HTMLElement {
         const fragmentFoot = document.createDocumentFragment();
         const fragmentGroup = document.createDocumentFragment();
 
-        if (group) group.members.filter(member => member !== github.login).forEach(member => {
+        // student tbody
+
+        if (group) group.members.sort().filter(member => member !== github.login).forEach(member => {
             const tr = document.createElement('tr');
-            const td = document.createElement('td');
+            const td = document.createElement('th');
             td.textContent = `@${member}`;
             tr.append(td);
             fragmentStudent.append(tr);
+
             this.#assignments.forEach(assignment => {
                 const td = document.createElement('td');
                 if (gradebook[github.login]) {
                     for (let grader in gradebook[github.login][assignment]) {
                         if (grader === member) {
-                            td.textContent = gradebook[github.login][assignment][grader].grade;
+                            td.textContent = gradebook[github.login][assignment][grader].grade === 'pass' ? "👍🏼" : "👎🏼";
                             break;
                         }
                     }
@@ -55,35 +58,40 @@ class SwCohort extends HTMLElement {
             });
         });
 
+        // student tfoot
+
         const tr = document.createElement('tr');
         const th = document.createElement('th');
         th.scope = "row"
-        th.textContent = "Score";
+        th.textContent = "SCORE";
         tr.append(th);
         fragmentFoot.append(tr);
+
         this.#assignments.forEach(assignment => {
-            let total = 0;
-            let score = 0;
-            const td = document.createElement('td');
+            let total = 0, score = 0;
+            const th = document.createElement('th');
             if (gradebook[github.login]) {
                 for (let grader in gradebook[github.login][assignment]) {
                     total += 1;
                     score += gradebook[github.login][assignment][grader].grade === 'pass' ? 1 : 0;
                 }
             }
-            td.textContent = total > 0 ? (score / total * 100).toFixed(0) + "%" : "TBD";
-            tr.append(td);
+            th.textContent = total > 0 ? (score / total * 100).toFixed(0) + "%" : "TBD";
+            tr.append(th);
         });
 
-        if (group) group.members.filter(member => member !== github.login).forEach(member => {
+        // group tbody
+
+        if (group) group.members.sort().filter(member => member !== github.login).forEach(member => {
             const tr = document.createElement('tr');
-            const td = document.createElement('td');
+            const td = document.createElement('th');
             td.textContent = `@${member}`;
             tr.append(td);
             fragmentGroup.append(tr);
+
             this.#assignments.forEach(assignment => {
                 const td = document.createElement('td');
-                td.textContent = gradebook[member] && gradebook[member][assignment][github.login] ? gradebook[member][assignment][github.login].grade : "TBD";
+                td.textContent = gradebook[member] && gradebook[member][assignment][github.login] ? (gradebook[member][assignment][github.login].grade  ? "👍🏼" : "👎🏼") : "TBD";
                 tr.append(td);
             });
         });
@@ -98,17 +106,21 @@ class SwCohort extends HTMLElement {
     }
 
     #renderStudents(task, gradebook) {
-        const students = document.createDocumentFragment();
+        const tbody = document.createDocumentFragment();
+        const tfoot = document.createDocumentFragment();
+
+        // tbody
 
         for (const student of Object.keys(gradebook).sort()) {
             const tr = document.createElement('tr');
-            const td = document.createElement('td');
+            const td = document.createElement('th');
             td.textContent = `@${student}`;
             tr.append(td);
-            students.append(tr);
+            tbody.append(tr);
+
+            let Total = 0, Score = 0;
             this.#assignments.forEach(assignment => {
-                let total = 0;
-                let score = 0;
+                let total = 0, score = 0;
                 const td = document.createElement('td');
                 if (gradebook[student]) {
                     for (let grader in gradebook[student][assignment]) {
@@ -118,10 +130,50 @@ class SwCohort extends HTMLElement {
                 }
                 td.textContent = total > 0 ? (score / total * 100).toFixed(0) + "%" : "TBD";
                 tr.append(td);
+                Total += total;
+                Score += score;
             });
+            const th = document.createElement('th');
+            th.scope = "col"
+            th.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "TBD";
+            tr.append(th);
         }
 
-        this.shadowRoot.querySelector('table:first-child tbody').replaceChildren(students);
+        // tfoot
+
+        const tr = document.createElement('tr');
+        const fth = document.createElement('th');
+        fth.scope = "row"
+        fth.textContent = "AVG";
+        tr.append(fth);
+        tfoot.append(tr);
+
+        let Total = 0, Score = 0;
+        this.#assignments.forEach(assignment => {
+            let total = 0, score = 0;
+            for (const student of Object.keys(gradebook)) {
+                if (gradebook[student]) {
+                    for (let grader in gradebook[student][assignment]) {
+                        total += 1;
+                        score += gradebook[student][assignment][grader].grade === 'pass' ? 1 : 0;
+                    }
+                }
+            }
+            const th = document.createElement('th');
+            th.textContent = total > 0 ? (score / total * 100).toFixed(0) + "%" : "TBD";
+            tr.append(th);
+            Total += total;
+            Score += score;
+        });
+
+        const th = document.createElement('th');
+        th.scope = "col"
+        th.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "TBD";
+        th.style.color = "orange";
+        tr.append(th);
+
+        this.shadowRoot.querySelector('table:first-child tbody').replaceChildren(tbody);
+        this.shadowRoot.querySelector('table:first-child tfoot').replaceChildren(tfoot);
         this.shadowRoot.querySelector('table:nth-child(2)').style.display = 'none';
         this.shadowRoot.querySelector('table:last-child').style.display = 'none';
         this.shadowRoot.querySelector('table:first-child').style.display = 'block';
@@ -129,16 +181,16 @@ class SwCohort extends HTMLElement {
     }
 
     #highlight(task) {
-        this.shadowRoot.querySelectorAll('tr th, tr td').forEach(element => element.style.backgroundColor = 'none');
+        this.shadowRoot.querySelectorAll('col').forEach(element => element.classList.remove('highlight'));
         switch (task) {
             case "learn":
-                this.shadowRoot.querySelectorAll('tr th:nth-child(2), tr td:nth-child(2)').forEach(element => element.style.backgroundColor = 'yellow');
+                this.shadowRoot.querySelectorAll('col:nth-child(2)').forEach(element => element.classList.add('highlight'));
                 break;
             case "practice":
-                this.shadowRoot.querySelectorAll('tr th:nth-child(3), tr td:nth-child(3), tr th:nth-child(4), tr td:nth-child(4)').forEach(element => element.style.backgroundColor = 'yellow');
+                this.shadowRoot.querySelectorAll('col:nth-child(3), col:nth-child(4)').forEach(element => element.classList.add('highlight'));
                 break;
             case "review":
-                this.shadowRoot.querySelectorAll('tr th:nth-child(5), tr td:nth-child(5)').forEach(element => element.style.backgroundColor = 'yellow');
+                this.shadowRoot.querySelectorAll('col:nth-child(5)').forEach(element => element.classList.add('highlight'));
                 break;
         }
     }

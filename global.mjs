@@ -1,7 +1,7 @@
 // current
 export const YEAR_BEGAN = 2022;
 export const YEAR = 2023;
-const TERM = "semester-summer";
+export const TERM = "semester-summer";
 export const PASSING = 0.70;
 
 export const ORIGIN = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5531" : "https://frontend.siliconwat.com";
@@ -100,22 +100,21 @@ export async function getData(filename, y=null, options={}) {
             break;
     }
 
-    const cache = localStorage.getItem(url);
+    let cache = localStorage.getItem(url);
     if (cache) {
         return JSON.parse(cache);
     } else {
-        let data;
         try {
-            data = await (await fetch(url, { cache: "no-store" })).json();
+            cache = await (await fetch(url, { cache: "no-store" })).json();
         } catch(error) {
-            data = await getBackup(filename, y);
+            cache = await getBackup(filename);
         }
-        localStorage.setItem(url, JSON.stringify(data))
-        return data;
+        localStorage.setItem(url, JSON.stringify(cache))
+        return cache;
     }  
 }
 
-async function getBackup(filename, y) {
+async function getBackup(filename) {
     let backup;
     switch (filename) {
         case "students":
@@ -136,7 +135,7 @@ async function getBackup(filename, y) {
 
 // admin only
 
-export const TESTING = window.location.hostname === '127.0.0.1';
+window.TESTING = window.location.hostname === '127.0.0.1';
 
 window.clearCache = () => {
     for (let item in localStorage) if (item.includes('https')) localStorage.removeItem(item);

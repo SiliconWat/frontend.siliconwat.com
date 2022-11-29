@@ -12,9 +12,14 @@ template.innerHTML = `
     <section id="cohort">
         <table>
             <caption>Students vs Chapters</caption>
+            <colgroup>
+                <col span="1">
+                <col span="1">
+                <col span="1">
+            </colgroup>
             <thead>
                 <tr>
-                    <th scope="col">Chapter</th>
+                    <th scope="col">CHAPTER</th>
                     <th scope="col">@thonly</th>
                     <th scope="col">AVG</th>
                 </tr>
@@ -22,9 +27,9 @@ template.innerHTML = `
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th scope="row">AVG</th>
+                    <th scope="row">SCORE</th>
                     <th scope="col">100%</th>
-                    <th scope="row">Cohort Score</th>
+                    <th scope="row">Overall Cohort Score</th>
                 </tr>
             </tfoot>
         </table>
@@ -33,7 +38,7 @@ template.innerHTML = `
             <div>
                 <a><h1 id="username"></h1></a>
                 <h2>Score: <span id="score">Not Enrolled</span></h2>
-                <h2>Grade: <span id="grade">70% to Pass</span></h2>
+                <h2>Grade: <span id="grade">Pass / No Pass</span></h2>
             </div>
         </aside>    
         <table>
@@ -48,27 +53,30 @@ template.innerHTML = `
             </colgroup>
             <thead>
                 <tr>
-                    <th scope="col">Chapter</th>
+                    <th scope="col">CHAPTER</th>
                     <th scope="col">Discussion</th>
                     <th scope="col">Summary</th>
                     <th scope="col">Challenge</th>
                     <th scope="col">Suggestion</th>
-                    <th scope="col">SCORE</th>
+                    <th scope="col">AVG</th>
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
                     <th scope="row">SCORE</th>
-                    <th scope="col">N/A</th>
-                    <th scope="col">N/A</th>
-                    <th scope="col">N/A</th>
-                    <th scope="col">N/A</th>
-                    <th scope="row">Not Enrolled</th>
+                    <th scope="col" title="Total Discussion Score: N/A">N/A</th>
+                    <th scope="col" title="Total Summary Score: N/A">N/A</th>
+                    <th scope="col" title="Total Challenge Score: N/A">N/A</th>
+                    <th scope="col" title="Total Suggestion Score: N/A">N/A</th>
+                    <th scope="row" title="Overall Score: Not Enrolled">Not Enrolled</th>
                 </tr>
             </tfoot>
         </table>
     </section> 
+    <footer>
+        <p>Get a 50% Discount for being the first student to enroll!</p>
+    </footer>
 `;
 
 export default template;
