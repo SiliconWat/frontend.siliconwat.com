@@ -73,10 +73,7 @@ template.innerHTML = `
                 </tr>
             </tfoot>
         </table>
-    </section> 
-    <footer>
-        <p>Get a 50% Discount for being the first student to enroll!</p>
-    </footer>
+    </section>
 `;
 
 export default template;

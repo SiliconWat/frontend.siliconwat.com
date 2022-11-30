@@ -107,18 +107,18 @@ export async function getData(filename, y=null, options={}) {
         try {
             cache = await (await fetch(url, { cache: "no-store" })).json();
         } catch(error) {
-            cache = await getBackup(filename);
+            cache = await getBackup(filename, y);
         }
         localStorage.setItem(url, JSON.stringify(cache))
         return cache;
     }  
 }
 
-async function getBackup(filename) {
+async function getBackup(filename, y) {
     let backup;
     switch (filename) {
-        case "students":
-            backup = {}; // `/docs/students.mjs`;
+        case "students": // deprecated
+            backup = y === YEAR + 1 ? {} : `/docs/students.mjs`;
             break;
         case "syllabus":
             backup = (await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${YEAR_BEGAN}/Syllabus.json`, { cache: "no-store" })).json(); // `${TRILOGY[2]}/docs/syllabus.mjs`;

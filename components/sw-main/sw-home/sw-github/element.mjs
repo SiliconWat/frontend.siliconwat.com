@@ -75,6 +75,7 @@ class SwGitHub extends HTMLElement {
                 Total += total;
                 Score += score;
             });
+
             const th = document.createElement('th');
             th.scope = "row"
             th.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "TBD";
@@ -112,6 +113,7 @@ class SwGitHub extends HTMLElement {
             Total += total;
             Score += score;
         }
+        
         const th = document.createElement('th');
         th.scope = "row"
         th.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "TBD";
@@ -162,139 +164,154 @@ class SwGitHub extends HTMLElement {
 
     async #renderAll(chapters, y, term) { 
         const students = await this.#getStudents(y, term);
+        const colgroup = document.createDocumentFragment();
+        const thead = document.createDocumentFragment();
+        const tbody = document.createDocumentFragment();
+        const tfoot = document.createDocumentFragment();
 
-        if (students.length > 0) {
+        // colgroup
 
-            const colgroup = document.createDocumentFragment();
-            const thead = document.createDocumentFragment();
-            const tbody = document.createDocumentFragment();
-            const tfoot = document.createDocumentFragment();
+        for (let i = 0; i < students.length + 2; i++) {
+            const col = document.createElement('col');
+            col.span = 1;
+            colgroup.append(col);
+        }
 
-            // colgroup
+        // thead
+        
+        const tr = document.createElement('tr');
+        const hth = document.createElement('th');
+        hth.scope = "col"
+        hth.textContent = "CHAPTER";
+        tr.append(hth);
+        thead.append(tr);
 
-            for (let i = 0; i < students.length + 2; i++) {
-                const col = document.createElement('col');
-                col.span = 1;
-                colgroup.append(col);
-            }
-
-            // thead
-            
-            const tr = document.createElement('tr');
-            const hth = document.createElement('th');
-            hth.scope = "col"
-            hth.textContent = "CHAPTER";
-            tr.append(hth);
-            thead.append(tr);
-
-            for (const student of students) {
-                const th = document.createElement('th');
-                th.scope = "col"
-                th.textContent = `@${student}`;
-                th.style.cursor = "pointer";
-                th.title = `https://github.com/${student}`;
-                th.onclick = () => document.location = th.title;
-                this.#highlight(th);
-                tr.append(th)
-            }
-
+        for (const student of students) {
             const th = document.createElement('th');
             th.scope = "col"
-            th.textContent = "AVG";
+            th.textContent = `@${student}`;
+            th.style.cursor = "pointer";
+            th.title = `https://github.com/${student}`;
+            th.onclick = () => document.location = th.title;
+            this.#highlight(th);
             tr.append(th)
+        }
 
-            // tbody
+        if (students.length === 0) {
+            const th = document.createElement('th');
+            th.textContent = "There are currently no students.";
+            th.style.fontStyle = "italic";
+            tr.append(th);
+        }
 
-            for (let c = 0; c < chapters.length; c++) {
-                const gradebook = await getData('gradebook', y, { system: term[1], season: term[2], c: c + 1 });
-                const tr = document.createElement('tr');
-                const td = document.createElement('th');
-                td.textContent = c + 1;
-                tr.append(td);
-                tbody.append(tr);
+        const th = document.createElement('th');
+        th.scope = "col"
+        th.textContent = "AVG";
+        tr.append(th)
 
-                let TOTAL = 0, SCORE = 0;
-                for (const student of students) {
-                    let Total = 0, Score = 0;
-                    const td = document.createElement('td');
-                    td.title = "|| ";
-                    this.#assignments.forEach(assignment => {
-                        let total = 0, score = 0;
-                        if (gradebook[student]) {
-                            for (let grader in gradebook[student][assignment]) {
-                                total += 1;
-                                score += gradebook[student][assignment][grader].grade === 'pass' ? 1 : 0;
-                            }
-                        }
-                        td.title += `${assignment.capitalize()}: ${total > 0 ? (score / total * 100).toFixed(0) + "%" : "tbd"} || `;
-                        Total += total;
-                        Score += score;
-                    });
-                    td.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "tbd";
-                    this.#highlight(td);
-                    tr.append(td);
-                    TOTAL += Total;
-                    SCORE += Score;
-                }
-                const th = document.createElement('th');
-                th.scope = "row"
-                th.textContent = TOTAL > 0 ? (SCORE / TOTAL * 100).toFixed(0) + "%" : "TBD";
-                th.title = `Chapter ${c + 1} Average: ${th.textContent}`;
-                tr.append(th);
-            }
+        // tbody
 
-            // tfoot
-
-            const ftr = document.createElement('tr');
-            const fth = document.createElement('th');
-            fth.scope = "row"
-            fth.textContent = "SCORE";
-            ftr.append(fth);
-            tfoot.append(ftr);
+        for (let c = 0; c < chapters.length; c++) {
+            const gradebook = await getData('gradebook', y, { system: term[1], season: term[2], c: c + 1 });
+            const tr = document.createElement('tr');
+            const td = document.createElement('th');
+            td.textContent = c + 1;
+            tr.append(td);
+            tbody.append(tr);
 
             let TOTAL = 0, SCORE = 0;
             for (const student of students) {
                 let Total = 0, Score = 0;
-                const th = document.createElement('th');
-                th.scope = "col";
-                th.title = "|| ";
-                for (const assignment of this.#assignments) {
+                const td = document.createElement('td');
+                td.title = "|| ";
+                this.#assignments.forEach(assignment => {
                     let total = 0, score = 0;
-                    for (let c = 0; c < chapters.length; c++) {
-                        const gradebook = await getData('gradebook', y, { system: term[1], season: term[2], c: c + 1 });
-                        if (gradebook[student]) {
-                            for (let grader in gradebook[student][assignment]) {
-                                total += 1;
-                                score += gradebook[student][assignment][grader].grade === 'pass' ? 1 : 0;
-                            }
+                    if (gradebook[student]) {
+                        for (let grader in gradebook[student][assignment]) {
+                            total += 1;
+                            score += gradebook[student][assignment][grader].grade === 'pass' ? 1 : 0;
                         }
                     }
-                    th.title += `${assignment.capitalize()}: ${total > 0 ? (score / total * 100).toFixed(0) + "%" : "TBD"} || `;
+                    td.title += `${assignment.capitalize()}: ${total > 0 ? (score / total * 100).toFixed(0) + "%" : "tbd"} || `;
                     Total += total;
                     Score += score;
-                }
-                th.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "TBD";
-                th.title = `@${student} Overall Score: ${th.textContent}`;
-                this.#highlight(th);
-                ftr.append(th);
+                });
+                td.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "tbd";
+                this.#highlight(td);
+                tr.append(td);
                 TOTAL += Total;
                 SCORE += Score;
             }
 
-            const th2 = document.createElement('th');
-            th2.scope = "row"
-            th2.textContent = TOTAL > 0 ? (SCORE / TOTAL * 100).toFixed(0) + "%" : "TBD";
-            th2.title = `Overall Cohort Score: ${th2.textContent}`;
-            ftr.append(th2);
+            if (students.length === 0) {
+                const td = document.createElement('td');
+                td.textContent = "n/a";
+                tr.append(td);
+            }
 
-            this.shadowRoot.querySelector('table:first-child colgroup').replaceChildren(colgroup);
-            this.shadowRoot.querySelector('table:first-child thead').replaceChildren(thead);
-            this.shadowRoot.querySelector('table:first-child tbody').replaceChildren(tbody);
-            this.shadowRoot.querySelector('table:first-child tfoot').replaceChildren(tfoot);
-            this.shadowRoot.querySelector('table:first-child').style.display = 'block';
-        } else {
-            this.shadowRoot.querySelector('footer').style.display = "block";
+            const th = document.createElement('th');
+            th.scope = "row"
+            th.textContent = TOTAL > 0 ? (SCORE / TOTAL * 100).toFixed(0) + "%" : "TBD";
+            th.title = `Chapter ${c + 1} Average: ${th.textContent}`;
+            tr.append(th);
         }
+
+        // tfoot
+
+        const ftr = document.createElement('tr');
+        const fth = document.createElement('th');
+        fth.scope = "row"
+        fth.textContent = "SCORE";
+        ftr.append(fth);
+        tfoot.append(ftr);
+
+        let TOTAL = 0, SCORE = 0;
+        for (const student of students) {
+            let Total = 0, Score = 0;
+            const th = document.createElement('th');
+            th.scope = "col";
+            th.title = "|| ";
+            for (const assignment of this.#assignments) {
+                let total = 0, score = 0;
+                for (let c = 0; c < chapters.length; c++) {
+                    const gradebook = await getData('gradebook', y, { system: term[1], season: term[2], c: c + 1 });
+                    if (gradebook[student]) {
+                        for (let grader in gradebook[student][assignment]) {
+                            total += 1;
+                            score += gradebook[student][assignment][grader].grade === 'pass' ? 1 : 0;
+                        }
+                    }
+                }
+                th.title += `${assignment.capitalize()}: ${total > 0 ? (score / total * 100).toFixed(0) + "%" : "TBD"} || `;
+                Total += total;
+                Score += score;
+            }
+            th.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "TBD";
+            th.title = `@${student} Overall Score: ${th.textContent}`;
+            this.#highlight(th);
+            ftr.append(th);
+            TOTAL += Total;
+            SCORE += Score;
+        }
+
+        if (students.length === 0) {
+            const th = document.createElement('th');
+            th.textContent = "Get a 50% DISCOUNT for being the first to enroll!";
+            th.style.fontStyle = "italic";
+            ftr.append(th);
+        }
+
+        const th2 = document.createElement('th');
+        th2.scope = "row"
+        th2.textContent = TOTAL > 0 ? (SCORE / TOTAL * 100).toFixed(0) + "%" : "TBD";
+        th2.title = `Overall Cohort Score: ${th2.textContent}`;
+        ftr.append(th2);
+
+        this.shadowRoot.querySelector('table:first-child colgroup').replaceChildren(colgroup);
+        this.shadowRoot.querySelector('table:first-child thead').replaceChildren(thead);
+        this.shadowRoot.querySelector('table:first-child tbody').replaceChildren(tbody);
+        this.shadowRoot.querySelector('table:first-child tfoot').replaceChildren(tfoot);
+        this.shadowRoot.querySelector('table:first-child').style.display = 'block';
     }
 
     async #getStudents(y, term) {

@@ -70,7 +70,6 @@ template.innerHTML = `
                 </tr>
             </tfoot>
         </table>
-        <br><br><br>
         <table>
             <caption>Assignments vs Group Members</caption>
             <colgroup>

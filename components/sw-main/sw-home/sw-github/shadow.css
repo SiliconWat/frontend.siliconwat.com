@@ -3,7 +3,7 @@
     font-size: medium;
 }
 
-section, aside, table, footer {
+section, aside, table {
     display: none;
 }
 

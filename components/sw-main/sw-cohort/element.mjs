@@ -38,6 +38,9 @@ class SwCohort extends HTMLElement {
             const tr = document.createElement('tr');
             const td = document.createElement('th');
             td.textContent = `@${member}`;
+            td.style.cursor = "pointer";
+            td.title = `https://github.com/${member}`;
+            td.onclick = () => document.location = td.title;
             tr.append(td);
             fragmentStudent.append(tr);
 
@@ -56,7 +59,21 @@ class SwCohort extends HTMLElement {
                 }
                 tr.append(td);
             });
-        });
+        }) 
+        else {
+            const tr = document.createElement('tr');
+            const td = document.createElement('th');
+            td.textContent = "TBA";
+            td.style.fontStyle = "italic";
+            tr.append(td);
+            fragmentStudent.append(tr);
+
+            this.#assignments.forEach(assignment => {
+                const td = document.createElement('td');
+                td.textContent = "n/a";
+                tr.append(td);
+            });
+        }
 
         // student tfoot
 
@@ -86,6 +103,9 @@ class SwCohort extends HTMLElement {
             const tr = document.createElement('tr');
             const td = document.createElement('th');
             td.textContent = `@${member}`;
+            td.style.cursor = "pointer";
+            td.title = `https://github.com/${member}`;
+            td.onclick = () => document.location = td.title;
             tr.append(td);
             fragmentGroup.append(tr);
 
@@ -94,7 +114,21 @@ class SwCohort extends HTMLElement {
                 td.textContent = gradebook[member] && gradebook[member][assignment][github.login] ? (gradebook[member][assignment][github.login].grade  ? "👍🏼" : "👎🏼") : "TBD";
                 tr.append(td);
             });
-        });
+        })
+        else {
+            const tr = document.createElement('tr');
+            const td = document.createElement('th');
+            td.textContent = "TBA";
+            td.style.fontStyle = "italic";
+            tr.append(td);
+            fragmentGroup.append(tr);
+
+            this.#assignments.forEach(assignment => {
+                const td = document.createElement('td');
+                td.textContent = "n/a";
+                tr.append(td);
+            });
+        }
 
         this.shadowRoot.querySelector('table:nth-child(2) tbody').replaceChildren(fragmentStudent);
         this.shadowRoot.querySelector('table:nth-child(2) tfoot').replaceChildren(fragmentFoot);
@@ -103,18 +137,23 @@ class SwCohort extends HTMLElement {
         this.shadowRoot.querySelector('table:last-child').style.display = 'block';
         this.shadowRoot.querySelector('table:first-child').style.display = 'none';
         this.#highlight(task);
+        this.shadowRoot.getElementById('cohort').style.display = 'flex';
     }
 
     #renderStudents(task, gradebook) {
+        const students = Object.keys(gradebook).sort();
         const tbody = document.createDocumentFragment();
         const tfoot = document.createDocumentFragment();
 
         // tbody
 
-        for (const student of Object.keys(gradebook).sort()) {
+        for (const student of students) {
             const tr = document.createElement('tr');
             const td = document.createElement('th');
             td.textContent = `@${student}`;
+            td.style.cursor = "pointer";
+            td.title = `https://github.com/${student}`;
+            td.onclick = () => document.location = td.title;
             tr.append(td);
             tbody.append(tr);
 
@@ -133,9 +172,31 @@ class SwCohort extends HTMLElement {
                 Total += total;
                 Score += score;
             });
+
             const th = document.createElement('th');
             th.scope = "col"
             th.textContent = Total > 0 ? (Score / Total * 100).toFixed(0) + "%" : "TBD";
+            tr.append(th);
+        }
+
+        if (students.length === 0) {
+            const tr = document.createElement('tr');
+            const td = document.createElement('th');
+            td.textContent = "No Students";
+            td.style.fontStyle = "italic";
+            tr.append(td);
+            tbody.append(tr);
+
+            this.#assignments.forEach(assignment => {
+                const td = document.createElement('td');
+                td.textContent = "n/a";
+                tr.append(td);
+            });
+
+            const th = document.createElement('th');
+            th.scope = "col"
+            th.textContent = "No Students";
+            th.style.fontStyle = "italic";
             tr.append(th);
         }
 
