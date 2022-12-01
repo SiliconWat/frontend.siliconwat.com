@@ -4,9 +4,10 @@ const template = document.createElement("template");
 template.innerHTML = `
     <link rel="stylesheet" href="${ORIGIN}/components/sw-main/sw-cohort/shadow.css">
     <section id="course">
-        <p>grades are pass / no pass only</p>
-        <p>chapter assignemnts = 70% to pass</p>
-        <p>exact score and rank will be recorded and rewarded proportinaly </p>
+        <p>When you join my <a id="program">Remote Cohort Program</a>, you will be able to have your <strong>Chapter Assignments</strong> <em>graded by your classmates</em>.</p>
+        <p>The <strong>grading system</strong> is a simple <strong>Pass / No Pass</strong>.</p>
+        <p>You just need to pass at least <strong id="percent"></strong> of all the class assignments to successfully complete the Cohort Program.</p>
+        <p>Note that <strong>exact scores</strong> will be publicly <em>recorded</em> and <em>ranked</em> in order to reward <strong>SW Coins</strong> <em>proportionately</em>.</p>
     </section>
     <section id="cohort">
         <table>

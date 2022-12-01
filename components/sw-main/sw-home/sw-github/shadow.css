@@ -29,8 +29,11 @@ div {
 }
 
 a {
-    text-decoration: none;
     color: currentColor;
+}
+
+aside a {
+    text-decoration: none;
 }
 
 img {

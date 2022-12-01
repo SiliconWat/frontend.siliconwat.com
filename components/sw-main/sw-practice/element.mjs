@@ -1,4 +1,4 @@
-import { TRILOGY, getYear, getTerm, getWeeks, getUnit, getWeek, getData } from '/global.mjs';
+import { TRILOGY, getYear, getTerm, getWeeks, getUnit, getWeek, getData, getFile } from '/global.mjs';
 import template from './template.mjs';
 
 class SwPractice extends HTMLElement {
@@ -63,14 +63,14 @@ class SwPractice extends HTMLElement {
         const button = this.shadowRoot.querySelector('.pair button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Challenge ${c}`;
-        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Challenge.md`, '_blank');
+        button.onclick = async () => window.open(await getFile(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Challenge.md`), '_blank');
     }
     
     #renderProject(y, c, done) {
         const button = this.shadowRoot.querySelector('.project button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Suggestion ${c}`;
-        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Suggestion.md`, '_blank');
+        button.onclick = async () => window.open(await getFile(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Suggestion.md`), '_blank');
     }
 }
 

@@ -1,4 +1,4 @@
-import { TRILOGY, getYear, getTerm, getWeeks, getUnit, getWeek, getData } from '/global.mjs';
+import { TRILOGY, getYear, getTerm, getWeeks, getUnit, getWeek, getData, getFile } from '/global.mjs';
 import template from './template.mjs';
 
 class SwLearn extends HTMLElement {
@@ -76,7 +76,7 @@ class SwLearn extends HTMLElement {
         const button = this.shadowRoot.querySelector('.group button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Discussion ${c}`;
-        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Discussion.md`, '_blank');
+        button.onclick = async () => window.open(await getFile(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Discussion.md`), '_blank');
     }
 }
 

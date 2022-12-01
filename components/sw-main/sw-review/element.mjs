@@ -1,4 +1,4 @@
-import { TRILOGY, getYear, getTerm, getWeeks, getUnit, getWeek, getData } from '/global.mjs';
+import { TRILOGY, getYear, getTerm, getWeeks, getUnit, getWeek, getData, getFile } from '/global.mjs';
 import template from './template.mjs';
 
 class SwReview extends HTMLElement {
@@ -63,7 +63,7 @@ class SwReview extends HTMLElement {
         const button = this.shadowRoot.querySelector('.summary button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Summary ${c}`;
-        button.onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Summary.md`, '_blank');
+        button.onclick = async () => window.open(await getFile(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Summary.md`), '_blank');
     }
     
     #renderInterview(chapter, c, done) {

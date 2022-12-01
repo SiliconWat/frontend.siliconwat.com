@@ -133,6 +133,15 @@ async function getBackup(filename, y) {
     return typeof backup === 'string' ? (await import(backup)).default : backup;
 }
 
+export async function getFile(url) {
+    try {
+        await fetch(url);
+        return url;
+    } catch(error) {
+        return `https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/404.md`;
+    }
+}
+
 // admin only
 
 window.TESTING = window.location.hostname === '127.0.0.1';

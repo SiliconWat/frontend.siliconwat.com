@@ -4,10 +4,12 @@ const template = document.createElement("template");
 template.innerHTML = `
     <link rel="stylesheet" href="${ORIGIN}/components/sw-main/sw-home/sw-github/shadow.css">
     <section id="course">
-        <p>This course can be self-paced for self-motivated students.</p>
-        <p>However, if you prefer more structure, consider joining my Remote Cohort Program to study alongside other students!</p>
-        <p>It costs just $100 but also requires a commitment loan of 100 SW Coins to attract only the most serious students.</p>
-        <p>And to motivate you and your classmates to finish the entire course, 200 SW Coins will be rewarded upon completion!</p>
+        <p>This course can be <strong><em>self-paced</em></strong> for <strong>self-motivated students</strong>.</p>
+        <p>However, if you prefer more <strong>structure</strong>, consider joining my <a id="program">Remote Cohort Program</a> to study alongside <em>other students</em>!</p>
+        <p>It costs just <strong>$100</strong> but also requires a <strong>commitment loan</strong> of <strong>100 SW Coins</strong> to attract only the most <em>serious students</em>.</p>
+        <p>And to motivate you and your classmates to finish the entire course, <strong>200 SW Coins</strong> will be <em>rewarded upon completion</em>!</p>
+        <p>After you successfully complete the Cohort Program, you will have the opportunity to come back and <strong>tutor <em>future students</em></strong>.</p>
+        <p><strong>Helping to <em>teach</em> the course materials</strong> will help you to <strong>completely <em>master</em> them</strong>, plus you will also be able to earn even more <strong>SW Coins</strong>!</p>
     </section>
     <section id="cohort">
         <table>

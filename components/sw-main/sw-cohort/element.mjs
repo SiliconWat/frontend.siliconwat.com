@@ -1,4 +1,4 @@
-import { TRILOGY, getTerm, getWeek, getData } from '/global.mjs';
+import { PASSING, TRILOGY, getTerm, getWeek, getData } from '/global.mjs';
 import template from './template.mjs';
 
 class SwCohort extends HTMLElement {
@@ -10,6 +10,8 @@ class SwCohort extends HTMLElement {
 
     async render(github, task, y, c) {
         if (TRILOGY[1] === 'Course') {
+            this.shadowRoot.getElementById('percent').textContent = (PASSING*100).toFixed(0) + "%";
+            this.shadowRoot.getElementById('program').href = `https://${TRILOGY[0].toLowerCase()}.siliconwat.org`;
             this.shadowRoot.getElementById('course').style.display = 'block';
         } else {
             const term = getTerm(github);
