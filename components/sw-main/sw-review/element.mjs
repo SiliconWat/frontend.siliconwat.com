@@ -40,7 +40,7 @@ class SwReview extends HTMLElement {
                 break;
             case "Backend":
                 code = "Node and Solidity";
-                project = "Backend Engineering";
+                subject = "Backend Engineering";
                 break;
             case "iOS":
                 code = "Swift";
