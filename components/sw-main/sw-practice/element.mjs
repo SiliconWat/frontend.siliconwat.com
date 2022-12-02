@@ -39,12 +39,12 @@ class SwPractice extends HTMLElement {
                 project = "Codepen Project";
                 break;
             case "Backend":
-                editor = "Replit";
-                project = "Replit Project";
+                editor = "Codespace";
+                project = "Codespace Project";
                 break;
             case "iOS":
                 editor = "Replit";
-                project = "XCode Project";
+                project = "Replit Project";
                 break;
         }
 

@@ -51,10 +51,10 @@ class SwHome extends HTMLElement {
                 project = "Codepen Project";
                 break;
             case "Backend":
-                project = "Replit Project";
+                project = "Codespace Project";
                 break;
             case "iOS":
-                project = "XCode Project";
+                project = "Replit Project";
                 break;
         }
 
