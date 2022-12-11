@@ -4,29 +4,29 @@ export const YEAR = 2023;
 export const TERM = "semester-summer";
 export const PASSING = 0.70;
 
-export const ORIGIN = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5531" : "https://frontend.siliconwat.com";
+export const ORIGIN = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5611" : "https://frontend.siliconwat.com";
 export const THONLY = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5500" : "https://thonly.org";
-export const AUTH = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5599" : "https://auth.siliconwat.com";
-export const CAMPUS = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5540" : "https://siliconwat.org";
+export const AUTH = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5600" : "https://auth.siliconwat.com";
+export const CAMPUS = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5620" : "https://siliconwat.org";
 
 export const TRILOGY = (() => {
-    if (window.location.port === "5531" || window.location.hostname === "frontend.siliconwat.com") return ['Frontend', 'Course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5531" : "https://frontend.siliconwat.com"];
-    if (window.location.port === "5532" || window.location.hostname === "backend.siliconwat.com") return ['Backend', 'Course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5532" : "https://backend.siliconwat.com"];
-    if (window.location.port === "5533" || window.location.hostname === "ios.siliconwat.com") return ['iOS', 'Course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5533" : "https://ios.siliconwat.com"];
+    if (window.location.port === "5611" || window.location.hostname === "frontend.siliconwat.com") return ['Frontend', 'Course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5611" : "https://frontend.siliconwat.com"];
+    if (window.location.port === "5612" || window.location.hostname === "backend.siliconwat.com") return ['Backend', 'Course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5612" : "https://backend.siliconwat.com"];
+    if (window.location.port === "5613" || window.location.hostname === "ios.siliconwat.com") return ['iOS', 'Course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5613" : "https://ios.siliconwat.com"];
 
-    if (window.location.port === "5541" || window.location.hostname === "frontend.siliconwat.org") return ['Frontend', 'Cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5541" : "https://frontend.siliconwat.org"];
-    if (window.location.port === "5542" || window.location.hostname === "backend.siliconwat.org") return ['Backend', 'Cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5542" : "https://backend.siliconwat.org"];
-    if (window.location.port === "5543" || window.location.hostname === "ios.siliconwat.org") return ['iOS', 'Cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5543" : "https://ios.siliconwat.org"];
+    if (window.location.port === "5621" || window.location.hostname === "frontend.siliconwat.org") return ['Frontend', 'Cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5621" : "https://frontend.siliconwat.org"];
+    if (window.location.port === "5622" || window.location.hostname === "backend.siliconwat.org") return ['Backend', 'Cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5622" : "https://backend.siliconwat.org"];
+    if (window.location.port === "5623" || window.location.hostname === "ios.siliconwat.org") return ['iOS', 'Cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5623" : "https://ios.siliconwat.org"];
 })();
 
 export const HOME = (() => {
     switch(TRILOGY[0]) {
         case "Frontend":
-            return window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5531" : "https://frontend.siliconwat.com";
+            return window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5611" : "https://frontend.siliconwat.com";
         case "Backend":
-            return window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5532" : "https://backend.siliconwat.com";
+            return window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5612" : "https://backend.siliconwat.com";
         case "iOS":
-            return window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5533" : "https://ios.siliconwat.com";
+            return window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5613" : "https://ios.siliconwat.com";
     }
 })();
 
