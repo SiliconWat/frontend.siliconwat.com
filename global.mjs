@@ -37,7 +37,7 @@ export const BACKGROUND = (() => {
         case "Backend":
             return "linear-gradient(to left, #2E5339, #495F41)";
         case "iOS":
-            return "linear-gradient(90deg, rgba(5,117,230,1) 0%, rgba(2,27,121,1) 100%)";
+            return "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))";
     }
 })();
 

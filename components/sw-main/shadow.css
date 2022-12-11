@@ -28,6 +28,12 @@ svg {
   width: 100%;
 }
 
+@media (max-width: 480px) {
+  svg {
+    height: 100%;
+  }
+}
+
 #background-illustration #Msg {
   animation: floating 3s infinite alternate;
 }
