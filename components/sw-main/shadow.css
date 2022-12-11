@@ -26,7 +26,6 @@ svg {
   position: absolute;
   z-index: -100;
   width: 100%;
-  background: linear-gradient(90deg, rgba(5,117,230,1) 0%, rgba(2,27,121,1) 100%);
 }
 
 #background-illustration #Msg {

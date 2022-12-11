@@ -1,16 +1,23 @@
-import template from './template.mjs';
+import { HOME, BACKGROUND } from '/global.mjs';
 
 class SwMain extends HTMLElement {
     #github;
 
     constructor() {
         super();
-        this.attachShadow({ mode: "open" });
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
         window.addEventListener("hashchange", event => this.render());
     }
 
-    connectedCallback() {
+    async connectedCallback() {
+        const { default: template } = await import(`${HOME}/components/sw-main/template.mjs`);
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+        const link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = `${HOME}/components/sw-main/shadow.css`;
+        this.shadowRoot.prepend(link);
+
         this.style.display = 'block';
     }
 
@@ -20,7 +27,7 @@ class SwMain extends HTMLElement {
         this.#github = github;
         this.shadowRoot.querySelector("slot").assignedElements().forEach(element => element.style.display = 'none');
         await this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(github, this.#hash[1]);
-        document.documentElement.style.backgroundImage = "linear-gradient(90deg, rgba(5,117,230,1) 0%, rgba(2,27,121,1) 100%)";
+        document.documentElement.style.backgroundImage = BACKGROUND;
         document.querySelector('main').style.display = 'flex';
         this.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
     }

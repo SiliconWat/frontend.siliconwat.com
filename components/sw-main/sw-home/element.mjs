@@ -1,4 +1,4 @@
-import { YEAR_BEGAN, YEAR, TERM, TRILOGY, getEmoji, getTerm, getYear, getData } from "/global.mjs";
+import { BACKGROUND, YEAR_BEGAN, YEAR, TERM, TRILOGY, getEmoji, getTerm, getYear, getData } from "/global.mjs";
 import template from './template.mjs';
 
 class SwHome extends HTMLElement {
@@ -195,7 +195,7 @@ class SwHome extends HTMLElement {
         document.documentElement.style.backgroundImage = "url(background.gif)";
         localStorage.setItem(event.target.id, event.target.value);
         await this.render();
-        document.documentElement.style.backgroundImage = "linear-gradient(90deg, rgba(5,117,230,1) 0%, rgba(2,27,121,1) 100%)";
+        document.documentElement.style.backgroundImage = BACKGROUND;
         document.body.style.display = 'flex';
         await document.querySelector('sw-header').render();
         // await document.querySelector('sw-progress').render();
