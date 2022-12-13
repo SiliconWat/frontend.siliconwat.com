@@ -45,8 +45,6 @@ class SwHeader extends HTMLElement {
                     const menu = document.createElement('menu');
 
                     h4.textContent = `Chapter ${c + 1}: ${chapter.title}`;
-
-                    li.append(nav);
                     nav.append(h4, menu);
 
                     ['Learn', 'Practice', 'Review'].forEach(task => {
