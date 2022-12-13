@@ -17,6 +17,7 @@ export const TRILOGY = (() => {
     if (window.location.port === "5621" || window.location.hostname === "frontend.siliconwat.org") return ['Frontend', 'Cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5621" : "https://frontend.siliconwat.org"];
     if (window.location.port === "5622" || window.location.hostname === "backend.siliconwat.org") return ['Backend', 'Cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5622" : "https://backend.siliconwat.org"];
     if (window.location.port === "5623" || window.location.hostname === "ios.siliconwat.org") return ['iOS', 'Cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5623" : "https://ios.siliconwat.org"];
+    return [null, null, null];
 })();
 
 export const HOME = (() => {
