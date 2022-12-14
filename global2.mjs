@@ -3,12 +3,12 @@ export { YEAR_BEGAN, YEAR, TERM };
 
 export function getYear() {
     const searchParams = new URLSearchParams(window.location.search);
-    return Number(localStorage.getItem('year')) || searchParams.get('year') || YEAR;
+    return Number(searchParams.get('year')) || YEAR;
 }
 
 export function getTerm() {
     const searchParams = new URLSearchParams(window.location.search);
-    const term = localStorage.getItem('term') || searchParams.get('year') || TERM;
+    const term = searchParams.get('term') || TERM;
     return [term, ...term.split('-')];
 }
 
