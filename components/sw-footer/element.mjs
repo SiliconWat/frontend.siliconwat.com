@@ -12,6 +12,8 @@ class SwFooter extends HTMLElement {
         await import(`${CAMPUS}/components/sw-footer/sw-donors/element.mjs`);
         this.style.display = 'block';
     }
+
+    //TODO: live demos dynamic
 }
 
 customElements.define("sw-footer", SwFooter);
