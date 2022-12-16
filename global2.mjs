@@ -1,5 +1,5 @@
-import { YEAR_BEGAN, YEAR, TERM } from "/global.mjs";
-export { YEAR_BEGAN, YEAR, TERM };
+import { YEAR_BEGAN, YEAR, TERM, getEmoji } from "/global.mjs";
+export { YEAR_BEGAN, YEAR, TERM, getEmoji };
 
 export function getYear() {
     const searchParams = new URLSearchParams(window.location.search);

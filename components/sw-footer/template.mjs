@@ -28,9 +28,15 @@ template.innerHTML = `
             <section>
                 <div>
                     <h5>Live Demos</h5>
-                    <ul>
+                    <ul id="frontend">
                         <li><a href="https://music.siliconwat.com">Music Editor</a></li>
                         <li><a href="https://music.siliconwat.org">Music School</a></li>
+                    </ul>
+                    <ul id="backend">
+                        <li><a>Blockchain Wallet</a></li>
+                    </ul>
+                    <ul id="ios">
+                        <li><a>3D Animator</a></li>
                     </ul> 
                 </div>
             </section>

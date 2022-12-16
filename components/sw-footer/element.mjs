@@ -1,4 +1,4 @@
-import { CAMPUS } from '/global.mjs';
+import { CAMPUS, TRILOGY } from '/global.mjs';
 import template from './template.mjs';
 
 class SwFooter extends HTMLElement {
@@ -10,10 +10,9 @@ class SwFooter extends HTMLElement {
 
     async connectedCallback() {
         await import(`${CAMPUS}/components/sw-footer/sw-donors/element.mjs`);
+        this.shadowRoot.getElementById(TRILOGY[0].toLowerCase()).style.display = 'block';
         this.style.display = 'block';
     }
-
-    //TODO: live demos dynamic
 }
 
 customElements.define("sw-footer", SwFooter);
