@@ -2,6 +2,7 @@ import { ORIGIN } from "/global.mjs";
 const template = document.createElement("template");
 
 template.innerHTML = `
+    <link rel="stylesheet" href="${ORIGIN}/components/sw-main/sw-cohort/table.css">
     <link rel="stylesheet" href="${ORIGIN}/components/sw-main/sw-cohort/shadow.css">
     <section id="course">
         <p>When you join my <a id="program">Remote Cohort Program</a>, you will be able to have your <strong>Chapter Assignments</strong> <em>graded by your classmates</em>.</p>

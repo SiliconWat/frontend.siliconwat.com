@@ -49,58 +49,11 @@ h2 span {
     color: orange;
 }
 
-table {
-    color: currentColor;
-    font-size: 1.5em;
-    background-color: rgba(0, 0, 0, 60%);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 60%);
-    border-collapse: collapse;
-    text-align: center;
-    overflow-x: scroll;
-}
-
-th, td {
-    padding: 25px;
-}
-
-caption {
-    display: none;
-}
-
-col:first-child, col:last-child {
-    background-color: rgba(0, 0, 0, 10%);
-}
-
-thead, tfoot {
-    background-color: rgba(0, 0, 0, 30%);
-}
-
-tbody tr:hover {
-    background-color: rgba(255, 255, 255, 20%);
-}
-
 tfoot th:last-child {
     color: orange;
 }
 
-td:hover {
-    color: lightgreen;
-    font-weight: bold;
-}
-
-.highlight {
-    background-color: rgba(255, 255, 255, 20%);
-}
-
 @media (max-width: 480px) {
-    table {
-        font-size: 0.3em;
-    }
-
-    th, td {
-        padding: 5px;
-    }
-
     h1 {
         font-size: 1.5em;
     }

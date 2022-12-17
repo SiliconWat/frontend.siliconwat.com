@@ -2,6 +2,7 @@ import { ORIGIN } from "/global.mjs";
 const template = document.createElement("template");
 
 template.innerHTML = `
+    <link rel="stylesheet" href="${ORIGIN}/components/sw-main/sw-cohort/table.css">
     <link rel="stylesheet" href="${ORIGIN}/components/sw-main/sw-home/sw-github/shadow.css">
     <section id="course">
         <p>This course can be <strong><em>self-paced</em></strong> for <strong>self-motivated students</strong>.</p>
