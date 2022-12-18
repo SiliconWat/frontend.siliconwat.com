@@ -14,7 +14,7 @@ class SwBar extends HTMLElement {
         this.#github = github;
         const y = getYear(github);
         const { units, weeks } = await getData('syllabus', y);
-        const data = TRILOGY[1] === 'Course' ? units : weeks;
+        const data = TRILOGY[1] === 'course' ? units : weeks;
 
         let sum = 0;
         const item = data[Number(this.getAttribute('id')) - 1] // units[this.unit - 1];

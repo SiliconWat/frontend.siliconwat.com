@@ -10,34 +10,34 @@ export const AUTH = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1
 export const CAMPUS = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5620" : "https://siliconwat.org";
 
 export const TRILOGY = (() => {
-    if (window.location.port === "5611" || window.location.hostname === "frontend.siliconwat.com") return ['Frontend', 'Course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5611" : "https://frontend.siliconwat.com"];
-    if (window.location.port === "5612" || window.location.hostname === "backend.siliconwat.com") return ['Backend', 'Course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5612" : "https://backend.siliconwat.com"];
-    if (window.location.port === "5613" || window.location.hostname === "ios.siliconwat.com") return ['iOS', 'Course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5613" : "https://ios.siliconwat.com"];
+    if (window.location.port === "5611" || window.location.hostname === "frontend.siliconwat.com") return ['frontend', 'course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5611" : "https://frontend.siliconwat.com"];
+    if (window.location.port === "5612" || window.location.hostname === "backend.siliconwat.com") return ['backend', 'course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5612" : "https://backend.siliconwat.com"];
+    if (window.location.port === "5613" || window.location.hostname === "ios.siliconwat.com") return ['ios', 'course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5613" : "https://ios.siliconwat.com"];
 
-    if (window.location.port === "5621" || window.location.hostname === "frontend.siliconwat.org") return ['Frontend', 'Cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5621" : "https://frontend.siliconwat.org"];
-    if (window.location.port === "5622" || window.location.hostname === "backend.siliconwat.org") return ['Backend', 'Cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5622" : "https://backend.siliconwat.org"];
-    if (window.location.port === "5623" || window.location.hostname === "ios.siliconwat.org") return ['iOS', 'Cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5623" : "https://ios.siliconwat.org"];
+    if (window.location.port === "5621" || window.location.hostname === "frontend.siliconwat.org") return ['frontend', 'cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5621" : "https://frontend.siliconwat.org"];
+    if (window.location.port === "5622" || window.location.hostname === "backend.siliconwat.org") return ['backend', 'cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5622" : "https://backend.siliconwat.org"];
+    if (window.location.port === "5623" || window.location.hostname === "ios.siliconwat.org") return ['ios', 'cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5623" : "https://ios.siliconwat.org"];
     return [null, null, null];
 })();
 
 export const HOME = (() => {
     switch(TRILOGY[0]) {
-        case "Frontend":
+        case "frontend":
             return window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5611" : "https://frontend.siliconwat.com";
-        case "Backend":
+        case "backend":
             return window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5612" : "https://backend.siliconwat.com";
-        case "iOS":
+        case "ios":
             return window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5613" : "https://ios.siliconwat.com";
     }
 })();
 
 export const BACKGROUND = (() => {
     switch(TRILOGY[0]) {
-        case "Frontend":
+        case "frontend":
             return "linear-gradient(90deg, rgba(5,117,230,1) 0%, rgba(2,27,121,1) 100%)";
-        case "Backend":
+        case "backend":
             return "linear-gradient(to left, #2E5339, #495F41)";
-        case "iOS":
+        case "ios":
             return "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))";
     }
 })();
@@ -108,18 +108,18 @@ export async function getData(filename, y=null, options={}) {
 
     switch (filename) {
         case "students":
-            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/Students.json`;
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}-cohort/main/Students.json`;
             break;
         case "syllabus":
-            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/Syllabus.json`;
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}-cohort/main/${y}/Syllabus.json`;
             break;
         case "groups":
             ({ system, season, w } = options);
-            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.capitalize()}/Weeks/${w}/Groups.json`;
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.capitalize()}/Weeks/${w}/Groups.json`;
             break;
         case "gradebook":
             ({ system, season, c } = options);
-            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.capitalize()}/Chapters/${c}/Gradebook.json`;
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.capitalize()}/Chapters/${c}/Gradebook.json`;
             break;
     }
 
@@ -144,7 +144,7 @@ async function getBackup(filename, y) {
             backup = y === YEAR + 1 ? {} : `/docs/students.mjs`;
             break;
         case "syllabus":
-            backup = (await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/main/${YEAR_BEGAN}/Syllabus.json`, { cache: "no-store" })).json(); // `${TRILOGY[2]}/docs/syllabus.mjs`;
+            backup = (await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}-cohort/main/${YEAR_BEGAN}/Syllabus.json`, { cache: "no-store" })).json(); // `${TRILOGY[2]}/docs/syllabus.mjs`;
             break;
         case "groups":
             backup = []; // "/docs/groups.mjs";
@@ -161,7 +161,7 @@ export async function getFile(url) {
         await fetch(url);
         return url;
     } catch(error) {
-        return `https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/404.md`;
+        return `https://github.com/SiliconWat/${TRILOGY[0]}-cohort/blob/main/404.md`;
     }
 }
 

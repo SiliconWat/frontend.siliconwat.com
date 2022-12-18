@@ -9,9 +9,9 @@ class SwCohort extends HTMLElement {
     }
 
     async render(github, task, y, c) {
-        if (TRILOGY[1] === 'Course') {
+        if (TRILOGY[1] === 'course') {
             this.shadowRoot.getElementById('percent').textContent = (PASSING*100).toFixed(0) + "%";
-            this.shadowRoot.getElementById('program').href = `https://${TRILOGY[0].toLowerCase()}.siliconwat.org`;
+            this.shadowRoot.getElementById('program').href = `https://${TRILOGY[0]}.siliconwat.org`;
             this.shadowRoot.getElementById('course').style.display = 'block';
         } else {
             const term = getTerm(github);

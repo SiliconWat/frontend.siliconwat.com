@@ -9,8 +9,8 @@ class SwGitHub extends HTMLElement {
     }
 
     async render(github, y) {
-        if (TRILOGY[1] === 'Course') {
-            this.shadowRoot.getElementById('program').href = `https://${TRILOGY[0].toLowerCase()}.siliconwat.org`;
+        if (TRILOGY[1] === 'course') {
+            this.shadowRoot.getElementById('program').href = `https://${TRILOGY[0]}.siliconwat.org`;
             this.shadowRoot.getElementById('course').style.display = 'block';
         } else {
             const term = getTerm(github);

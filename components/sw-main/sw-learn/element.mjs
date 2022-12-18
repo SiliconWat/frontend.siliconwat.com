@@ -12,12 +12,12 @@ class SwLearn extends HTMLElement {
         const y = getYear(github);
         const term = getTerm(github);
         const { cohort, units, weeks, chapters } = await getData('syllabus', y);
-        const i = TRILOGY[1] === 'Course' ? getUnit(units, c) : getWeek(weeks, c);
-        const item = TRILOGY[1] === 'Course' ? units[i - 1] : weeks[i - 1];
+        const i = TRILOGY[1] === 'course' ? getUnit(units, c) : getWeek(weeks, c);
+        const item = TRILOGY[1] === 'course' ? units[i - 1] : weeks[i - 1];
         const chapter = chapters[c - 1];
         const done = Number(localStorage.getItem(`learn-chapter${c}`));
 
-        this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'Course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${getWeeks(term[1], y, cohort[term[1]][term[2]].start[0], cohort[term[1]][term[2]].start[1], i)}`;
+        this.shadowRoot.querySelector('header h1').textContent = TRILOGY[1] === 'course' ? `Unit ${i}: ${item.title}` : `Week ${i}: ${getWeeks(term[1], y, cohort[term[1]][term[2]].start[0], cohort[term[1]][term[2]].start[1], i)}`;
         this.shadowRoot.querySelector('header h2').textContent = `${done ? "✅" : "📖"} Learn: Chapter ${c}`;
         this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
@@ -69,14 +69,14 @@ class SwLearn extends HTMLElement {
         const button = this.shadowRoot.querySelector('.quiz button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Quiz ${c}`;
-        button.onclick = () => window.open(`https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://quiz.siliconwat.com/#${TRILOGY[0]}-chapter${c}`, '_blank');
     }
 
     #renderGroup(y, c, done) {
         const button = this.shadowRoot.querySelector('.group button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Discussion ${c}`;
-        button.onclick = async () => window.open(await getFile(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort/blob/main/${y}/Chapters/${c}/Discussion.md`), '_blank');
+        button.onclick = async () => window.open(await getFile(`https://github.com/SiliconWat/${TRILOGY[0]}-cohort/blob/main/${y}/Chapters/${c}/Discussion.md`), '_blank');
     }
 }
 

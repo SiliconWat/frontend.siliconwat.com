@@ -24,20 +24,20 @@ class SwHome extends HTMLElement {
 
     #renderCards(course) {
         this.shadowRoot.getElementById('title').textContent = course.title;
-        this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'Course' ? course.subtitle : "";
+        this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'course' ? course.subtitle : "";
         this.shadowRoot.getElementById('udemy').href = course.udemy;
-        this.shadowRoot.getElementById('quiz').href = `https://quiz.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
-        this.shadowRoot.getElementById('code').href = `https://code.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
-        this.shadowRoot.getElementById('flashcard').href = `https://flashcard.siliconwat.com/#${TRILOGY[0].toLowerCase()}`;
+        this.shadowRoot.getElementById('quiz').href = `https://quiz.siliconwat.com/#${TRILOGY[0]}`;
+        this.shadowRoot.getElementById('code').href = `https://code.siliconwat.com/#${TRILOGY[0]}`;
+        this.shadowRoot.getElementById('flashcard').href = `https://flashcard.siliconwat.com/#${TRILOGY[0]}`;
         
         this.shadowRoot.querySelectorAll('.medium').forEach(a => a.href = course.medium);
-        this.shadowRoot.querySelectorAll('.program').forEach(span => span.textContent = TRILOGY[1] === 'Course' ? "If" : "When");
-        this.shadowRoot.querySelectorAll('button').forEach(button => button.style.display = TRILOGY[1] === 'Cohort' ? "block" : "none");
+        this.shadowRoot.querySelectorAll('.program').forEach(span => span.textContent = TRILOGY[1] === 'course' ? "If" : "When");
+        this.shadowRoot.querySelectorAll('button').forEach(button => button.style.display = TRILOGY[1] === 'cohort' ? "block" : "none");
 
         this.shadowRoot.querySelectorAll('.cohort').forEach(a => {
             a.textContent = "Remote Cohort Program";
-            if (TRILOGY[1] === 'Course') a.href = `https://${TRILOGY[0].toLowerCase()}.siliconwat.org`;
-            if (TRILOGY[1] === 'Cohort') a.style.fontWeight = "bold";
+            if (TRILOGY[1] === 'course') a.href = `https://${TRILOGY[0]}.siliconwat.org`;
+            if (TRILOGY[1] === 'cohort') a.style.fontWeight = "bold";
         });
 
         this.#render();
@@ -90,7 +90,7 @@ class SwHome extends HTMLElement {
         select.replaceChildren(fragment);
         select.value = year;
         //select.disabled = github.student;
-        select.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
+        select.style.display = TRILOGY[1] === 'cohort' ? 'block' : 'none';
     }
 
     #getYearTotal(people, y) {
@@ -142,7 +142,7 @@ class SwHome extends HTMLElement {
 
         select.value = getTerm(github)[0];
         //select.disabled = github.student;
-        select.style.display = TRILOGY[1] === 'Cohort' ? 'block' : 'none';
+        select.style.display = TRILOGY[1] === 'cohort' ? 'block' : 'none';
     }
 
     #createTermOptions(fragment, array, students, y) {
@@ -170,7 +170,7 @@ class SwHome extends HTMLElement {
     }
 
     async #renderButtons(github, course, cohort) {
-        this.shadowRoot.getElementById('join').onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0].toLowerCase()}-cohort`, '_blank');
+        this.shadowRoot.getElementById('join').onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0]}-cohort`, '_blank');
         
         const auth = this.shadowRoot.getElementById('auth');
         auth.firstElementChild.textContent = github.login ? "Log Out" : "Log In";
