@@ -6,8 +6,10 @@ template.innerHTML = `
     <link rel="stylesheet" href="${ORIGIN}/components/sw-main/sw-home/shadow.css">
     <main>
         <header>
-            <a class="medium"><h1 id="title"></h1></a>
-            <h2 id="subtitle"></h2>
+            <a class="medium">
+                <h1 id="title"></h1>
+                <h2 id="subtitle"></h2>
+            </a>
             <h2><select id="year" onchange="this.getRootNode().host.changeYearTerm(event)"></select></h2>
             <h3>
                 <select id="term" onchange="this.getRootNode().host.changeYearTerm(event)">

@@ -47,13 +47,13 @@ class SwHome extends HTMLElement {
         let project;
 
         switch (TRILOGY[0]) {
-            case "Frontend":
+            case "frontend":
                 project = "Codepen Project";
                 break;
-            case "Backend":
+            case "backend":
                 project = "Codespace Project";
                 break;
-            case "iOS":
+            case "ios":
                 project = "Replit Project";
                 break;
         }

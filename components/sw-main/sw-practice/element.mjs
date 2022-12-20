@@ -34,15 +34,15 @@ class SwPractice extends HTMLElement {
         let editor, project;
 
         switch (TRILOGY[0]) {
-            case "Frontend":
+            case "frontend":
                 editor = "Codepen";
                 project = "Codepen Project";
                 break;
-            case "Backend":
+            case "backend":
                 editor = "Codespace";
                 project = "Codespace Project";
                 break;
-            case "iOS":
+            case "ios":
                 editor = "Replit";
                 project = "Replit Project";
                 break;

@@ -35,13 +35,13 @@ class SwLearn extends HTMLElement {
         let editor;
 
         switch (TRILOGY[0]) {
-            case "Frontend":
+            case "frontend":
                 editor = "Codepen";
                 break;
-            case "Backend":
+            case "backend":
                 editor = "Codespace";
                 break;
-            case "iOS":
+            case "ios":
                 editor = "Replit";
                 break;
         }

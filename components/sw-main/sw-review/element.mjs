@@ -34,15 +34,15 @@ class SwReview extends HTMLElement {
         let code, subject;
 
         switch (TRILOGY[0]) {
-            case "Frontend":
+            case "frontend":
                 code = "HTML, CSS, and especially JavaScript";
                 subject = "Frontend Engineering";
                 break;
-            case "Backend":
+            case "backend":
                 code = "Node and Solidity";
                 subject = "Backend Engineering";
                 break;
-            case "iOS":
+            case "ios":
                 code = "Swift";
                 subject = "iOS Engineering";
                 break;
