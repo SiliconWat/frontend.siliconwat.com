@@ -28,7 +28,7 @@ template.innerHTML = `
             <h2><span>#2</span> Medium Summary</h2>
             <figure>📄</figure>
             <p>The <em>best</em> way to <em>reinforce</em> what you have learned is to <strong>summarize it</strong> in <strong><em>your own words</em></strong> and <strong>share it <em>with others</em></strong>. You can sign up for a FREE <strong>Medium account</strong> for this purpose.</p>
-            <p>As students in the <strong>Cohort Program</strong>, you are required to <strong><em>read each other's</em> Medium Summaries</strong> and <strong><em>leave at least one</em> positive comment</strong>. This is to <em>increase your understanding</em> of <strong>other perspectives</strong>. (todo in cohort: highlight an excerpt)</p>
+            <p>As students in the <strong>Cohort Program</strong>, you are required to <strong><em>read each other's</em> Medium Summaries</strong> and <strong><em>leave at least one</em> positive comment</strong>. This is to <em>increase your understanding</em> of <strong>other perspectives</strong>.</p>
             <p>Additionally, to <em>pass</em> the <strong>Cohort Program</strong>, your classmates need to give your <strong>Medium Summaries</strong> a <em>passing grade</em>.</p>
             <p><em class="free">It is FREE to create a <strong>Medium account</strong> to write summaries,</em> <em class="pay">but to have yours <strong>graded</strong> and <strong>commented</strong>, you need to join the <strong>Cohort Program</strong>.</em></p>
             <br>

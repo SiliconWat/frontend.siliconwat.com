@@ -19,8 +19,8 @@ template.innerHTML = `
             <figure>⌨️</figure>
             <p>Put your newfound <em>coding skills</em> to the test by solving my <strong>Coding Exercises</strong>.</p>
             <p>They are <em>interactive</em> like <strong id="editor"></strong> so you can <em>see the <strong>results</strong> as you code</em> and <em>check if your <strong>solutions</strong> are correct</em>.</p>
-            <p><strong><em>Step-by-step</em> video explanations</strong> of the solutions are available inside my <strong>Udemy Course</strong>.</p>
-            <p><em class="free">The <strong>Coding Exercises</strong> are FREE to play to earn <strong>SW Coins</strong>,</em> <em class="pay">but the <strong>video explanations</strong> require purchasing the <strong>Udemy Course</strong>.</em></p>
+            <p><strong><em>Step-by-step</em> interactive hints</strong> will guide you <em>naturally towards the solutions</em> should you need help.</p>
+            <p><em class="free">The <strong>Coding Exercises</strong> are FREE to play to earn <strong>SW Coins</strong>!</em></p>
             <br>
             <button><span></span></button>
         </section>
