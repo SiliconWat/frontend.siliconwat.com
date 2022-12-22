@@ -199,7 +199,7 @@ class SwGitHub extends HTMLElement {
         }
 
         if (students.length === 0) {
-            const th = document.createElement('th');
+            const th = document.createElement('td');
             th.textContent = "There are currently no students.";
             th.style.fontStyle = "italic";
             tr.append(th);
@@ -296,8 +296,8 @@ class SwGitHub extends HTMLElement {
         }
 
         if (students.length === 0) {
-            const th = document.createElement('th');
-            th.innerHTML = `Get <a href="https://github.com/thonly">@thonly</a> as a <strong>Tutor</strong> for being the <em>first</em> to enroll!`;
+            const th = document.createElement('td');
+            th.innerHTML = `Get <a href="https://github.com/thonly">@thonly</a> as a <strong>tutor</strong> for being the <em>first</em> to enroll!`;
             th.style.fontStyle = "italic";
             ftr.append(th);
         }
