@@ -297,7 +297,7 @@ class SwGitHub extends HTMLElement {
 
         if (students.length === 0) {
             const th = document.createElement('th');
-            th.textContent = "Get a 50% DISCOUNT for being the first to enroll!";
+            th.innerHTML = `Get <a href="https://github.com/thonly">@thonly</a> as a <strong>Tutor</strong> for being the <em>first</em> to enroll!`;
             th.style.fontStyle = "italic";
             ftr.append(th);
         }
