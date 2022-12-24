@@ -1,9 +1,9 @@
-import { THONLY } from "/global.mjs";
+import { ORIGIN, THONLY } from "/global.mjs";
 const template = document.createElement("template");
 
 template.innerHTML = `
     <link rel="stylesheet" href="${THONLY}/components/tl-footer/shadow.css">
-    <link rel="stylesheet" href="components/sw-footer/shadow.css">
+    <link rel="stylesheet" href="${ORIGIN}/components/sw-footer/shadow.css">
     <nav>
         <main>
             <section>

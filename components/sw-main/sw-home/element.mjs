@@ -25,12 +25,12 @@ class SwHome extends HTMLElement {
     #renderCards(course) {
         this.shadowRoot.getElementById('title').textContent = course.title;
         this.shadowRoot.getElementById('subtitle').textContent = TRILOGY[1] === 'course' ? course.subtitle : "";
-        this.shadowRoot.getElementById('udemy').href = course.udemy;
+        this.shadowRoot.getElementById('udemy').href = course.udemy || "#";
         this.shadowRoot.getElementById('quiz').href = `https://quiz.siliconwat.com/#${TRILOGY[0]}`;
         this.shadowRoot.getElementById('code').href = `https://code.siliconwat.com/#${TRILOGY[0]}`;
         this.shadowRoot.getElementById('flashcard').href = `https://flashcard.siliconwat.com/#${TRILOGY[0]}`;
         
-        this.shadowRoot.querySelectorAll('.medium').forEach(a => a.href = course.medium);
+        this.shadowRoot.querySelectorAll('.medium').forEach(a => a.href = course.medium || "#");
         this.shadowRoot.querySelectorAll('.program').forEach(span => span.textContent = TRILOGY[1] === 'course' ? "If" : "When");
         this.shadowRoot.querySelectorAll('button').forEach(button => button.style.display = TRILOGY[1] === 'cohort' ? "block" : "none");
 
@@ -179,11 +179,11 @@ class SwHome extends HTMLElement {
         const discord = this.shadowRoot.getElementById('discord');
         if (github.student) {
             discord.firstElementChild.textContent = "Private Discord";
-            discord.onclick = () => window.open(cohort[github.student.system][github.student.season].discord, '_blank');
+            discord.onclick = () => window.open(cohort[github.student.system][github.student.season].discord || course.discord, '_blank');
         } else if (github.login) {
             const term = getTerm(github);
             discord.firstElementChild.textContent = "Visitor Discord";
-            discord.onclick = () => window.open(cohort[term[1]][term[2]].discord, '_blank');
+            discord.onclick = () => window.open(cohort[term[1]][term[2]].discord || course.discord, '_blank');
         } else {
             discord.firstElementChild.textContent = "Public Discord";
             discord.onclick = () => window.open(course.discord, '_blank');

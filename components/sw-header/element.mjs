@@ -1,13 +1,22 @@
-import { getYear, getData } from '/global.mjs';
+import { TRILOGY, getYear, getData } from '/global.mjs';
 import template from './template.mjs';
 
 class SwHeader extends HTMLElement {
     #github;
+    #courses = {
+        frontend: "Frontend Music Course",
+        backend: "Backend Blockchain Course",
+        ios: "iOS Metaverse Course"
+    }
 
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+
+    connectedCallback() {
+        this.shadowRoot.getElementById('title').textContent = this.#courses[TRILOGY[0]];
     }
 
     async render(github=this.#github) {

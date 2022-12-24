@@ -31,8 +31,8 @@ class SwProgress extends HTMLElement {
         });
 
         this.shadowRoot.getElementById('fraction').textContent = `${sum}/${total*3}`;
-        this.shadowRoot.getElementById('percent').textContent = `${Math.round(sum/(total*3)*100)}%`;
-        this.shadowRoot.getElementById('ring').style.strokeDashoffset = sum/(total*3)*100;
+        this.shadowRoot.getElementById('percent').textContent = total > 0 ? `${Math.round(sum/(total*3)*100)}%` : "0%";
+        this.shadowRoot.getElementById('ring').style.strokeDashoffset = total > 0 ? sum/(total*3)*100 : 0;
         this.style.display = 'block';
     }
 }

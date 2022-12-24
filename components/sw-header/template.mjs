@@ -1,15 +1,15 @@
-import { THONLY } from "/global.mjs";
+import { ORIGIN, THONLY } from "/global.mjs";
 import "./sw-bar/element.mjs";
 
 const template = document.createElement("template");
 
 template.innerHTML = `
     <link rel="stylesheet" href="${THONLY}/components/tl-header/shadow.css">
-    <link rel="stylesheet" href="components/sw-header/shadow.css">
+    <link rel="stylesheet" href="${ORIGIN}/components/sw-header/shadow.css">
     <header>
         <section>
             <a href="https://siliconwat.com"><img src="siliconwat.png"></a>
-            <a href="#"><h1>Frontend Music Course</h1></a>
+            <a href="#"><h1 id="title"></h1></a>
         </section>
         <input id="menu-toggle" type="checkbox">
         <label class='menu-button-container' for="menu-toggle">
