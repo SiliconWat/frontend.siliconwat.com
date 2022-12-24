@@ -150,7 +150,7 @@ class SwHome extends HTMLElement {
             const term = cycle.split('-');
             const option = document.createElement('option');
             option.value = cycle;
-            option.textContent = `${term[0].capitalize()} ${term[1].capitalize()} - ${this.#getTermTotal(students, y, term[0], term[1])}`;
+            option.textContent = `${term[1].capitalize()} ${term[0].capitalize()} - ${this.#getTermTotal(students, y, term[0], term[1])}`;
             fragment.append(option);
         });
     }
