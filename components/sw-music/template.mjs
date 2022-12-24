@@ -14,7 +14,7 @@ template.innerHTML = `
             <circle cx="5" cy="5" r="5" fill="url('#gradient')" />
             <text x="5" y="7" text-anchor="middle">♫</text>
         </svg>
-        <iframe src="https://music.thonly.org/?embed" width="0" height="0" frameborder="0"></iframe>
+        <iframe src="https://radio.thonly.org/?embed" width="0" height="0" frameborder="0"></iframe>
     </aside>
 `;
 
