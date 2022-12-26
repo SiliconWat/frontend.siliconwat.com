@@ -6,7 +6,7 @@ template.innerHTML = `
     <link rel="stylesheet" href="${ORIGIN}/components/sw-main/sw-home/sw-github/shadow.css">
     <section id="course">
         <p>This course can be <strong><em>self-paced</em></strong> for <strong>self-motivated students</strong>.</p>
-        <p>However, if you prefer more <strong>structure</strong>, consider joining my <a id="program">Remote Cohort Program</a> to study alongside <em>other students</em>!</p>
+        <p>However, if you prefer more <strong>structure</strong>, consider joining my <a id="program">Remote Cohort Program</a> to study alongside <em>other students</em> from around the world!</p>
         <p>It costs just <strong>$100</strong> but also requires a <strong>commitment loan</strong> of <strong>100 SW Coins</strong> to attract only the most <em>serious students</em>.</p>
         <p>And to motivate you and your classmates to finish the entire course, <strong>200 SW Coins</strong> will be <em>rewarded upon completion</em>!</p>
         <p>After you successfully complete the Cohort Program, you will have the opportunity to come back and <strong>tutor <em>future students</em></strong>.</p>
