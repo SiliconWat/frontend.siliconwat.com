@@ -104,7 +104,7 @@ class SwHome extends HTMLElement {
             });
         }
 
-        return `${this.#getEmoji('tutor')} ${tutors} ${this.#getEmoji('student')} ${students}`;
+        return `${this.#getEmoji('tutor')} ${tutors > 6 ? tutors : 6} ${this.#getEmoji('student')} ${students}`;
     }
 
     #getEmoji(type) {
@@ -166,7 +166,7 @@ class SwHome extends HTMLElement {
             });
         }
 
-        return `${this.#getEmoji('tutor')} ${tutors} ${this.#getEmoji('student')} ${students}`;
+        return `${this.#getEmoji('tutor')} ${tutors || 1} ${this.#getEmoji('student')} ${students}`;
     }
 
     async #renderButtons(github, course, cohort) {

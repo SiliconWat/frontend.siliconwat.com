@@ -79,7 +79,7 @@ template.innerHTML = `
     </svg>
     <slot></slot>
     <footer>
-        <p>If you’re already a Medium member or don't like Medium, please consider <strong>donating</strong> to <a href="https://github.com/sponsors/SiliconWat">@SiliconWat</a> to receive the same <strong>Udemy discount</strong>!</p>
+        <p>If you’re already a Medium member or don't like Medium, please consider <strong>donating</strong> to <a href="https://github.com/sponsors/SiliconWat">@SiliconWat</a> to receive the same <strong>Udemy discounts</strong>!</p>
     </footer>
 `;
 
