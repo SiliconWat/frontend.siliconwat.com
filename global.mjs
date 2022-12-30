@@ -1,35 +1,11 @@
+import { THONLY, AUTH, FRONTEND_COURSE, CAMPUS, TRILOGY, HOME } from "https://thonly.org/global.mjs";
+export { THONLY, AUTH, FRONTEND_COURSE as ORIGIN, CAMPUS, TRILOGY, HOME };
+
 // current
 export const YEAR_BEGAN = 2022;
 export const YEAR = 2023;
 export const TERM = "semester-summer";
 export const PASSING = 0.70;
-
-export const ORIGIN = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5611" : "https://frontend.siliconwat.com";
-export const THONLY = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5500" : "https://thonly.org";
-export const AUTH = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5600" : "https://auth.siliconwat.com";
-export const CAMPUS = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5620" : "https://siliconwat.org";
-
-export const TRILOGY = (() => {
-    if (window.location.port === "5611" || window.location.hostname === "frontend.siliconwat.com") return ['frontend', 'course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5611" : "https://frontend.siliconwat.com"];
-    if (window.location.port === "5612" || window.location.hostname === "backend.siliconwat.com") return ['backend', 'course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5612" : "https://backend.siliconwat.com"];
-    if (window.location.port === "5613" || window.location.hostname === "ios.siliconwat.com") return ['ios', 'course', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5613" : "https://ios.siliconwat.com"];
-
-    if (window.location.port === "5621" || window.location.hostname === "frontend.siliconwat.org") return ['frontend', 'cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5621" : "https://frontend.siliconwat.org"];
-    if (window.location.port === "5622" || window.location.hostname === "backend.siliconwat.org") return ['backend', 'cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5622" : "https://backend.siliconwat.org"];
-    if (window.location.port === "5623" || window.location.hostname === "ios.siliconwat.org") return ['ios', 'cohort', window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5623" : "https://ios.siliconwat.org"];
-    return [null, null, null];
-})();
-
-export const HOME = (() => {
-    switch(TRILOGY[0]) {
-        case "frontend":
-            return window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5611" : "https://frontend.siliconwat.com";
-        case "backend":
-            return window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5612" : "https://backend.siliconwat.com";
-        case "ios":
-            return window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5613" : "https://ios.siliconwat.com";
-    }
-})();
 
 export const BACKGROUND = (() => {
     switch(TRILOGY[0]) {
