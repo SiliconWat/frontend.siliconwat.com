@@ -29,7 +29,7 @@ class SwMain extends HTMLElement {
         await this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(github, this.#hash[1]);
         document.documentElement.style.backgroundImage = BACKGROUND;
         document.querySelector('main').style.display = 'flex';
-        this.parentElement.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
+        document.body.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
     }
 
     get #hash() {
