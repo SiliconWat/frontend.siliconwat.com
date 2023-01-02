@@ -29,7 +29,7 @@ template.innerHTML = `
                 <div>
                     <h5>Live Demos</h5>
                     <ul id="frontend">
-                        <li><a href="https://music.siliconwat.com">Music Editor</a></li>
+                        <li><a href="https://music.siliconwat.com">Music PWA</a></li>
                         <li><a href="https://music.siliconwat.org">Music School</a></li>
                     </ul>
                     <ul id="backend">
