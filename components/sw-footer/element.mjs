@@ -11,6 +11,9 @@ class SwFooter extends HTMLElement {
     async connectedCallback() {
         await import(`${CAMPUS}/components/sw-footer/sw-donors/element.mjs`);
         this.shadowRoot.getElementById(TRILOGY[0]).style.display = 'block';
+    }
+
+    render() {
         this.style.display = 'block';
     }
 }

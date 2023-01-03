@@ -19,6 +19,7 @@ class SwMain extends HTMLElement {
         this.shadowRoot.prepend(link);
 
         this.style.display = 'block';
+        this.dispatchEvent(new CustomEvent("sw-main", { bubbles: true, composed: true, detail: { element: this }}));
     }
 
     async render(github=this.#github) {
