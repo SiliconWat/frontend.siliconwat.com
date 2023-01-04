@@ -91,7 +91,7 @@ section button span {
 
 section ul {
     text-align: left;
-    list-style-type: "✅";
+    list-style-type: "☑️";
     padding-bottom: 20px;
 }
 
@@ -103,6 +103,14 @@ section li {
 
 section p {
     margin: 10px 20px;
+}
+
+li.coin {
+    list-style-type: "✅";
+}
+
+li.special {
+    list-style-type: "✴️";
 }
 
 .pay {
