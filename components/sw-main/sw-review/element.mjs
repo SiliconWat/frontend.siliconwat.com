@@ -22,7 +22,7 @@ class SwReview extends HTMLElement {
         this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
         this.#render();
-        this.#renderFlashcard(c, done);
+        this.#renderFlashcard(github, c, done);
         this.#renderSummary(y, c, done);
         this.#renderInterview(chapter, c, done);
 
@@ -52,11 +52,11 @@ class SwReview extends HTMLElement {
         this.shadowRoot.getElementById('subject').textContent = subject;
     }
 
-    #renderFlashcard(c, done) {
+    #renderFlashcard(github, c, done) {
         const button = this.shadowRoot.querySelector('.flashcard button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Game ${c}`;
-        button.onclick = () => window.open(`https://flashcard.siliconwat.com/#${TRILOGY[0]}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://flashcard.siliconwat.com/${github.student ? "?ref=cohort" : "?ref=course"}#${TRILOGY[0]}-chapter${c}`, '_blank');
     }
 
     #renderSummary(y, c, done) {

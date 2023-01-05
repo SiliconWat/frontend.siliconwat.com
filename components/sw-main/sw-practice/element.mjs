@@ -22,7 +22,7 @@ class SwPractice extends HTMLElement {
         this.shadowRoot.querySelector('header h3').textContent = `${done ? "☑️" : "📋"} ${chapter.title}`;
         
         this.#render();
-        this.#renderCoding(c, done);
+        this.#renderCoding(github, c, done);
         this.#renderPair(y, c, done);
         this.#renderProject(y, c, done);
 
@@ -52,11 +52,11 @@ class SwPractice extends HTMLElement {
         this.shadowRoot.querySelectorAll('.app').forEach(element => element.textContent = project);
     }
 
-    #renderCoding(c, done) {
+    #renderCoding(github, c, done) {
         const button = this.shadowRoot.querySelector('.coding button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Exercise ${c}`;
-        button.onclick = () => window.open(`https://code.siliconwat.com/#${TRILOGY[0]}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://code.siliconwat.com/${github.student ? "?ref=cohort" : "?ref=course"}#${TRILOGY[0]}-chapter${c}`, '_blank');
     }
 
     #renderPair(y, c, done) {

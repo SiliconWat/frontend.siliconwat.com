@@ -24,7 +24,7 @@ class SwLearn extends HTMLElement {
         this.#render();
         this.#renderVideo(chapter, c, done);
         this.#renderTextbook(chapter, c, done);
-        this.#renderQuiz(c, done);
+        this.#renderQuiz(github, c, done);
         this.#renderGroup(y, c, done);
 
         await this.shadowRoot.querySelector('sw-cohort').render(github, "learn", y, c);
@@ -65,11 +65,11 @@ class SwLearn extends HTMLElement {
         button.onclick = () => window.open(chapter.medium, '_blank');
     }
     
-    #renderQuiz(c, done) {
+    #renderQuiz(github, c, done) {
         const button = this.shadowRoot.querySelector('.quiz button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Quiz ${c}`;
-        button.onclick = () => window.open(`https://quiz.siliconwat.com/#${TRILOGY[0]}-chapter${c}`, '_blank');
+        button.onclick = () => window.open(`https://quiz.siliconwat.com/${github.student ? "?ref=cohort" : "?ref=course"}#${TRILOGY[0]}-chapter${c}`, '_blank');
     }
 
     #renderGroup(y, c, done) {
