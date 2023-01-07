@@ -1,5 +1,5 @@
-import { THONLY, AUTH, FRONTEND_COURSE, CAMPUS, TRILOGY, HOME, GAME, DEVICE } from "https://thonly.org/global.mjs";
-export { THONLY, AUTH, FRONTEND_COURSE as ORIGIN, CAMPUS, TRILOGY, HOME, GAME, DEVICE };
+import { THONLY, AUTH, FRONTEND_COURSE, CAMPUS, TRILOGY, HOME, DEVICE } from "https://thonly.org/global.mjs";
+export { THONLY, AUTH, FRONTEND_COURSE as ORIGIN, CAMPUS, TRILOGY, HOME, DEVICE };
 
 // current
 export const YEAR_BEGAN = 2022;
