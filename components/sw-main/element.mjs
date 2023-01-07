@@ -1,4 +1,4 @@
-import { HOME, BACKGROUND } from '/global.mjs';
+import { HOME, BACKGROUND, GAME, DEVICE } from '/global.mjs';
 
 class SwMain extends HTMLElement {
     #github;
@@ -6,6 +6,15 @@ class SwMain extends HTMLElement {
     constructor() {
         super();
         window.addEventListener("hashchange", event => this.render());
+    }
+
+    #render() {
+        if (DEVICE[0] === 'mac' || DEVICE[0] === 'pc') {
+            const img = document.createElement('img');
+            this.shadowRoot.querySelector('footer').prepend(img);
+            img.src = DEVICE[1].image;
+            img.title = DEVICE[1].description;
+        }
     }
 
     async connectedCallback() {
@@ -18,6 +27,7 @@ class SwMain extends HTMLElement {
         link.href = `${HOME}/components/sw-main/shadow.css`;
         this.shadowRoot.prepend(link);
 
+        this.#render();
         this.style.display = 'block';
         this.dispatchEvent(new CustomEvent("sw-main", { bubbles: true, composed: true, detail: { component: this }}));
     }
