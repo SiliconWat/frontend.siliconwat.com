@@ -35,6 +35,7 @@ template.innerHTML = `
             <p class="free"><em>The Course Textbook is written as <strong>Medium articles</strong> and are FREE to read from here.</em></p>
             <!--<p>From here, you can read the entire course textbook on Medium for <strong>free!</strong></p>-->
             <p class="pay"><em>If you like Medium and use my <a href="https://medium.com/@thonly/membership">referral link</a> to join, I will give you a <strong>special coupon</strong> to get ALL my <a href="https://siliconwat.com">Udemy courses</a> for <strong>90% OFF</strong> for Life!</em></p>
+            <p><em>If you’re already a Medium member or don't like Medium, please consider <strong>donating</strong> to <a href="https://github.com/sponsors/SiliconWat">@SiliconWat</a> to receive the same <strong>Udemy discounts</strong>!</em></p>
             <br>
             <button>Read <span></span></button>
         </section>
