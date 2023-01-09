@@ -11,6 +11,10 @@ aside {
     text-align: left;
 }
 
+#scholarship {
+    display: none;
+}
+
 @media (max-width: 480px) {
     main {
         grid-template: repeat(6, auto) / 1fr;

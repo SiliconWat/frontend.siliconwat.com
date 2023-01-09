@@ -23,6 +23,7 @@ template.innerHTML = `
             <p>You can turn on the <strong>English subtitle</strong> to catch my every word.</p>
             <p><em>Subtitles in other languages coming soon.</em></p>
             <p class="pay"><em>Purchase of my <strong>Udemy Course</strong> is required, but <strong>SW Coins</strong> can be redeemed for coupons for up to <strong>90% OFF</strong>!</em></p>
+            <p id="scholarship" class="donate"><em>To help you <strong>begin</strong> your coding education, inclusion and diversity <strong>scholarships</strong> coming soon...</em></p>
             <br>
             <button>Watch <span></span></button>
         </section>

@@ -37,6 +37,7 @@ class SwLearn extends HTMLElement {
         switch (TRILOGY[0]) {
             case "frontend":
                 editor = "Codepen";
+                this.shadowRoot.getElementById('scholarship').style.display = 'block';
                 break;
             case "backend":
                 editor = "Codespace";
