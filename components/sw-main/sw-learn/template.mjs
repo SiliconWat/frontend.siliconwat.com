@@ -34,7 +34,7 @@ template.innerHTML = `
             <p>This guarantees that you did not miss anything <strong>important</strong>.</p>
             <p class="free"><em>The Course Textbook is written as <strong>Medium articles</strong> and are FREE to read from here.</em></p>
             <!--<p>From here, you can read the entire course textbook on Medium for <strong>free!</strong></p>-->
-            <p class="donate"><em>If you like Medium, please use my <a href="https://medium.com/@thonly/membership">referral link</a> to join. <strong>All proceeds</strong> will be donated towards the construction of the <a href="https://siliconwat.org">Silicon Wat Campus</a> for children in <strong>Ukraine</strong> and <strong>Cambodia</strong> ❤️</em></p>
+            <p class="donate"><em>If you like Medium, please use my <a href="https://medium.com/@thonly/membership">referral link</a> to become a member. <strong>All proceeds</strong> will be donated towards the construction of the <a href="https://siliconwat.org">Silicon Wat Campus</a> for children in <strong>Ukraine</strong> and <strong>Cambodia</strong> ❤️</em></p>
             <p class="donate"><em>If you’re already a Medium member or don't like Medium, please consider donating to <a href="https://github.com/sponsors/SiliconWat">@SiliconWat</a> instead 🙏</em></p>
             <br>
             <button>Read <span></span></button>
