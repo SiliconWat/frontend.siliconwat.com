@@ -22,8 +22,9 @@ template.innerHTML = `
             <p>You can <strong>pause</strong>, <strong>slow down</strong> or <strong>speed up</strong> the video.</p>
             <p>You can turn on the <strong>English subtitle</strong> to catch my every word.</p>
             <p><em>Subtitles in other languages coming soon.</em></p>
-            <p class="pay"><em>Purchase of my <strong>Udemy Course</strong> is required, but <strong>SW Coins</strong> can be redeemed for coupons for up to <strong>90% OFF</strong>!</em></p>
-            <p id="scholarship" class="donate"><em>To help you <strong>begin</strong> your coding education, inclusion and diversity <strong>scholarships</strong> coming soon...</em></p>
+            <p class="pay"><em>Purchase of my <strong>Udemy Course</strong> is required.</em></p>
+            <p class="free"><em id="scholarship">To help you <strong>begin</strong> your coding education, inclusion and diversity <strong>scholarships</strong> coming soon...</em></p>
+            <p class="free"><em id="coin">But, <strong>SW Coins</strong> can be redeemed for coupons for up to <strong>90% OFF</strong>!</em></p>
             <br>
             <button>Watch <span></span></button>
         </section>
@@ -33,7 +34,7 @@ template.innerHTML = `
             <p>My Course Textbook is a <em>transcript</em> of my lecture videos <em>plus</em> <strong>helpful diagrams</strong> and <strong>side notes</strong>.</p>
             <p><strong>Highly recommended</strong> that you <strong><em>read</em> this textbook version</strong> to <em>carefully review</em> what you have watched.</p>
             <p>This guarantees that you did not miss anything <strong>important</strong>.</p>
-            <p class="free"><em>The Course Textbook is written as <strong>Medium articles</strong> and are FREE to read from here.</em></p>
+            <p class="free"><em>The Course Textbook is written as <strong>Medium articles</strong> and are FREE to read using the button below 👇</em></p>
             <!--<p>From here, you can read the entire course textbook on Medium for <strong>free!</strong></p>-->
             <p class="donate"><em>If you like Medium, please use my <a href="https://medium.com/@thonly/membership">referral link</a> to become a member. <strong>All proceeds</strong> will be donated towards the construction of the <a href="https://siliconwat.org">Silicon Wat Campus</a> for children in <strong>Ukraine</strong> and <strong>Cambodia</strong> ❤️</em></p>
             <p class="donate"><em>If you’re already a Medium member or don't like Medium, please consider donating to <a href="https://github.com/sponsors/SiliconWat">@SiliconWat</a> instead 🙏</em></p>

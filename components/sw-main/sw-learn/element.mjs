@@ -41,9 +41,11 @@ class SwLearn extends HTMLElement {
                 break;
             case "backend":
                 editor = "Codespace";
+                this.shadowRoot.getElementById('coin').style.display = 'block';
                 break;
             case "ios":
                 editor = "Replit";
+                this.shadowRoot.getElementById('coin').style.display = 'block';
                 break;
         }
 
