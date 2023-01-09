@@ -121,6 +121,10 @@ li.special {
     color: blue;
 }
 
+.donate {
+    color: green;
+}
+
 /*section iframe {
     width: 100%;
     height: 500px;

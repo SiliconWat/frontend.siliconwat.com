@@ -22,7 +22,7 @@ template.innerHTML = `
             <p>You can <strong>pause</strong>, <strong>slow down</strong> or <strong>speed up</strong> the video.</p>
             <p>You can turn on the <strong>English subtitle</strong> to catch my every word.</p>
             <p><em>Subtitles in other languages coming soon.</em></p>
-            <p class="pay"><em>Purchase of my <strong>Udemy Course</strong> is required.</em></p>
+            <p class="pay"><em>Purchase of my <strong>Udemy Course</strong> is required, but <strong>SW Coins</strong> can be redeemed for coupons for up to <strong>90% OFF</strong>!</em></p>
             <br>
             <button>Watch <span></span></button>
         </section>
@@ -34,8 +34,8 @@ template.innerHTML = `
             <p>This guarantees that you did not miss anything <strong>important</strong>.</p>
             <p class="free"><em>The Course Textbook is written as <strong>Medium articles</strong> and are FREE to read from here.</em></p>
             <!--<p>From here, you can read the entire course textbook on Medium for <strong>free!</strong></p>-->
-            <p class="pay"><em>If you like Medium and use my <a href="https://medium.com/@thonly/membership">referral link</a> to join, I will give you a <strong>special coupon</strong> to get ALL my <a href="https://siliconwat.com">Udemy courses</a> for <strong>90% OFF</strong> for Life!</em></p>
-            <p><em>If you’re already a Medium member or don't like Medium, please consider <strong>donating</strong> to <a href="https://github.com/sponsors/SiliconWat">@SiliconWat</a> to receive the same <strong>Udemy discounts</strong>!</em></p>
+            <p class="donate"><em>If you like Medium, please use my <a href="https://medium.com/@thonly/membership">referral link</a> to join. <strong>All proceeds</strong> will be donated towards the construction of the <a href="https://siliconwat.org">Silicon Wat Campus</a> for children in <strong>Ukraine</strong> and <strong>Cambodia</strong> ❤️</em></p>
+            <p class="donate"><em>If you’re already a Medium member or don't like Medium, please consider donating to <a href="https://github.com/sponsors/SiliconWat">@SiliconWat</a> instead 🙏</em></p>
             <br>
             <button>Read <span></span></button>
         </section>
