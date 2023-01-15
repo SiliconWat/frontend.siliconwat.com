@@ -18,6 +18,7 @@ template.innerHTML = `
             <h2><span>#1</span> Syntax Flashcards</h2>
             <figure>🗒</figure>
             <p>Play my <strong>Flashcard Games</strong> to help you <em>remember</em> the <strong>code syntaxes</strong> of <span id="code"></span>.</p>
+            <p>To make the games simple and fun, the <em>answers</em> are always <strong>one-liners</strong>.</p>
             <p>There are <em>three</em> levels: <strong>Junior</strong>, <strong>Mid</strong>, and <strong>Senior</strong>. The <em>more difficult</em> the level, the <em>less time</em> you have.</p>
             <p>Also, the <em>more difficult</em> the level, the <strong>more SW Coins</strong> you will earn!</p>
             <p class="free"><em>The <strong>Flashcard Games</strong> are FREE to play to earn <strong>SW Coins</strong>.</em></p>
