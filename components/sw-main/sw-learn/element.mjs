@@ -79,7 +79,7 @@ class SwLearn extends HTMLElement {
         const button = this.shadowRoot.querySelector('.group button');
         button.style.textDecorationLine = done ? "line-through" : "none";
         button.firstElementChild.textContent = `Discussion ${c}`;
-        button.onclick = async () => window.open(await getFile(`https://github.com/SiliconWat/${TRILOGY[0]}-cohort/blob/main/${y}/Chapters/${c}/Discussion.md`), '_blank');
+        button.onclick = async () => window.open(await getFile(`https://github.com/SiliconWat/${TRILOGY[0]}.siliconwat.dev/blob/main/${y}/Chapters/${c}/Discussion.md`), '_blank');
     }
 }
 

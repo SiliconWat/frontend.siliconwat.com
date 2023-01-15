@@ -84,18 +84,18 @@ export async function getData(filename, y=null, options={}) {
 
     switch (filename) {
         case "students":
-            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}-cohort/main/Students.json`;
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}.siliconwat.dev/main/Students.json`;
             break;
         case "syllabus":
-            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}-cohort/main/${y}/Syllabus.json`;
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}.siliconwat.dev/main/${y}/Syllabus.json`;
             break;
         case "groups":
             ({ system, season, w } = options);
-            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.capitalize()}/Weeks/${w}/Groups.json`;
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}.siliconwat.dev/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.capitalize()}/Weeks/${w}/Groups.json`;
             break;
         case "gradebook":
             ({ system, season, c } = options);
-            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}-cohort/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.capitalize()}/Chapters/${c}/Gradebook.json`;
+            url = `https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}.siliconwat.dev/main/${y}/${system === 'semester' ? "Semesters" : "Quarters"}/${season.capitalize()}/Chapters/${c}/Gradebook.json`;
             break;
     }
 
@@ -120,7 +120,7 @@ async function getBackup(filename, y) {
             backup = y === YEAR + 1 ? {} : `/docs/students.mjs`;
             break;
         case "syllabus":
-            backup = (await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}-cohort/main/${YEAR_BEGAN}/Syllabus.json`, { cache: "no-store" })).json(); // `${TRILOGY[2]}/docs/syllabus.mjs`;
+            backup = (await fetch(`https://raw.githubusercontent.com/SiliconWat/${TRILOGY[0]}.siliconwat.dev/main/${YEAR_BEGAN}/Syllabus.json`, { cache: "no-store" })).json(); // `${TRILOGY[2]}/docs/syllabus.mjs`;
             break;
         case "groups":
             backup = []; // "/docs/groups.mjs";
@@ -137,7 +137,7 @@ export async function getFile(url) {
         await fetch(url);
         return url;
     } catch(error) {
-        return `https://github.com/SiliconWat/${TRILOGY[0]}-cohort/blob/main/404.md`;
+        return `https://github.com/SiliconWat/${TRILOGY[0]}.siliconwat.dev/blob/main/404.md`;
     }
 }
 

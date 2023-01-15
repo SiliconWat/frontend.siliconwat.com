@@ -170,7 +170,7 @@ class SwHome extends HTMLElement {
     }
 
     async #renderButtons(github, course, cohort) {
-        this.shadowRoot.getElementById('join').onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0]}-cohort`, '_blank');
+        this.shadowRoot.getElementById('join').onclick = () => window.open(`https://github.com/SiliconWat/${TRILOGY[0]}.siliconwat.dev`, '_blank');
         
         const auth = this.shadowRoot.getElementById('auth');
         auth.firstElementChild.textContent = github.login ? "Log Out" : "Log In";
