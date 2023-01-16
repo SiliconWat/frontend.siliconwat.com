@@ -1,4 +1,5 @@
-import { HOME, BACKGROUND, DEVICE } from '/global.mjs';
+import "/components/sw-download/element.mjs";
+import { HOME, BACKGROUND } from '/global.mjs';
 
 class SwMain extends HTMLElement {
     #github;
@@ -8,7 +9,7 @@ class SwMain extends HTMLElement {
         window.addEventListener("hashchange", event => this.render());
     }
 
-    async #init() {
+    async connectedCallback() {
         const { default: template } = await import(`${HOME}/components/sw-main/template.mjs`);
         this.attachShadow({ mode: "open" });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
@@ -19,14 +20,6 @@ class SwMain extends HTMLElement {
         this.shadowRoot.prepend(link);
 
         this.dispatchEvent(new CustomEvent("sw-main", { bubbles: true, composed: true, detail: { component: this }}));
-    }
-
-    async connectedCallback() {
-        await this.#init();
-        const img = document.createElement('img');
-        this.shadowRoot.querySelector('footer').prepend(img);
-        img.src = DEVICE[2].image;
-        img.title = DEVICE[2].description;
         this.style.display = 'block';
     }
 

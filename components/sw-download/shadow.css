@@ -1,0 +1,16 @@
+:host {
+    display: none;
+    color: white;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    padding: 60px 20px 50px;
+    font-style: italic;
+}
+
+a {
+  color: currentColor;
+}
+
+img {
+  height: 80px;
+}
