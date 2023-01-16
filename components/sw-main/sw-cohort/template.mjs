@@ -9,6 +9,7 @@ template.innerHTML = `
         <p>The <strong>grading system</strong> is a simple <strong>Pass / No Pass</strong>.</p>
         <p>You just need to pass at least <strong id="percent"></strong> of all the class assignments to successfully complete the Cohort Program.</p>
         <p>Note that <strong>exact scores</strong> will be publicly <em>recorded</em> and <em>ranked</em> in order to reward <strong>SW Coins</strong> <em>proportionately</em>.</p>
+        <p><strong>Top graduates</strong> will have the opportunity to interview for a <em>paid consultancy</em> at my <a href="https://siliconwat.dev">Silicon Wat Agency</a>!</p>
     </section>
     <section id="cohort">
         <table>
