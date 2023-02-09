@@ -38,7 +38,7 @@ td:hover {
     background-color: rgba(255, 255, 0, 20%);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px) or (max-height: 480px) {
     table {
         font-size: 0.3em;
     }

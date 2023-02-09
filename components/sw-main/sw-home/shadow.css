@@ -133,7 +133,7 @@ li.special {
     margin-bottom: 20px;
 }*/
 
-@media (max-width: 480px) {
+@media (max-width: 480px) or (max-height: 480px) {
     :host {
         margin: 0 30px;
     }
@@ -160,5 +160,11 @@ li.special {
 
     header select {
         font-size: 0.8em;
+    }
+}
+
+@media (max-height: 480px) {
+    header h1 {
+        font-size: 1.7em;
     }
 }

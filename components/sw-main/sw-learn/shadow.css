@@ -15,7 +15,7 @@ aside {
     display: none;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px) or (max-height: 480px) {
     main {
         grid-template: repeat(6, auto) / 1fr;
     }
