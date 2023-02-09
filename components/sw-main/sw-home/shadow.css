@@ -133,7 +133,7 @@ li.special {
     margin-bottom: 20px;
 }*/
 
-@media (max-width: 480px) or (max-height: 480px) {
+@media (max-width: 480px), (max-height: 480px) {
     :host {
         margin: 0 30px;
     }

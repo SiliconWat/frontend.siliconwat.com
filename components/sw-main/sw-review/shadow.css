@@ -2,6 +2,6 @@ aside {
     text-align: left;
 }
 
-@media (max-width: 480px) or (max-height: 480px) {
+@media (max-width: 480px), (max-height: 480px) {
     
 }
