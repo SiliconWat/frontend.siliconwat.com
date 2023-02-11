@@ -30,7 +30,7 @@ h1 {
 
 @media (max-height: 480px) {
 	section {
-		flex: 7;
+		flex: 10;
 	}
 
 	h1 {
