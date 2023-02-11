@@ -15,7 +15,7 @@ template.innerHTML = `
         <label class='menu-button-container' for="menu-toggle">
             <span class='menu-button'></span>
         </label>
-        <ul></ul>
+        <div><ul></ul></div>
         <aside>
             <select onchange="this.getRootNode().host.changeLanguage(event)">
                 <option value="en">English</option>
