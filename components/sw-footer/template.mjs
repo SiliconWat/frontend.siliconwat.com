@@ -37,7 +37,7 @@ template.innerHTML = `
                         <li><a>Blockchain Wallet</a></li>
                     </ul>
                     <ul id="ios">
-                        <li><a>3D Animator</a></li>
+                        <li><a>3D AI NPC</a></li>
                     </ul> 
                 </div>
                 <div>
