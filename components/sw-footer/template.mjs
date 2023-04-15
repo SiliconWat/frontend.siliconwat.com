@@ -31,7 +31,7 @@ template.innerHTML = `
                     <ul id="frontend">
                         <li><a href="https://music.siliconwat.dev">Music PWA</a></li>
                         <li><a href="https://music.siliconwat.org">Music School</a></li>
-                        <li><a href="https://music.siliconwat.com">Coding Music</a></li>
+                        <!--<li><a href="https://music.siliconwat.com">Coding Music</a></li>-->
                     </ul>
                     <ul id="backend">
                         <li><a>Blockchain Wallet</a></li>
